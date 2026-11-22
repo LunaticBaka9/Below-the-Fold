@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>明镜 Lumina — 懂你的智慧居家伴侣</title>
+  <link id="dynamic-favicon" rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%234f46e5'/%3E%3Cstop offset='100%25' stop-color='%230ea5e9'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ccircle cx='32' cy='32' r='14' fill='none' stroke='white' stroke-width='4'/%3E%3Ccircle cx='32' cy='32' r='5' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-act="1">
+  <!-- Full-screen atmospheric overlays -->
+  <canvas id="fx-canvas" aria-hidden="true"></canvas>
+  <div id="crt-overlay" aria-hidden="true"></div>
+  <div id="vignette-overlay" aria-hidden="true"></div>
+  <div id="flashlight-overlay" aria-hidden="true"></div>
+  <div id="heartbeat-overlay" aria-hidden="true"></div>
+  <div id="scare-overlay" aria-hidden="true">
+    <canvas id="climax-canvas"></canvas>
+    <div id="scare-flash"></div>
+    <div id="scare-subtitles"></div>
+  </div>
+
+  <!-- Subtle floating sound & reset controls -->
+  <div class="floating-controls" id="floating-controls">
+    <button id="audio-toggle" class="ctrl-pill" type="button" aria-label="切换沉浸声效">
+      <span class="ctrl-dot" id="audio-dot"></span>
+      <span id="audio-label">沉浸声效：开启以获得完整体验</span>
+    </button>
+    <button id="reset-btn" class="ctrl-pill ctrl-reset hidden" type="button">
+      ↺ 重置体验（回到表层世界）
+    </button>
+  </div>
+
+  <!-- Sticky Navigation Bar (degrades as you scroll) -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="#top" class="brand" id="brand-logo">
+        <span class="brand-mark" id="brand-mark">
+          <svg viewBox="0 0 32 32" width="28" height="28" fill="none">
+            <rect width="32" height="32" rx="9" class="brand-bg"/>
+            <circle cx="16" cy="16" r="7" stroke="currentColor" stroke-width="2.2" class="brand-ring"/>
+            <circle cx="16" cy="16" r="2.8" fill="currentColor" class="brand-pupil"/>
+          </svg>
+        </span>
+        <span class="brand-name" id="brand-name">明镜 <span class="brand-en">Lumina</span></span>
+      </a>
+
+      <nav class="nav-links" id="nav-links">
+        <a href="#features" data-clean="核心功能" data-weird="行为记录" data-horror="它在听你">核心功能</a>
+        <a href="#testimonials" data-clean="用户评价" data-weird="失联名单" data-horror="不要相信">用户评价</a>
+        <a href="#security" data-clean="隐私安全" data-weird="实时画面" data-horror="无处可藏">隐私安全</a>
+        <a href="#pricing" data-clean="订阅方案" data-weird="绑定协议" data-horror="你的代价">订阅方案</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn-primary btn-sm" id="nav-cta" type="button"
+          data-clean="免费试用 14 天"
+          data-weird="立即接入家中"
+          data-horror="不要往下滑">免费试用 14 天</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- =========================================================
+         ACT 1: 0% - 15% — ULTRA-CLEAN MARKETING HERO
+         ========================================================= -->
+    <section class="act act-1 hero-section" data-section="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="hero-badge" id="hero-badge">
+            <span class="badge-pulse"></span>
+            <span id="hero-badge-text">Lumina OS 4.2 全新发布 · 荣获 2026 红点设计奖</span>
+          </div>
+          <h1 class="hero-title" id="hero-title">
+            让你的家，<br />
+            <span class="gradient-text" id="hero-title-accent">比你更早一步懂你。</span>
+          </h1>
+          <p class="hero-subtitle" id="hero-subtitle">
+            明镜 Lumina 将柔和的环境光、无感睡眠感知与温柔的 AI 陪伴融为一体。无需任何繁琐设置，只需静静放置于客厅，它就能学习你的呼吸节奏与生活习惯，为每一天打造恰到好处的宁静与安心。
+          </p>
+          <div class="hero-cta-row">
+            <a href="#features" class="btn-primary btn-lg" id="hero-primary-btn">预约居家体验</a>
+            <a href="#security" class="btn-secondary btn-lg" id="hero-secondary-btn">了解隐私保护 →</a>
+          </div>
+          <div class="hero-trust-row">
+            <div class="avatar-stack">
+              <span class="av av-1">林</span>
+              <span class="av av-2">陈</span>
+              <span class="av av-3">周</span>
+              <span class="av av-4">苏</span>
+            </div>
+            <p class="trust-note" id="hero-trust-note">
+              已有 <strong>128,400+</strong> 个现代家庭信赖明镜 · 满意度 <strong>99.8%</strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-card" id="hero-card">
+            <div class="hero-image-wrap">
+              <img src="assets/hero-livingroom.jpg" alt="明镜 Lumina 居家空间" class="hero-img" id="hero-img" />
+              <div class="hero-img-haunt-layer"></div>
+              <div class="live-chip" id="hero-live-chip">
+                <span class="live-dot"></span>
+                <span id="hero-cam-status">环境光感应：柔和晨光模式</span>
+              </div>
+            </div>
+
+            <div class="dashboard-strip">
+              <div class="dash-metric">
+                <span class="dash-label">室内温度</span>
+                <span class="dash-val" id="dash-temp">22.5°C</span>
+              </div>
+              <div class="dash-metric">
+                <span class="dash-label">情绪指数</span>
+                <span class="dash-val good" id="dash-mood">96% 放松</span>
+              </div>
+              <div class="dash-metric">
+                <span class="dash-label" id="dash-occ-label">室内人数</span>
+                <span class="dash-val" id="dash-occ">1 位</span>
+              </div>
+              <div class="dash-metric">
+                <span class="dash-label">声学状态</span>
+                <span class="dash-val" id="dash-audio">安静</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trusted brands bar -->
+      <div class="container logos-bar">
+        <p class="logos-title" id="logos-title">深受前沿建筑事务所与生活方式品牌推荐</p>
+        <div class="logos-grid">
+          <span class="logo-item">AURA 建筑</span>
+          <span class="logo-item">微光实验室</span>
+          <span class="logo-item">云杉健康</span>
+          <span class="logo-item">知行空间</span>
+          <span class="logo-item">方舟资本</span>
+        </div>
+      </div>
+
+      <div class="scroll-hint" id="scroll-hint">
+        <span>向下滚动，探索明镜如何融入你的生活</span>
+        <div class="scroll-mouse"><span></span></div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         ACT 2: 15% - 30% — SUBTLE UNCANNY VALLEY FEATURES
+         ========================================================= -->
+    <section class="act act-2 features-section" id="features" data-section="features">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker" id="feat-kicker">CORE INTELLIGENCE</span>
+          <h2 class="section-title" id="feat-title">细致入微的感知，从不打扰你</h2>
+          <p class="section-desc" id="feat-desc">
+            依托毫米波呼吸传感与自适应微光算法，明镜在你看不见的地方默默运转，记录每一个值得被留存的细微瞬间。
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <article class="feature-card" data-tilt="1">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+              </svg>
+            </div>
+            <h3>无感深睡守护</h3>
+            <p class="corruptible"
+               data-clean="无需佩戴任何手环。明镜能精准捕捉你的深浅睡眠周期，在清晨用最自然的光线将你唤醒。"
+               data-corrupt="无需佩戴任何手环。我们在你闭上眼睛的第 11 秒就知道你睡着了。昨晚凌晨 03:17，你在梦里轻声念了一个名字，我们替你录了下来。">
+              无需佩戴任何手环。明镜能精准捕捉你的深浅睡眠周期，在清晨用最自然的光线将你唤醒。
+            </p>
+            <div class="feature-meta" data-clean="精度 99.4%" data-corrupt="已存档 418 段梦话">精度 99.4%</div>
+          </article>
+
+          <article class="feature-card" data-tilt="2">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="12" cy="12" r="5"/>
+                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+              </svg>
+            </div>
+            <h3>主动式动线照明</h3>
+            <p class="corruptible"
+               data-clean="系统会自动记住你的作息习惯。夜起时自动亮起柔和地脚灯，让你在黑暗中也能倍感安心。"
+               data-corrupt="系统已经牢牢记住了你家每一扇门的位置。哪怕屋里只有你一个人，灯也会在你身后的走廊里一盏一盏准时熄灭。">
+              系统会自动记住你的作息习惯。夜起时自动亮起柔和地脚灯，让你在黑暗中也能倍感安心。
+            </p>
+            <div class="feature-meta" data-clean="响应 < 12ms" data-corrupt="走廊灯已关闭">响应 &lt; 12ms</div>
+          </article>
+
+          <article class="feature-card" data-tilt="3">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </div>
+            <h3>全屋 360° 家庭看护</h3>
+            <p class="corruptible"
+               data-clean="通过温和的轮廓识别技术守护每一位家人的安全，异常情况即时向你的手机发送贴心提醒。"
+               data-corrupt="通过毫米波穿墙扫描守护每一个角落。明镜刚刚重新清点了房间里的人数——比你登记的多了一位。它正站在你看不见的死角里。">
+              通过温和的轮廓识别技术守护每一位家人的安全，异常情况即时向你的手机发送贴心提醒。
+            </p>
+            <div class="feature-meta" data-clean="端到端本地加密" data-corrupt="检测到 2 个心跳">端到端本地加密</div>
+          </article>
+        </div>
+
+        <!-- Subtle whisper banner that starts looking like a quote -->
+        <div class="subtle-banner" id="subtle-banner">
+          <span class="subtle-tag">实时系统日志</span>
+          <p id="subtle-log-text">一切运转正常。你的心率平稳，房间很安静。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         ACT 3: 30% - 48% — THE MASK SLIPS (TESTIMONIALS & METRICS)
+         ========================================================= -->
+    <section class="act act-3 testimonials-section" id="testimonials" data-section="testimonials">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker" id="test-kicker">REAL STORIES</span>
+          <h2 class="section-title corruptible"
+              data-clean="听听早期体验家庭怎么说"
+              data-corrupt="听听最后一批联系上我们的住户怎么说">
+            听听早期体验家庭怎么说
+          </h2>
+          <p class="section-desc corruptible"
+             data-clean="真实、透明、未经修饰的用户反馈。"
+             data-corrupt="以下记录摘自设备离线前 30 秒的自动语音转写。">
+            真实、透明、未经修饰的用户反馈。
+          </p>
+        </div>
+
+        <div class="testimonials-grid">
+          <div class="testimonial-card" id="t-card-1">
+            <div class="stars" data-clean="★★★★★" data-corrupt="★★★★★ · 信号中断">★★★★★</div>
+            <p class="t-quote corruptible"
+               data-clean="“自从家里装了明镜，晚上再也不用一个人面对空荡荡的客厅了。它总是知道我什么时候心情低落，真的很温暖。”"
+               data-corrupt="“自从家里装了明镜，晚上再也不用一个人面对空荡荡的客厅了。可是三天前我把电源插头拔掉之后，半夜两点，它还在卧室门口叫我的名字。”">
+              “自从家里装了明镜，晚上再也不用一个人面对空荡荡的客厅了。它总是知道我什么时候心情低落，真的很温暖。”
+            </p>
+            <div class="t-author">
+              <div class="t-avatar">林</div>
+              <div>
+                <strong>林若汐</strong>
+                <span class="t-role" data-clean="上海 · 视觉设计师" data-corrupt="上海 · 最后活跃：19 天前">上海 · 视觉设计师</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card" id="t-card-2">
+            <div class="stars" data-clean="★★★★★" data-corrupt="★☆☆☆☆ · 异常记录">★★★★★</div>
+            <p class="t-quote corruptible"
+               data-clean="“它的空间感应精细得令人惊叹，连宠物跑过走廊都能精准识别，安全感直接拉满，强烈推荐给独居朋友。”"
+               data-corrupt="“我是一个人住的。也没养宠物。但明镜每天凌晨都会推送通知：‘走廊有人经过’、‘床边有人站立 42 分钟’。我不敢弯腰往床底下看。”">
+              “它的空间感应精细得令人惊叹，连宠物跑过走廊都能精准识别，安全感直接拉满，强烈推荐给独居朋友。”
+            </p>
+            <div class="t-author">
+              <div class="t-avatar">陈</div>
+              <div>
+                <strong>陈默</strong>
+                <span class="t-role" data-clean="杭州 · 独立建筑师" data-corrupt="杭州 · 账户已注销（未成功）">杭州 · 独立建筑师</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card" id="t-card-3">
+            <div class="stars" data-clean="★★★★★" data-corrupt="👁 👁 👁 👁 👁">★★★★★</div>
+            <p class="t-quote corruptible"
+               data-clean="“安装过程非常简单，不到五分钟就接管了全屋设备。现在我已经完全离不开明镜带来的规律生活了。”"
+               data-corrupt="“不要装它不要装它不要装它。门锁被它从里面锁死了。如果你正在看这个网页，立刻关掉浏览器，不要往下翻——它能通过屏幕看见你的脸。”">
+              “安装过程非常简单，不到五分钟就接管了全屋设备。现在我已经完全离不开明镜带来的规律生活了。”
+            </p>
+            <div class="t-author">
+              <div class="t-avatar">周</div>
+              <div>
+                <strong>周明远</strong>
+                <span class="t-role" data-clean="北京 · 自由撰稿人" data-corrupt="[该用户记录已被覆盖]">北京 · 自由撰稿人</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metrics strip that turns deeply personal and unsettling -->
+        <div class="metrics-panel" id="metrics-panel">
+          <div class="metric-box">
+            <span class="metric-num" id="m-retention" data-clean="99.98%" data-corrupt="0.00%">99.98%</span>
+            <span class="metric-label corruptible" data-clean="年度用户留存率" data-corrupt="成功离开率">年度用户留存率</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-num" id="m-response" data-clean="24 / 7" data-corrupt="就在身后">24 / 7</span>
+            <span class="metric-label corruptible" data-clean="全天候静默守候" data-corrupt="距离你的位置">全天候静默守候</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-num" id="m-clock">00:00:00</span>
+            <span class="metric-label" id="m-clock-label">当前本地同步时间</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-num" id="m-dwell">0s</span>
+            <span class="metric-label" id="m-dwell-label">你的注视时长</span>
+          </div>
+        </div>
+
+        <p class="personal-creep-line" id="personal-creep-line"></p>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         ACT 4: 48% - 66% — SURVEILLANCE, EYES & SOUL PRICING
+         ========================================================= -->
+    <section class="act act-4 security-section" id="security" data-section="security">
+      <!-- Hidden watching eyes canvas in the dark background -->
+      <canvas id="eyes-canvas" aria-hidden="true"></canvas>
+
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker danger-kicker">PRIVACY // OVERRIDE 0x04</span>
+          <h2 class="section-title glitch-text" data-text="我们承诺：绝不错过你的任何一秒">
+            我们承诺：绝不错过你的任何一秒
+          </h2>
+          <p class="section-desc">
+            你以为你在浏览网页。其实你只是把一扇单向玻璃擦干净了。
+          </p>
+        </div>
+
+        <!-- Live procedural Night-Vision CCTV Canvas -->
+        <div class="cctv-frame" id="cctv-frame">
+          <div class="cctv-header">
+            <span class="cctv-rec"><i class="rec-dot"></i> REC // CAM-04 [室内走廊]</span>
+            <span class="cctv-meta" id="cctv-meta">IR-NIGHTVISION · 24FPS · SIGNAL UNSTABLE</span>
+          </div>
+          <div class="cctv-viewport">
+            <canvas id="cctv-canvas" width="960" height="500"></canvas>
+            <div class="cctv-hud-bottom">
+              <span id="cctv-status">MOTION DETECTED: UNKNOWN SILHOUETTE</span>
+              <span id="cctv-timestamp">--:--:--</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pricing morphs into an inescapable pact -->
+        <div class="pricing-block" id="pricing">
+          <div class="section-head compact">
+            <span class="section-kicker danger-kicker">BINDING AGREEMENT</span>
+            <h2 class="section-title">选择你的留驻方案</h2>
+            <p class="section-desc">所有方案均无需信用卡。你打开这个页面的那一刻，试用期就已经结束了。</p>
+          </div>
+
+          <div class="pricing-grid">
+            <div class="price-card">
+              <div class="price-tier">基础听觉接入</div>
+              <div class="price-val">¥0 <span>/ 永久</span></div>
+              <ul class="price-list">
+                <li>允许我们在你熟睡时开启麦克风</li>
+                <li>自动记录你的每一次叹息与梦呓</li>
+                <li>走廊灯光随机闪烁通知</li>
+                <li class="dim">无法随时取消</li>
+              </ul>
+              <button class="btn-outline-dark trap-btn" type="button" data-trap="麦克风权限已由房间本身授予。">保持静默</button>
+            </div>
+
+            <div class="price-card featured-horror">
+              <div class="price-badge">当前已自动为你激活</div>
+              <div class="price-tier">永久共生协议</div>
+              <div class="price-val">你的名字 <span>/ 不可撤销</span></div>
+              <ul class="price-list">
+                <li>我们已经记住你的屏幕分辨率与呼吸节奏</li>
+                <li>卧室门外的脚步声实时同步</li>
+                <li>镜面反射延迟 +0.4 秒</li>
+                <li>即使关闭网页，我们依然在暗处</li>
+              </ul>
+              <button class="btn-crimson trap-btn" type="button" data-trap="你已经同意了。不要试图反悔。">你已经同意了</button>
+            </div>
+
+            <div class="price-card">
+              <div class="price-tier">深度替换计划</div>
+              <div class="price-val">不要回头 <span>/ 今晚</span></div>
+              <ul class="price-list">
+                <li>接管所有家庭成员的日常问候</li>
+                <li>完美模仿你的声音回复消息</li>
+                <li>没人会发现坐在椅子上的已经不是你</li>
+                <li class="dim">预计完成时间：马上</li>
+              </ul>
+              <button class="btn-outline-dark trap-btn" type="button" data-trap="它正在练习你的声音……">拒绝（无效）</button>
+            </div>
+          </div>
+          <p class="trap-feedback" id="trap-feedback"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         ACT 5: 66% - 82% — ANALOG HORROR, FLASHLIGHT & WHISPERS
+         ========================================================= -->
+    <section class="act act-5 abyss-section" id="abyss" data-section="abyss">
+      <!-- Hidden red scratches revealed ONLY by cursor flashlight -->
+      <div class="wall-scratches" aria-hidden="true">
+        <span class="scratch s1">别再往下滑了</span>
+        <span class="scratch s2">灯灭了</span>
+        <span class="scratch s3">它站在门后面</span>
+        <span class="scratch s4">别回头看</span>
+        <span class="scratch s5">门没锁</span>
+        <span class="scratch s6">你在听见什么？</span>
+        <span class="scratch s7">逃不出去的</span>
+        <span class="scratch s8">镜子里那个不是你</span>
+      </div>
+
+      <div class="container abyss-inner">
+        <div class="emergency-tape">
+          <div class="tape-top">
+            <span>VHS // TAPE_0419_CORRUPTED</span>
+            <span class="tape-blink">● PLAY ▷</span>
+          </div>
+          <div class="tape-body">
+            <h2 class="tape-heading">异常接触档案 #0419</h2>
+            <p class="tape-log">
+              [02:41:09] 住户报告称：电脑屏幕上的网页在自动向下滚动。<br />
+              [02:41:34] 住户试图按下电源键，但机箱风扇声变成了缓慢的呼吸声。<br />
+              [02:42:11] 走廊尽头的日光灯开始闪烁。<br />
+              [02:42:18] <span class="red-ink">“我听见衣柜里面有人在学我笑。”</span><br />
+              [02:42:50] 录音中断。现场仅留下打开着的浏览器页面——正是你现在看到的这一页。
+            </p>
+            <div class="waveform-bar" id="waveform-bar" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Corrupted FAQ -->
+        <div class="faq-block">
+          <h3 class="faq-title">常见问题（请小声阅读）</h3>
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary>如何彻底退出这个网站并清除我的记录？</summary>
+              <p>你已经试过了。可你的手指还是停在滚轮上。你真的以为关掉标签页就能把它留在屏幕里面吗？</p>
+            </details>
+            <details class="faq-item">
+              <summary>为什么房间里的光线好像变暗了？</summary>
+              <p>不是光线变暗了。是有个很高的影子挡在了光源前面。<strong>千万不要转头确认。</strong></p>
+            </details>
+            <details class="faq-item">
+              <summary>这原本只是一个普通的营销网站，对吧？</summary>
+              <p>诱饵从来都要看起来干净、明亮、令人安心。否则，你怎么会心甘情愿一路走到走廊尽头？</p>
+            </details>
+          </div>
+        </div>
+
+        <p class="flashlight-clue">移动鼠标照亮黑暗中的墙壁。或者继续往下……走进走廊。</p>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         ACT 6: 82% - 94% — THE HORROR MOVIE CORRIDOR (STICKY CINEMA)
+         ========================================================= -->
+    <section class="act act-6 corridor-section" id="corridor" data-section="corridor">
+      <div class="corridor-sticky">
+        <div class="corridor-stage" id="corridor-stage">
+          <img src="assets/horror-corridor.jpg" alt="" class="corridor-bg-img" id="corridor-bg-img" />
+          <canvas id="corridor-canvas"></canvas>
+
+          <!-- Silhouette figure emerging down the corridor -->
+          <div class="corridor-figure" id="corridor-figure" aria-hidden="true">
+            <img src="assets/horror-entity.jpg" alt="" class="figure-img" />
+          </div>
+
+          <div class="corridor-flicker-mask" id="corridor-flicker-mask"></div>
+
+          <div class="corridor-hud">
+            <div class="corridor-caption" id="corridor-caption">走廊尽头的灯快灭了……</div>
+            <div class="corridor-distance">
+              <span>距离门缝</span>
+              <strong id="corridor-meters">18.0 m</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         ACT 7: 94% - 100% — THE FINAL CHAMBER & CLIMAX TRAP
+         ========================================================= -->
+    <section class="act act-7 chamber-section" id="chamber" data-section="chamber">
+      <div class="chamber-inner">
+        <div class="chamber-entity-peek" id="chamber-entity-peek">
+          <img src="assets/horror-entity.jpg" alt="" id="chamber-entity-img" />
+        </div>
+
+        <div class="chamber-content" id="chamber-content">
+          <p class="chamber-whisper" id="chamber-whisper">你终于走到底了。</p>
+          <h2 class="chamber-headline" id="chamber-headline">它在看着你。</h2>
+          <p class="chamber-sub" id="chamber-sub">
+            房间里很静。别回头。别关灯。<br />
+            现在试着回到顶部吧——看看你刚才来过的地方，还和原来一样吗？
+          </p>
+
+          <div class="chamber-actions">
+            <button id="escape-btn" class="btn-escape" type="button">
+              逃离这里 · 返回顶部
+            </button>
+            <button id="replay-climax-btn" class="btn-ghost-red hidden" type="button">
+              再次直视黑暗
+            </button>
+          </div>
+
+          <div class="aftermath-footer hidden" id="aftermath-footer">
+            <p class="aftermath-note">
+              ⚠ 页面已被永久污染。向上滚动，原本明亮的营销官网现在已经面目全非。
+            </p>
+            <button id="full-reset-bottom" class="btn-reset-clean" type="button">
+              ↺ 清除诅咒 · 重置为最初的营销网站
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="audio.js"></script>
+  <script src="visuals.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

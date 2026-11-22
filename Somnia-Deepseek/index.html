@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en" data-act="0">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Somnia — Sleep is a skill.</title>
+<meta name="description" content="Somnia maps the shape of your night and gives the lost minutes back. A sleep system for people who have tried everything else.">
+<meta name="theme-color" content="#f1ece2" id="themeColor">
+<meta property="og:title" content="Somnia — Sleep is a skill.">
+<meta property="og:description" content="Fall asleep in eleven minutes. Wake before your alarm. Every time.">
+<meta property="og:type" content="website">
+<link rel="icon" id="favicon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230e2a23'/%3E%3Cpath d='M43 15a20 20 0 1 0 7 36A22 22 0 0 1 43 15z' fill='%23f1ece2'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/instrument-serif-normal-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/instrument-sans-normal-400-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<div class="bleed" aria-hidden="true"></div>
+
+<div class="scroll-rail" aria-hidden="true"><span class="scroll-thumb" id="scrollThumb"></span></div>
+
+<header class="site-header" id="siteHeader">
+  <a href="#top" class="brand" aria-label="Somnia — home">
+    <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+      <path d="M22 4a13 13 0 1 0 5 24A15 15 0 0 1 22 4Z" fill="currentColor"/>
+    </svg>
+    <span class="brand-word">somnia</span>
+  </a>
+
+  <nav class="site-nav" aria-label="Primary">
+    <a href="#product"><span data-swap="nav-product">Product</span></a>
+    <a href="#science"><span data-swap="nav-science">Science</span></a>
+    <a href="#reviews"><span data-swap="nav-reviews">Reviews</span></a>
+    <a href="#pricing"><span data-swap="nav-pricing">Pricing</span></a>
+  </nav>
+
+  <div class="header-actions">
+    <button class="sound-toggle" id="soundToggle" aria-pressed="false" aria-label="Toggle ambient sound">
+      <span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="sound-text" data-swap="sound">Sound off</span>
+    </button>
+    <a href="#pricing" class="btn btn-ghost">Get Somnia</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ ACT 0 · THE PITCH ============ -->
+  <section class="hero" data-act="0" id="top">
+    <div class="hero-haze" aria-hidden="true"></div>
+    <div class="wrap hero-grid">
+
+      <div class="hero-copy">
+        <p class="eyebrow anim" style="--d:.05s">Somnia Sleep Systems · Est. 2019</p>
+        <h1 class="display anim" style="--d:.12s">Sleep is the last <em>unoptimized</em> part of your day.</h1>
+        <p class="lede anim" style="--d:.2s">Somnia learns the shape of your night — the small wakings, the shallow hours, the eleven minutes you lose every morning. Then it quietly gives them back.</p>
+
+        <form class="capture anim" id="captureForm" style="--d:.28s" novalidate>
+          <div class="field">
+            <label class="sr-only" for="email">Email address</label>
+            <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@work.com" spellcheck="false">
+            <button class="btn btn-solid" type="submit" data-swap="cta">Start 14 nights free</button>
+          </div>
+          <p class="micro" id="captureNote">No card. No commitment. Cancel before dawn.</p>
+        </form>
+
+        <div class="hero-trust anim" style="--d:.36s">
+          <div class="faces" aria-hidden="true"><i>M</i><i>J</i><i>R</i><i>+</i></div>
+          <p>Trusted by <strong id="sleeperCount">41,000</strong> sleepers<br>in 62 countries.</p>
+        </div>
+      </div>
+
+      <div class="hero-visual anim" style="--d:.24s">
+        <div class="pod" id="pod">
+          <div class="pod-head">
+            <span>Tonight</span>
+            <span class="pod-date">23:41 → 06:58</span>
+          </div>
+
+          <div class="pod-score">
+            <svg class="ring" viewBox="0 0 140 140" aria-hidden="true">
+              <circle class="ring-track" cx="70" cy="70" r="61"></circle>
+              <circle class="ring-val" id="ringVal" cx="70" cy="70" r="61"></circle>
+            </svg>
+            <div class="pod-score-copy">
+              <span class="pod-num">94</span>
+              <span class="pod-label">Sleep score</span>
+            </div>
+          </div>
+
+          <ul class="pod-rows">
+            <li><span>Deep</span><span>1h 52m</span></li>
+            <li><span>REM</span><span>1h 06m</span></li>
+            <li><span>Wakings</span><span>0</span></li>
+          </ul>
+
+          <div class="wave pod-wave" data-wave="34" aria-hidden="true"></div>
+
+          <div class="pod-foot">
+            <span class="live-dot" aria-hidden="true"></span>
+            Somnia is learning your room
+          </div>
+        </div>
+        <div class="pod-tag"><strong>11 min</strong><span>average latency</span></div>
+      </div>
+
+    </div>
+    <div class="scroll-cue" aria-hidden="true"><span>Scroll to begin</span><i></i></div>
+  </section>
+
+  <section class="press" data-act="0" aria-label="Press mentions">
+    <div class="wrap press-inner">
+      <span class="press-label">As seen in</span>
+      <div class="press-logos">
+        <span>The Quiet</span>
+        <span>Nightwire</span>
+        <span>Future of Rest</span>
+        <span>Hush House</span>
+        <span class="press-you">You</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ACT 1 · THE CRACKS ============ -->
+  <section class="section features" data-act="1" id="product">
+    <div class="wrap">
+      <header class="section-head">
+        <p class="eyebrow">01 — The system</p>
+        <h2 class="h2">Four small adjustments.<br><em>One entirely different morning.</em></h2>
+      </header>
+
+      <div class="grid-4">
+        <article class="feature">
+          <span class="feature-num">01</span>
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M24.5 19.5A9.5 9.5 0 0 1 12.5 7.5a9.5 9.5 0 1 0 12 12Z"/><circle cx="23" cy="8" r="1" fill="currentColor" stroke="none"/></svg>
+          </span>
+          <h3>Circadian tuning</h3>
+          <p>Somnia reads the light in your room and shifts your sleep window by minutes, not hours. You won’t notice. That’s the point.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">02</span>
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M8 22.5 7 26l3.6-1 15-15a2.4 2.4 0 0 0-3.4-3.4l-15 15Z"/><path d="M20.5 8.5 24 12"/></svg>
+          </span>
+          <h3>Dream journaling</h3>
+          <p>It writes down what you dreamed before you remember dreaming it. Morning summaries, delivered at 06:58, in your own words.</p>
+        </article>
+
+        <article class="feature feature-odd">
+          <span class="feature-num">03</span>
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M2.8 16S8 7.5 16 7.5 29.2 16 29.2 16 24 24.5 16 24.5 2.8 16 2.8 16Z"/><circle class="eye-iris" cx="16" cy="16" r="4.6"/><circle cx="16" cy="16" r="1.5" fill="currentColor" stroke="none"/></svg>
+          </span>
+          <h3>Room presence</h3>
+          <p>Somnia knows when the room is empty — and when it isn’t. Presence is detected without a camera. Only sound.</p>
+        </article>
+
+        <article class="feature">
+          <span class="feature-num">04</span>
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="16" cy="16" r="6.5"/><path d="M16 3v3.5M16 25.5V29M3 16h3.5M25.5 16H29M6.8 6.8l2.5 2.5M22.7 22.7l2.5 2.5M25.2 6.8l-2.5 2.5M9.3 22.7l-2.5 2.5"/></svg>
+          </span>
+          <h3>The morning brief</h3>
+          <p>One page. Your night, decoded. No charts you have to squint at, no streaks to maintain, nothing to feel guilty about.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="proof section" data-act="1" id="reviews">
+    <div class="wrap">
+      <div class="proof-stats">
+        <div class="stat">
+          <span class="stat-num">94<span>%</span></span>
+          <span class="stat-label">report deeper sleep<br>within 14 nights</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">11<span>min</span></span>
+          <span class="stat-label">average time<br>to fall asleep</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num"><span data-live="devices">1</span></span>
+          <span class="stat-label">Somnia in<br>your room</span>
+        </div>
+      </div>
+
+      <div class="quotes">
+        <figure class="quote">
+          <blockquote>“I used to lie awake for an hour. Now I’m out before the light goes off.”</blockquote>
+          <figcaption>Mara K. — Oslo</figcaption>
+        </figure>
+        <figure class="quote">
+          <blockquote>“The morning brief is the only email I actually read. It knows my night better than I do.”</blockquote>
+          <figcaption>Jonah T. — Austin</figcaption>
+        </figure>
+        <figure class="quote quote-odd">
+          <blockquote>“I don’t remember falling asleep. I don’t remember waking up. I’ve never felt more rested.”</blockquote>
+          <figcaption>[name withheld] — London</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ACT 2 · THE LISTENING ============ -->
+  <section class="science" data-act="2" id="science">
+    <div class="science-sticky">
+      <div class="wrap science-grid">
+        <div class="science-copy">
+          <p class="eyebrow">02 — The science</p>
+          <h2 class="h2">We don’t measure sleep.<br><em>We listen to it.</em></h2>
+          <p class="body-copy">A Somnia device sits in the room and does almost nothing. It doesn’t glow. It doesn’t beep. It listens to the house the way you listen to a house at night — for the sounds that don’t belong. Then it adjusts the dark until your body gives in.</p>
+          <blockquote class="testament">
+            <p>“Sleep isn’t a state. It’s a room you walk into. Most people never find the door.”</p>
+            <cite>Dr. Elin Voss — Head of Sleep Research</cite>
+          </blockquote>
+        </div>
+
+        <figure class="door-figure">
+          <div class="door-scene">
+            <div class="door">
+              <div class="door-inside">
+                <div class="door-presence" id="doorPresence"></div>
+              </div>
+            </div>
+            <div class="door-rim" aria-hidden="true"></div>
+          </div>
+          <figcaption><span>Fig. 01</span> The room at 03:14. Nothing is in it.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="steps section" data-act="2">
+    <div class="wrap">
+      <p class="eyebrow">How it works</p>
+      <ol class="step-list">
+        <li>
+          <span class="step-num">01</span>
+          <div><h3>Sense</h3><p>Six microphones, one thermometer, no camera. Nothing leaves the room.</p></div>
+        </li>
+        <li>
+          <span class="step-num">02</span>
+          <div><h3>Model</h3><p>A private model of your night is built in your home, on hardware you own.</p></div>
+        </li>
+        <li>
+          <span class="step-num">03</span>
+          <div><h3>Guide</h3><p>Sound, light, temperature. Adjusted by degrees you will never consciously feel.</p></div>
+        </li>
+        <li class="step-odd">
+          <span class="step-num">04</span>
+          <div><h3>Wait</h3><p>Somnia waits for you to stop moving. Then it begins.</p></div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="listening" data-act="2">
+    <div class="wrap listening-inner">
+      <p class="listening-kicker"><span class="live-dot" aria-hidden="true"></span> Listening <span data-live="time">--:--:--</span></p>
+      <p class="listening-line">Most nights, nothing happens.<br><em>Most nights, that’s how it should be.</em></p>
+      <div class="wave wave-wide" data-wave="56" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <section class="pricing section" data-act="2" id="pricing">
+    <div class="wrap">
+      <header class="section-head center">
+        <p class="eyebrow">03 — Plans</p>
+        <h2 class="h2">One room. <em>One price.</em></h2>
+      </header>
+
+      <div class="plans">
+        <article class="plan">
+          <span class="plan-badge plan-badge-muted">For one sleeper</span>
+          <h3>Nightly</h3>
+          <p class="price">$9<span>/month</span></p>
+          <ul>
+            <li>Sleep score, every morning</li>
+            <li>The morning brief</li>
+            <li>30-night archive</li>
+          </ul>
+          <button class="btn btn-line" type="button">Choose Nightly</button>
+        </article>
+
+        <article class="plan plan-featured">
+          <span class="plan-badge">Most chosen</span>
+          <h3>Rest</h3>
+          <p class="price">$19<span>/month</span></p>
+          <ul>
+            <li>Everything in Nightly</li>
+            <li>Dream journaling</li>
+            <li>Room presence</li>
+            <li>The 03:00 check-in</li>
+          </ul>
+          <button class="btn btn-light" type="button">Choose Rest</button>
+        </article>
+
+        <article class="plan plan-you">
+          <span class="plan-badge plan-badge-live"><span class="live-dot"></span> Current plan</span>
+          <h3 class="plan-you-title">You</h3>
+          <p class="price">Included</p>
+          <ul>
+            <li>Everything</li>
+            <li>Everything else</li>
+            <li>The room</li>
+          </ul>
+          <button class="btn btn-dark" type="button" disabled>Already enrolled</button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ACT 3 · THE TURN ============ -->
+  <section class="faq section" data-act="3" id="faq">
+    <div class="wrap faq-grid">
+      <header class="faq-head">
+        <p class="eyebrow">04 — Questions</p>
+        <h2 class="h2">Answered,<br><em>mostly.</em></h2>
+      </header>
+
+      <div class="faq-list">
+        <details open>
+          <summary><span>Is my data private?</span><i class="plus" aria-hidden="true"></i></summary>
+          <div class="faq-a" data-swap="faq-1">Your audio is processed inside the room and never uploaded. Nothing leaves the house. Nothing needs to.</div>
+        </details>
+        <details>
+          <summary><span>Does Somnia work if I sleep alone?</span><i class="plus" aria-hidden="true"></i></summary>
+          <div class="faq-a" data-swap="faq-2">Yes. Somnia actually prefers it. The model is calibrated for one sleeper, one set of sounds, one breathing pattern.</div>
+        </details>
+        <details>
+          <summary><span>Can I cancel at any time?</span><i class="plus" aria-hidden="true"></i></summary>
+          <div class="faq-a" data-swap="faq-3">Yes — from your account page, in two clicks. No questions asked, and the room stays warm for thirty days.</div>
+        </details>
+        <details>
+          <summary><span>What happens at 03:00?</span><i class="plus" aria-hidden="true"></i></summary>
+          <div class="faq-a">Nothing. That’s the deepest part of the night for most people. Somnia checks that you’re still breathing, and goes back to listening.</div>
+        </details>
+        <details>
+          <summary><span>Why is the house so quiet?</span><i class="plus" aria-hidden="true"></i></summary>
+          <div class="faq-a">Because it’s listening. You can hear it if you stop scrolling for a moment.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="session section" data-act="3" id="session">
+    <div class="wrap session-wrap">
+      <div class="session-copy">
+        <p class="eyebrow">05 — Tonight</p>
+        <h2 class="h2 session-title">You’ve been here<br>for <span class="live-readout" data-live="elapsedShort">00:00</span>.</h2>
+        <p class="body-copy">The average visitor leaves after forty-seven seconds. You stopped scrolling twice. We counted.</p>
+        <p class="session-whisper" id="sessionWhisper">You are the only one looking at this page.</p>
+      </div>
+
+      <div class="log-panel">
+        <div class="log-head">
+          <span>SESSION <span data-live="sessionId">0000</span></span>
+          <span class="rec"><i aria-hidden="true"></i> REC</span>
+        </div>
+        <dl class="log-rows">
+          <div class="log-row"><dt>Local time</dt><dd data-live="time">--:--:--</dd></div>
+          <div class="log-row"><dt>Time on page</dt><dd data-live="elapsedLong">0m 00s</dd></div>
+          <div class="log-row"><dt>Display</dt><dd data-live="screen">—</dd></div>
+          <div class="log-row"><dt>Pointer distance</dt><dd data-live="travel">0.0 m</dd></div>
+          <div class="log-row"><dt>Name</dt><dd data-live="name">—</dd></div>
+          <div class="log-row log-status"><dt>Status</dt><dd data-live="status">Awake</dd></div>
+        </dl>
+        <p class="log-foot">Nothing on this page is sent anywhere. It doesn’t need to be.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="end" data-act="3" id="end">
+    <div class="wrap end-inner">
+      <p class="eyebrow end-eyebrow" id="endEyebrow">End of page</p>
+      <h2 class="end-title" id="endTitle">You’ve reached the end.</h2>
+      <p class="end-sub" id="endSub">There’s nothing below this.</p>
+      <div class="end-chevron" id="endChevron" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 3v18M5 15l7 6 7-6"/></svg>
+      </div>
+    </div>
+    <div class="end-fade" aria-hidden="true"></div>
+  </section>
+
+  <!-- ============ ACT 4 · THE ROOM ============ -->
+  <section class="void" id="void" data-act="4" aria-label="There is more">
+    <div class="void-stage" id="voidStage">
+      <div class="void-glow" aria-hidden="true"></div>
+
+      <div class="face-wrap" id="faceWrap" aria-hidden="true">
+      <svg class="face" id="face" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <radialGradient id="skin" cx="49%" cy="44%" r="42%">
+            <stop offset="0" stop-color="#a2957b"/>
+            <stop offset=".36" stop-color="#796d56"/>
+            <stop offset=".6" stop-color="#393128"/>
+            <stop offset=".8" stop-color="#0f0c09"/>
+            <stop offset="1" stop-color="#000"/>
+          </radialGradient>
+          <radialGradient id="socket" cx="50%" cy="45%" r="55%">
+            <stop offset="0" stop-color="#000"/>
+            <stop offset=".55" stop-color="#030202"/>
+            <stop offset="1" stop-color="#000" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="orb" cx="40%" cy="36%" r="62%">
+            <stop offset="0" stop-color="#8d7f65"/>
+            <stop offset=".4" stop-color="#4a4031"/>
+            <stop offset=".78" stop-color="#16120e"/>
+            <stop offset="1" stop-color="#000"/>
+          </radialGradient>
+          <radialGradient id="underlight" cx="50%" cy="50%" r="50%">
+            <stop offset="0" stop-color="#c9b795" stop-opacity=".3"/>
+            <stop offset=".55" stop-color="#6e5c40" stop-opacity=".1"/>
+            <stop offset="1" stop-color="#000" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="lip" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#000"/>
+            <stop offset=".55" stop-color="#1d1510"/>
+            <stop offset="1" stop-color="#4b392c"/>
+          </linearGradient>
+          <linearGradient id="topShade" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#000"/>
+            <stop offset=".26" stop-color="#000"/>
+            <stop offset=".44" stop-color="#000" stop-opacity=".35"/>
+            <stop offset=".62" stop-color="#000" stop-opacity="0"/>
+          </linearGradient>
+          <radialGradient id="fadeGrad" cx="50%" cy="47%" r="60%">
+            <stop offset="0" stop-color="#fff"/>
+            <stop offset=".5" stop-color="#fff"/>
+            <stop offset=".76" stop-color="#8a8a8a"/>
+            <stop offset="1" stop-color="#000"/>
+          </radialGradient>
+          <mask id="faceFade"><rect width="1000" height="1000" fill="url(#fadeGrad)"/></mask>
+          <filter id="soft" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="20"/></filter>
+          <filter id="soft2" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="9"/></filter>
+          <filter id="soft3" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3.5"/></filter>
+          <filter id="noise" x="0" y="0" width="100%" height="100%">
+            <feTurbulence type="fractalNoise" baseFrequency=".72" numOctaves="3" stitchTiles="stitch"/>
+            <feColorMatrix type="saturate" values="0"/>
+            <feComponentTransfer><feFuncA type="linear" slope=".18"/></feComponentTransfer>
+          </filter>
+        </defs>
+
+        <rect width="1000" height="1000" fill="#000"/>
+        <g mask="url(#faceFade)">
+          <g transform="rotate(-1.4 500 500)" filter="url(#soft)">
+            <path d="M500 118C632 118 702 230 702 404C702 570 656 726 560 806C535 827 465 827 440 806C344 726 298 570 298 404C298 230 368 118 500 118Z" fill="url(#skin)"/>
+            <path d="M298 418C290 232 372 110 500 110C628 110 710 232 702 418C688 282 612 192 500 192C388 192 312 282 298 418Z" fill="#060505"/>
+            <ellipse cx="500" cy="706" rx="186" ry="140" fill="#000" opacity=".24"/>
+            <ellipse cx="500" cy="766" rx="146" ry="152" fill="url(#underlight)" opacity=".8"/>
+          </g>
+
+          <g transform="rotate(-1.4 500 500)">
+            <!-- eye hollows -->
+            <ellipse cx="412" cy="446" rx="78" ry="52" fill="url(#socket)" filter="url(#soft2)"/>
+            <ellipse cx="588" cy="442" rx="78" ry="52" fill="url(#socket)" filter="url(#soft2)"/>
+            <!-- brows -->
+            <path d="M340 394C378 368 446 368 480 390C436 386 376 396 340 418Z" fill="#090706" opacity=".62" filter="url(#soft2)"/>
+            <path d="M660 390C622 364 554 364 520 386C564 382 624 392 660 414Z" fill="#090706" opacity=".62" filter="url(#soft2)"/>
+
+            <g id="faceEyes">
+              <g class="eye-eye">
+                <ellipse cx="412" cy="446" rx="32" ry="25" fill="url(#orb)"/>
+                <g class="pupil">
+                  <circle cx="412" cy="446" r="12" fill="#050404"/>
+                  <circle cx="407" cy="440" r="3" fill="#b8aa8d" opacity=".5"/>
+                </g>
+                <path d="M346 432C374 410 450 410 478 432C450 426 374 426 346 432Z" fill="#000" opacity=".66"/>
+              </g>
+              <g class="eye-eye">
+                <ellipse cx="588" cy="442" rx="31" ry="24" fill="url(#orb)"/>
+                <g class="pupil">
+                  <circle cx="588" cy="442" r="11.5" fill="#050404"/>
+                  <circle cx="583" cy="436" r="2.8" fill="#b8aa8d" opacity=".45"/>
+                </g>
+                <path d="M522 428C550 406 626 406 654 428C626 422 550 422 522 428Z" fill="#000" opacity=".66"/>
+              </g>
+            </g>
+
+            <!-- nose -->
+            <path d="M500 452C506 500 516 536 534 556C522 572 508 577 500 577C492 577 478 572 466 556C484 536 494 500 500 452Z" fill="#000" opacity=".2" filter="url(#soft2)"/>
+            <path d="M493 464C490 508 493 534 484 552" stroke="#cbbd9f" stroke-width="4" opacity=".08" filter="url(#soft3)"/>
+            <ellipse cx="466" cy="566" rx="14" ry="7" fill="#000" opacity=".22" filter="url(#soft3)"/>
+            <ellipse cx="534" cy="565" rx="14" ry="7" fill="#000" opacity=".22" filter="url(#soft3)"/>
+
+            <!-- cheek light and hollow -->
+            <ellipse cx="372" cy="520" rx="40" ry="62" fill="#d8c7a7" opacity=".07" filter="url(#soft2)"/>
+            <ellipse cx="630" cy="516" rx="38" ry="60" fill="#d8c7a7" opacity=".06" filter="url(#soft2)"/>
+            <ellipse cx="356" cy="592" rx="56" ry="100" fill="#000" opacity=".2" filter="url(#soft2)"/>
+            <ellipse cx="644" cy="588" rx="56" ry="100" fill="#000" opacity=".2" filter="url(#soft2)"/>
+
+            <!-- mouth -->
+            <g class="mouth">
+              <path d="M394 640C442 628 558 628 606 640C566 660 530 666 500 666C470 666 434 660 394 640Z" fill="#040303"/>
+              <path d="M400 641C450 632 552 632 600 641" fill="none" stroke="#120c09" stroke-width="2.2" opacity=".9"/>
+            </g>
+            <path d="M410 670C454 682 546 682 590 670" fill="none" stroke="#cfbc9e" stroke-width="2" opacity=".08" filter="url(#soft3)"/>
+            <path d="M404 628C450 616 550 616 596 628" fill="none" stroke="#000" stroke-width="3" opacity=".26" filter="url(#soft3)"/>
+
+            <!-- chin / jaw -->
+            <path d="M430 756C462 790 538 790 570 756" stroke="#000" stroke-width="34" fill="none" opacity=".3" filter="url(#soft2)"/>
+          </g>
+
+          <rect width="1000" height="1000" fill="url(#topShade)" opacity=".85"/>
+          <rect width="1000" height="1000" filter="url(#noise)" opacity=".55" style="mix-blend-mode:overlay"/>
+        </g>
+      </svg>
+      </div>
+
+      <div class="void-scrim" aria-hidden="true"></div>
+
+      <div class="void-enter-hint" id="voidHint" aria-hidden="true"><span>keep going</span><i></i></div>
+
+      <div class="void-lines">
+        <p class="void-line" data-v="0.10">You should have closed the tab.</p>
+        <p class="void-line" data-v="0.26">There was never a product.</p>
+        <p class="void-line" data-v="0.42">It has been standing in the dark since the first screen.</p>
+        <p class="void-line" data-v="0.60">It is <span data-live="timeShort">--:--</span> where you are. It knows.</p>
+        <p class="void-line void-line-last" data-v="0.76">Do not turn around.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="final" id="final" data-act="4">
+    <div class="final-stage">
+      <div class="final-inner">
+        <p class="final-kicker">Somnia — Sleep Systems</p>
+        <h2 class="final-title" id="finalTitle">Good night.</h2>
+        <p class="final-note final-note-1" id="finalNote1">You can close this tab.</p>
+        <p class="final-note final-note-2" id="finalNote2">It will still be here.</p>
+        <p class="final-note final-note-3" id="finalNote3" lang="zh-CN">它一直都在这里。</p>
+        <div class="final-mark" aria-hidden="true"><span id="finalMark">somnia</span><i class="caret"></i></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="whispers" id="whispers" aria-hidden="true">
+  <span data-w="0.24" style="--x:7%;--y:24%">still here</span>
+  <span data-w="0.31" style="--x:83%;--y:17%">don’t</span>
+  <span data-w="0.38" style="--x:13%;--y:72%">behind you</span>
+  <span data-w="0.46" style="--x:76%;--y:66%">it’s warm</span>
+  <span data-w="0.53" style="--x:42%;--y:11%">no</span>
+  <span data-w="0.61" style="--x:88%;--y:44%">listen</span>
+  <span data-w="0.69" style="--x:22%;--y:47%">stay still</span>
+  <span data-w="0.79" style="--x:64%;--y:84%">it’s already inside</span>
+  <span data-w="0.86" style="--x:35%;--y:88%">don’t look</span>
+</div>
+
+<div class="ghost-cursor" id="ghostCursor" aria-hidden="true"></div>
+
+<div class="consent" id="consent" role="dialog" aria-label="Sound permission" aria-live="polite">
+  <div class="consent-mark" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <div class="consent-copy">
+    <p class="consent-title">This page has a sound.</p>
+    <p class="consent-body">Somnia is designed to be heard. Headphones recommended.</p>
+  </div>
+  <div class="consent-actions">
+    <button class="btn btn-solid" id="consentAllow" type="button">Allow sound</button>
+    <button class="consent-deny" id="consentDeny" type="button">Not now</button>
+  </div>
+</div>
+
+<noscript><p class="noscript">Somnia works best with JavaScript enabled.</p></noscript>
+
+<script src="audio.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f6ee">
+  <meta name="description" content="Verdant & Co. 为日常生活挑选的室内植物。">
+  <title>Verdant & Co. — 好好生长</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body id="top">
+  <div class="soil-progress" aria-hidden="true"></div>
+  <div class="announcement"><i aria-hidden="true"></i> 给家留一点绿 <span>·</span> 植物满 ¥199 免运费</div>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="#top" aria-label="Verdant & Co. 首页"><span class="sprout" aria-hidden="true"><i></i></span><span>verdant<span class="brand-co">&amp;co.</span></span></a>
+      <nav aria-label="主导航">
+        <a href="#collection">植物商店</a><a href="#care">养护指南</a><a href="#story">关于我们</a>
+      </nav>
+      <button class="bag-trigger" type="button" aria-haspopup="dialog"><span class="bag-icon" aria-hidden="true"></span><span>购物袋</span><span class="bag-count">0</span></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> 让绿色住进来 <span></span></p>
+        <h1 id="hero-title" lang="en">Room to<br><em>grow.</em></h1>
+        <p class="hero-description">为日常生活挑选的室内植物。从窗边的一点绿开始，给自己一个慢下来的理由。</p>
+        <div class="hero-actions">
+          <a class="pill pill-primary" href="#collection">挑选一株植物 <span aria-hidden="true">↗</span></a>
+          <a class="underlink" href="#care">从养护开始 <span aria-hidden="true">↘</span></a>
+        </div>
+      </div>
+      <figure class="hero-visual">
+        <img src="assets/monstera.webp" alt="阳光落在奶白色花盆和一株龟背竹上" width="1260" height="1575" fetchpriority="high">
+        <figcaption><span class="caption-dot"></span><span><em lang="en">Monstera deliciosa</em><span class="plant-caption">龟背竹 · 本季推荐</span></span></figcaption>
+      </figure>
+    </section>
+
+    <div class="qualities">
+      <div class="shell qualities-inner">
+        <div><span class="quality-icon" aria-hidden="true">☀</span><span><strong>温室直送</strong><small>在合适的光线下慢慢长大</small></span></div>
+        <div><span class="sprout quality-icon" aria-hidden="true"><i></i></span><span><strong>新手友好</strong><small>从第一片新叶开始</small></span></div>
+        <div><span class="quality-icon quality-heart" aria-hidden="true">♡</span><span><strong>陪你养护</strong><small>每株都附一份养护说明</small></span></div>
+      </div>
+    </div>
+
+    <section class="collection shell" id="collection" aria-labelledby="collection-title">
+      <div class="section-intro">
+        <div><p class="eyebrow"><span></span> THE PLANT SHOP</p><h2 id="collection-title">今天，带谁回家？</h2></div>
+        <p>三株适合室内生活的植物。<br>选一株，给它腾出一点空间。</p>
+      </div>
+      <div class="product-grid">
+        <article class="product">
+          <div class="product-photo monstera"><img src="assets/monstera.webp" alt="龟背竹" loading="lazy" width="1260" height="1575"><span>店长推荐</span></div>
+          <div class="product-info"><div><h3>龟背竹</h3><p lang="la">Monstera deliciosa</p></div><span>¥129</span></div>
+          <button class="add-product" type="button" data-product="monstera" aria-label="将龟背竹加入购物袋"><span aria-hidden="true">+</span> 加入购物袋</button>
+        </article>
+        <article class="product">
+          <div class="product-photo snake"><img src="assets/snake-plant.webp" alt="虎尾兰" loading="lazy" width="720" height="660"></div>
+          <div class="product-info"><div><h3>虎尾兰</h3><p lang="la">Dracaena trifasciata</p></div><span>¥89</span></div>
+          <button class="add-product" type="button" data-product="snake" aria-label="将虎尾兰加入购物袋"><span aria-hidden="true">+</span> 加入购物袋</button>
+        </article>
+        <article class="product">
+          <div class="product-photo aloe"><img src="assets/aloe.webp" alt="翠绿色花盆里的小芦荟" loading="lazy" width="720" height="660"></div>
+          <div class="product-info"><div><h3>迷你芦荟</h3><p lang="la">Aloe aristata</p></div><span>¥59</span></div>
+          <button class="add-product" type="button" data-product="aloe" aria-label="将迷你芦荟加入购物袋"><span aria-hidden="true">+</span> 加入购物袋</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="care" id="care" aria-labelledby="care-title">
+      <div class="shell care-inner">
+        <div class="care-photo"><img src="assets/greenhouse.webp" alt="种满植物的玻璃温室" loading="lazy" width="1440" height="900"><span>VERDANT NURSERY / 01</span></div>
+        <div class="care-copy">
+          <p class="eyebrow"><span></span> THE CARE GUIDE</p>
+          <h2 id="care-title">它会告诉你<br>它需要什么。</h2>
+          <details open>
+            <summary>给它一点光 <span aria-hidden="true">+</span></summary>
+            <p>放在光线明亮的窗边，避开正午的直晒。叶片会慢慢转向光源。</p>
+          </details>
+          <details>
+            <summary>等土干了再浇水 <span aria-hidden="true">+</span></summary>
+            <p>用手指摸一摸表土。干到约两厘米时再浇透，并倒掉托盘里的积水。</p>
+          </details>
+          <details>
+            <summary>入夜以后 <span aria-hidden="true">+</span></summary>
+            <p>如果叶片在关灯后仍朝向你，把它搬出卧室。不要等到第二次。</p>
+          </details>
+        </div>
+      </div>
+      <div class="shell notice"><span class="notice-dot"></span><p><span>养护附注</span> 如果房间里没有光源，叶片依然转动，请记录时间。</p><span class="notice-code" aria-hidden="true">03:17</span></div>
+    </section>
+
+    <section class="archive" id="story" aria-labelledby="archive-title">
+      <div class="shell">
+        <div class="archive-line"><span>VERDANT &amp; CO. / 内部档案</span><span><i></i> 同步异常</span></div>
+        <div class="archive-grid">
+          <div class="archive-copy">
+            <p class="archive-code">观测记录 / V-017</p>
+            <h2 id="archive-title">第三天，<br>它转向了门。</h2>
+            <p>三号温室的灯在凌晨 03:17 熄灭。所有叶片同时转向了门口。值班员打开门以后，监控里传来第二个人的呼吸声。</p>
+            <details class="incident">
+              <summary>读取值班员的最后一条记录 <span aria-hidden="true">↘</span></summary>
+              <p>「我听见它在走廊尽头叫我。先是我的名字。然后是我还没说出口的话。」</p>
+            </details>
+          </div>
+          <figure class="specimen-feed">
+            <img src="assets/specimen.webp" alt="监控画面里，一片龟背竹叶紧贴镜头" loading="lazy" width="710" height="660">
+            <div class="viewfinder" aria-hidden="true"><b></b><b></b><b></b><b></b></div>
+            <figcaption><span><i></i> CAM 03</span><span>03:17:04</span></figcaption>
+            <span class="feed-label">活动发生在镜头前方</span>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="threshold" aria-labelledby="threshold-title">
+      <div class="shell threshold-inner">
+        <p class="status"><i></i> 连接已中断 / FEED LOST</p>
+        <h2 id="threshold-title">三号温室的门<br>从<span>里面</span>锁上了。</h2>
+        <p class="threshold-note">最后一帧里，值班员的手还握着门把。</p>
+        <a class="descent" href="#chamber">继续查看监控 <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+
+    <section class="chamber" id="chamber" aria-labelledby="chamber-title">
+      <div class="chamber-photo"></div>
+      <div class="chamber-shadow"></div>
+      <div class="chamber-ui">
+        <div class="chamber-top"><span><i></i> CAM 03 / 温室内部</span><button class="sound-toggle" type="button" aria-pressed="false">开启现场声音</button></div>
+        <div class="chamber-spacer"></div>
+        <div class="chamber-copy">
+          <p class="status"><i></i> <span class="scene-clock">03:17:06</span> / 检测到移动</p>
+          <h2 id="chamber-title">它知道你在看。</h2>
+          <p>镜头里的门开了。你身后的也开了。</p>
+        </div>
+        <div class="chamber-bottom"><span>录制中 <i></i></span><a class="restart" href="#top">从头开始 <span aria-hidden="true">↑</span></a></div>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="bag-dialog" aria-labelledby="bag-title">
+    <div class="bag-panel">
+      <div class="bag-heading"><h2 id="bag-title">你的购物袋</h2><form method="dialog"><button type="submit" aria-label="关闭购物袋">×</button></form></div>
+      <div class="bag-items"></div>
+      <p class="bag-total"></p>
+      <form method="dialog"><button class="pill pill-primary" type="submit">继续挑选</button></form>
+    </div>
+  </dialog>
+  <div class="toast" role="status"></div>
+</body>
+</html>
