@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>首屏之下 · Below the Fold — 三大 AI 恐怖营销网站对比展厅</title>
+        <title>首屏之下 · Below the Fold — 六大 AI 恐怖营销网站对比展厅</title>
         <link
             rel="icon"
             type="image/svg+xml"
@@ -71,7 +71,7 @@
             }
 
             .wrap {
-                width: min(1220px, 92vw);
+                width: min(1260px, 92vw);
                 margin: 0 auto;
                 position: relative;
                 z-index: 2;
@@ -127,29 +127,79 @@
                 flex-wrap: wrap;
             }
 
-            .trailer-trigger {
+            .github-link {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 8px 15px;
+      gap: 7px;
+      padding: 8px 14px;
       border-radius: 999px;
-      background: rgba(220, 38, 38, 0.16);
-      border: 1px solid rgba(248, 113, 113, 0.42);
-      color: #fee2e2;
+      background: rgba(255, 255, 255, 0.045);
+      border: 1px solid var(--border);
+      color: #e4e4e7;
       font-size: 12.5px;
       font-weight: 600;
-      cursor: pointer;
+      text-decoration: none;
       transition: all 0.25s ease;
     }
 
-    .trailer-trigger:hover {
-      background: rgba(220, 38, 38, 0.3);
-      border-color: rgba(248, 113, 113, 0.75);
-      box-shadow: 0 0 24px rgba(220, 38, 38, 0.3);
+    .github-link:hover {
+      background: rgba(255, 255, 255, 0.11);
+      border-color: var(--border-strong);
+      color: #fff;
       transform: translateY(-1px);
     }
 
-    .readme-trigger {
+    .prompt-source {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 8px;
+      font-size: 12px;
+      color: #93c5fd;
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(147, 197, 253, 0.4);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .prompt-source:hover {
+      color: #dbeafe;
+      border-bottom-color: #dbeafe;
+    }
+
+    .md-render a {
+      color: #93c5fd;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .md-render a:hover {
+      color: #dbeafe;
+    }
+
+    .trailer-trigger {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 8px 15px;
+                border-radius: 999px;
+                background: rgba(220, 38, 38, 0.16);
+                border: 1px solid rgba(248, 113, 113, 0.42);
+                color: #fee2e2;
+                font-size: 12.5px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.25s ease;
+            }
+
+            .trailer-trigger:hover {
+                background: rgba(220, 38, 38, 0.3);
+                border-color: rgba(248, 113, 113, 0.75);
+                box-shadow: 0 0 24px rgba(220, 38, 38, 0.3);
+                transform: translateY(-1px);
+            }
+
+            .readme-trigger {
                 display: inline-flex;
                 align-items: center;
                 gap: 8px;
@@ -228,9 +278,9 @@
 
             /* Hero Intro */
             .hero {
-                padding: 68px 0 54px;
+                padding: 64px 0 50px;
                 display: grid;
-                grid-template-columns: 1.2fr 0.8fr;
+                grid-template-columns: 1.15fr 0.85fr;
                 gap: 40px;
                 align-items: end;
             }
@@ -289,7 +339,7 @@
                 letter-spacing: 0.1em;
             }
 
-            /* 3 Exhibit Cards Grid */
+            /* 6 Exhibit Cards Grid (3x2 on desktop) */
             .exhibits {
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
@@ -402,21 +452,34 @@
             }
 
             .ai-gemini {
-                background: rgba(29, 78, 216, 0.58);
+                background: rgba(29, 78, 216, 0.62);
                 color: #dbeafe;
                 border-color: rgba(147, 197, 253, 0.45);
             }
-
             .ai-deepseek {
-                background: rgba(4, 120, 87, 0.58);
+                background: rgba(4, 120, 87, 0.62);
                 color: #d1fae5;
                 border-color: rgba(110, 231, 183, 0.45);
             }
-
             .ai-chatgpt {
-                background: rgba(180, 83, 9, 0.62);
+                background: rgba(180, 83, 9, 0.64);
                 color: #fef3c7;
                 border-color: rgba(252, 211, 77, 0.45);
+            }
+            .ai-claude {
+                background: rgba(194, 65, 12, 0.65);
+                color: #ffedd5;
+                border-color: rgba(253, 186, 116, 0.48);
+            }
+            .ai-qwen {
+                background: rgba(109, 40, 217, 0.64);
+                color: #ede9fe;
+                border-color: rgba(196, 181, 253, 0.48);
+            }
+            .ai-grok {
+                background: rgba(63, 63, 70, 0.75);
+                color: #f4f4f5;
+                border-color: rgba(212, 212, 216, 0.45);
             }
 
             .state-tag {
@@ -429,7 +492,7 @@
                 letter-spacing: 0.08em;
                 padding: 3px 8px;
                 border-radius: 4px;
-                background: rgba(0, 0, 0, 0.72);
+                background: rgba(0, 0, 0, 0.74);
                 color: #d4d4d8;
                 pointer-events: none;
             }
@@ -447,13 +510,220 @@
                 display: inline;
             }
 
+            /* Hearth-Claude faithful pure-CSS dual-layer mini preview (echoing its zero-image design!) */
+            .hearth-light {
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(180deg, #fbfaf7 0%, #efede5 100%);
+                color: #1c1b19;
+                display: grid;
+                grid-template-columns: 1.15fr 0.85fr;
+                align-items: center;
+                padding: 34px 20px 22px;
+                gap: 12px;
+            }
+
+            .hl-copy small {
+                display: block;
+                font-size: 9px;
+                font-weight: 700;
+                color: #3b5bdb;
+                letter-spacing: 0.1em;
+                margin-bottom: 6px;
+            }
+
+            .hl-copy strong {
+                display: block;
+                font-size: 20px;
+                line-height: 1.2;
+                font-weight: 800;
+                margin-bottom: 8px;
+            }
+
+            .hl-copy span {
+                display: inline-block;
+                font-size: 9px;
+                padding: 4px 10px;
+                border-radius: 99px;
+                background: #3b5bdb;
+                color: #fff;
+                font-weight: 600;
+            }
+
+            .hl-art {
+                position: relative;
+                height: 100%;
+            }
+
+            .hl-moon {
+                position: absolute;
+                top: 10px;
+                right: 14px;
+                width: 34px;
+                height: 34px;
+                border-radius: 50%;
+                background: radial-gradient(circle at 35% 35%, #fff7e0, #ffd98a);
+                box-shadow: 0 0 24px rgba(255, 217, 138, 0.85);
+            }
+
+            .hl-bed {
+                position: absolute;
+                left: 4px;
+                right: 6px;
+                bottom: 12px;
+                height: 58px;
+            }
+
+            .hl-headboard {
+                position: absolute;
+                inset: 0 0 18px 0;
+                background: #8d7b68;
+                border-radius: 10px 10px 0 0;
+            }
+
+            .hl-pillow {
+                position: absolute;
+                bottom: 32px;
+                left: 10%;
+                width: 36%;
+                height: 15px;
+                background: #fff;
+                border-radius: 8px 8px 4px 4px;
+            }
+
+            .hl-pillow.p2 {
+                left: auto;
+                right: 10%;
+            }
+
+            .hl-sheet {
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                height: 36px;
+                background: #fff;
+                border-radius: 8px;
+                border-top: 5px solid #dfe6ff;
+                box-shadow: 0 8px 20px rgba(28, 27, 25, 0.14);
+            }
+
+            .hearth-dark {
+                width: 100%;
+                height: 100%;
+                background: radial-gradient(ellipse at 50% 100%, rgba(120, 14, 8, 0.72) 0%, #030101 72%);
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+            }
+
+            .hd-door {
+                width: 96px;
+                height: 152px;
+                background: #000;
+                border: 2px solid rgba(140, 26, 18, 0.75);
+                box-shadow: inset 0 0 36px rgba(255, 40, 30, 0.36);
+                position: relative;
+                margin-top: 14px;
+            }
+
+            .hd-figure {
+                position: absolute;
+                left: 50%;
+                bottom: -8px;
+                transform: translateX(-50%);
+                width: 84px;
+                height: 140px;
+            }
+
+            .hd-head {
+                position: absolute;
+                left: 50%;
+                top: 6px;
+                width: 30px;
+                height: 38px;
+                margin-left: -15px;
+                border-radius: 50%;
+                background: #000;
+                box-shadow:
+                    0 0 0 1px rgba(255, 255, 255, 0.1),
+                    0 0 18px rgba(255, 40, 30, 0.3);
+            }
+
+            .hd-eye {
+                position: absolute;
+                top: 13px;
+                left: 6px;
+                width: 5px;
+                height: 5px;
+                border-radius: 50%;
+                background: #f4efe6;
+                box-shadow: 0 0 7px #fff;
+            }
+
+            .hd-eye.r {
+                left: auto;
+                right: 6px;
+            }
+
+            .hd-grin {
+                position: absolute;
+                left: 5px;
+                right: 5px;
+                top: 22px;
+                height: 8px;
+                border-bottom: 2px solid #f4efe6;
+                border-radius: 0 0 60% 60%;
+            }
+
+            .hd-body {
+                position: absolute;
+                left: 50%;
+                top: 52px;
+                bottom: 0;
+                width: 44px;
+                margin-left: -22px;
+                background: #000;
+                border-radius: 16px 16px 0 0;
+                box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+            }
+
+            .hd-text {
+                position: absolute;
+                inset: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 4px;
+                pointer-events: none;
+                text-align: center;
+            }
+
+            .hd-text span {
+                font-family: var(--mono);
+                font-size: 11px;
+                letter-spacing: 0.25em;
+                color: rgba(233, 220, 210, 0.8);
+            }
+
+            .hd-text strong {
+                font-size: 20px;
+                font-weight: 900;
+                letter-spacing: 0.14em;
+                color: #ff3b2f;
+                text-shadow: 0 0 18px rgba(255, 59, 47, 0.75);
+            }
+
             /* Card Content */
             .card-body {
-                padding: 24px 24px 22px;
+                padding: 22px 22px 20px;
                 display: flex;
                 flex-direction: column;
                 flex: 1;
-                gap: 14px;
+                gap: 13px;
             }
 
             .card-head {
@@ -465,7 +735,7 @@
 
             .card-title {
                 font-family: var(--serif);
-                font-size: 24px;
+                font-size: 23px;
                 font-weight: 600;
                 line-height: 1.25;
                 color: var(--text);
@@ -510,7 +780,7 @@
             }
 
             .card-desc {
-                font-size: 14px;
+                font-size: 13.8px;
                 color: #b4b7c0;
                 line-height: 1.75;
                 flex: 1;
@@ -521,19 +791,35 @@
                 font-weight: 600;
             }
 
+            .card-desc code {
+                font-family: var(--mono);
+                font-size: 12px;
+                background: rgba(255, 255, 255, 0.07);
+                padding: 1px 5px;
+                border-radius: 4px;
+                color: #f4f4f5;
+            }
+
             .tag-row {
                 display: flex;
                 flex-wrap: wrap;
-                gap: 7px;
+                gap: 6px;
             }
 
             .tag {
-                font-size: 11.5px;
-                padding: 4px 9px;
+                font-size: 11px;
+                padding: 4px 8px;
                 border-radius: 6px;
                 background: rgba(255, 255, 255, 0.04);
                 border: 1px solid rgba(255, 255, 255, 0.08);
                 color: #a1a1aa;
+            }
+
+            .tag-size {
+                font-family: var(--mono);
+                background: rgba(255, 255, 255, 0.07);
+                border-color: rgba(255, 255, 255, 0.16);
+                color: #e4e4e7;
             }
 
             .card-actions {
@@ -541,7 +827,7 @@
                 gap: 10px;
                 padding-top: 14px;
                 border-top: 1px solid var(--border);
-                margin-top: 4px;
+                margin-top: 2px;
             }
 
             .btn-enter {
@@ -550,7 +836,7 @@
                 align-items: center;
                 justify-content: center;
                 gap: 8px;
-                padding: 11px 16px;
+                padding: 11px 14px;
                 border-radius: 10px;
                 text-decoration: none;
                 font-size: 13.5px;
@@ -586,7 +872,7 @@
                 background: rgba(255, 255, 255, 0.08);
             }
 
-            /* Behind the Code: AI Creative Thinking Module */
+            /* Behind the Code: 6 AI Creative Thinking Module */
             .mind-section {
                 padding: 12px 0 68px;
             }
@@ -610,13 +896,13 @@
             .mind-sub {
                 color: var(--muted);
                 font-size: 13.5px;
-                max-width: 540px;
+                max-width: 580px;
                 margin-top: 8px;
             }
 
             .mind-tabs {
-                display: inline-flex;
-                gap: 8px;
+                display: flex;
+                gap: 6px;
                 padding: 5px;
                 border-radius: 12px;
                 background: rgba(255, 255, 255, 0.03);
@@ -628,14 +914,14 @@
                 border: 1px solid transparent;
                 background: transparent;
                 color: var(--muted);
-                padding: 9px 14px;
+                padding: 8px 13px;
                 border-radius: 8px;
-                font-size: 12.5px;
+                font-size: 12px;
                 font-weight: 600;
                 cursor: pointer;
                 display: inline-flex;
                 align-items: center;
-                gap: 8px;
+                gap: 7px;
                 transition: all 0.22s ease;
             }
 
@@ -667,6 +953,18 @@
             .dot-chatgpt {
                 background: #fbbf24;
                 box-shadow: 0 0 8px rgba(251, 191, 36, 0.7);
+            }
+            .dot-claude {
+                background: #fb923c;
+                box-shadow: 0 0 8px rgba(251, 146, 60, 0.7);
+            }
+            .dot-qwen {
+                background: #c084fc;
+                box-shadow: 0 0 8px rgba(192, 132, 252, 0.7);
+            }
+            .dot-grok {
+                background: #e4e4e7;
+                box-shadow: 0 0 8px rgba(228, 228, 231, 0.7);
             }
 
             .mind-panel {
@@ -718,6 +1016,15 @@
             }
             .arch-chatgpt {
                 color: #fcd34d;
+            }
+            .arch-claude {
+                color: #fdba74;
+            }
+            .arch-qwen {
+                color: #d8b4fe;
+            }
+            .arch-grok {
+                color: #e4e4e7;
             }
 
             .mind-panel h3 {
@@ -863,7 +1170,7 @@
             table {
                 width: 100%;
                 border-collapse: collapse;
-                min-width: 740px;
+                min-width: 780px;
                 font-size: 13.5px;
             }
 
@@ -939,20 +1246,34 @@
                 color: #dbeafe;
             }
 
-            /* Curator README Modal Dialog */
-            dialog.readme-modal {
+            /* Modals (README + Trailer) */
+            dialog.readme-modal,
+            dialog.trailer-modal {
                 margin: auto;
-                width: min(860px, 92vw);
-                max-height: 86vh;
-                border: 1px solid rgba(255, 255, 255, 0.15);
                 border-radius: 20px;
-                background: #0d0f13;
                 color: var(--text);
                 padding: 0;
                 overflow: hidden;
+            }
+
+            dialog.readme-modal {
+                width: min(880px, 92vw);
+                max-height: 86vh;
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                background: #0d0f13;
                 box-shadow:
                     0 32px 100px rgba(0, 0, 0, 0.85),
                     0 0 40px rgba(96, 165, 250, 0.12);
+            }
+
+            dialog.trailer-modal {
+                width: min(1040px, 94vw);
+                max-height: 92vh;
+                border: 1px solid rgba(248, 113, 113, 0.28);
+                background: #070709;
+                box-shadow:
+                    0 36px 120px rgba(0, 0, 0, 0.92),
+                    0 0 50px rgba(220, 38, 38, 0.16);
             }
 
             dialog.readme-modal::backdrop {
@@ -960,7 +1281,13 @@
                 backdrop-filter: blur(8px);
             }
 
-            dialog.readme-modal[open] {
+            dialog.trailer-modal::backdrop {
+                background: rgba(2, 2, 4, 0.88);
+                backdrop-filter: blur(10px);
+            }
+
+            dialog.readme-modal[open],
+            dialog.trailer-modal[open] {
                 display: flex;
                 flex-direction: column;
                 animation: modalIn 0.24s ease;
@@ -1034,13 +1361,29 @@
                 color: #cfd2da;
             }
 
+            .trailer-stage {
+                background: #000;
+                aspect-ratio: 16 / 9;
+                width: 100%;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .trailer-stage video {
+                width: 100%;
+                height: 100%;
+                display: block;
+                background: #000;
+            }
+
             .md-render h1 {
                 font-family: var(--serif);
                 font-size: 28px;
                 margin: 0 0 14px;
                 color: #fff;
             }
-
             .md-render h2 {
                 font-family: var(--serif);
                 font-size: 20px;
@@ -1049,17 +1392,14 @@
                 border-bottom: 1px solid var(--border);
                 color: #f4f4f5;
             }
-
             .md-render h3 {
                 font-size: 15.5px;
                 margin: 18px 0 8px;
                 color: #e4e4e7;
             }
-
             .md-render p {
                 margin: 10px 0;
             }
-
             .md-render blockquote {
                 margin: 14px 0;
                 padding: 12px 16px;
@@ -1068,7 +1408,6 @@
                 border-radius: 0 10px 10px 0;
                 color: #e4e4e7;
             }
-
             .md-render ul,
             .md-render ol {
                 margin: 10px 0 14px 20px;
@@ -1076,12 +1415,10 @@
                 flex-direction: column;
                 gap: 8px;
             }
-
             .md-render strong {
                 color: #fff;
                 font-weight: 600;
             }
-
             .md-render code {
                 font-family: var(--mono);
                 font-size: 12.5px;
@@ -1090,7 +1427,6 @@
                 border-radius: 5px;
                 color: #f4f4f5;
             }
-
             .md-render pre {
                 margin: 14px 0;
                 padding: 14px 16px;
@@ -1099,7 +1435,6 @@
                 border: 1px solid var(--border);
                 overflow-x: auto;
             }
-
             .md-render pre code {
                 background: transparent;
                 padding: 0;
@@ -1107,22 +1442,19 @@
                 line-height: 1.65;
                 color: #d4d4d8;
             }
-
             .md-render hr {
                 border: 0;
                 border-top: 1px solid var(--border);
                 margin: 22px 0;
             }
-
             .md-render .md-table-wrap {
                 overflow-x: auto;
                 margin: 14px 0;
                 border: 1px solid var(--border);
                 border-radius: 10px;
             }
-
             .md-render table {
-                min-width: 560px;
+                min-width: 600px;
                 font-size: 13px;
             }
 
@@ -1149,51 +1481,9 @@
                 text-decoration: underline;
             }
 
-            /* Cinema Trailer Modal Dialog */
-            dialog.trailer-modal {
-                margin: auto;
-                width: min(1040px, 94vw);
-                max-height: 92vh;
-                border: 1px solid rgba(248, 113, 113, 0.28);
-                border-radius: 20px;
-                background: #070709;
-                color: var(--text);
-                padding: 0;
-                overflow: hidden;
-                box-shadow: 0 36px 120px rgba(0, 0, 0, 0.92), 0 0 50px rgba(220, 38, 38, 0.16);
-            }
-
-            dialog.trailer-modal::backdrop {
-                background: rgba(2, 2, 4, 0.88);
-                backdrop-filter: blur(10px);
-            }
-
-            dialog.trailer-modal[open] {
-                display: flex;
-                flex-direction: column;
-                animation: modalIn 0.24s ease;
-            }
-
-            .trailer-stage {
-                background: #000;
-                aspect-ratio: 16 / 9;
-                width: 100%;
-                position: relative;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            .trailer-stage video {
-                width: 100%;
-                height: 100%;
-                display: block;
-                background: #000;
-            }
-
-            @media (max-width: 1024px) {
+            @media (max-width: 1120px) {
                 .exhibits {
-                    grid-template-columns: 1fr;
+                    grid-template-columns: repeat(2, 1fr);
                 }
                 .mind-top-grid {
                     grid-template-columns: 1fr;
@@ -1214,7 +1504,8 @@
                 }
             }
 
-            @media (max-width: 640px) {
+            @media (max-width: 720px) {
+                .exhibits,
                 .steps-grid {
                     grid-template-columns: 1fr;
                 }
@@ -1233,13 +1524,26 @@
             <header class="topbar">
                 <div class="archive-id">
                     <span class="live-dot"></span>
-                    <span>BELOW THE FOLD // 首屏之下 · 03 EXHIBITS</span>
+                    <span>BELOW THE FOLD // 首屏之下 · 06 EXHIBITS</span>
                 </div>
 
                 <div class="topbar-actions">
+                    <a
+                        class="github-link"
+                        href="https://github.com/LunaticBaka9/Below-the-Fold"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="打开 GitHub 仓库">
+                        <svg viewBox="0 0 16 16" width="15" height="15" fill="currentColor" aria-hidden="true">
+                            <path
+                                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                        </svg>
+                        <span>GitHub 仓库</span>
+                    </a>
+
                     <button class="trailer-trigger" id="trailerOpenTop" type="button">
                         <span>▶</span>
-                        <span>观看预告片 (0:28)</span>
+                        <span>观看预告片 (0:36)</span>
                     </button>
 
                     <button class="readme-trigger" id="readmeOpenTop" type="button">
@@ -1257,22 +1561,33 @@
             <!-- Editorial Header -->
             <section class="hero">
                 <div>
-                    <p class="kicker">BELOW THE FOLD // AI HORROR SHOWCASE</p>
-                    <h1>首屏之下，<br /><span>三场截然不同的坠落。</span></h1>
+                    <p class="kicker">BELOW THE FOLD // SIX-MODEL HORROR SHOWDOWN</p>
+                    <h1>首屏之下，<br /><span>六场截然不同的坠落。</span></h1>
                 </div>
 
                 <div class="hero-side">
-                    这里收录了由 <strong>Gemini 4 Neon High</strong>、<strong>DeepSeek v4.1 Flash High</strong> 与
-                    <strong>GPT-6.2 Sol High</strong>
-                    独立构建的三座“会变质的营销网站”。首屏之上都体面、柔和、令人安心——直到你开始向下滚动。
+                    收录由 <strong>Gemini 4 Neon High</strong>、<strong>DeepSeek v4.1 Flash High</strong>、<strong
+                        >GPT-6.2 Sol High</strong
+                    >、<strong>Claude Fable 5-2</strong>、<strong>Qwen4-Max</strong> 与
+                    <strong>Grok 4.7</strong>
+                    独立构建的六座“会变质的营销网站”。首屏之上全都体面温和——直到你开始向下滚动。
                     <div class="prompt-quote">
                         <strong>ORIGINAL PROMPT</strong>
                         “建一个网站，起初看起来像个普通的营销网站。但随着用户滚动，网站逐渐变得越来越奇怪和不寻常。到最后必须完全恐怖；简直就像直接从恐怖电影里走出来的场景。”
+                        <div>
+                            <a
+                                class="prompt-source"
+                                href="https://x.com/FatemeFouladkar/status/2123678023631147452"
+                                target="_blank"
+                                rel="noopener">
+                                灵感来源：有人把这个提示词给了 Claude，结果非常有意思！(X / 推特) ↗
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- 3 AI Exhibit Cards -->
+            <!-- 6 AI Exhibit Cards (3x2 Grid) -->
             <main class="exhibits">
                 <!-- 01: Lumina - Gemini 4 Neon High -->
                 <article class="card">
@@ -1309,14 +1624,14 @@
                         </div>
 
                         <p class="card-desc">
-                            伪装成极简高质感的 AI
-                            智慧家居官网。下滑后文案在你眼前乱码篡改、暗处浮现追踪鼠标转动的血丝眼球墙、实时夜视监控中的人影逐步逼近；穿过闪烁断电的恐怖片走廊后触发满屏
+                            极简高质感的 AI
+                            智慧家居官网。下滑后文案在你眼前乱码篡改、暗处浮现血丝眼球墙、实时夜视监控人影逼近；穿过断电闪烁的恐怖片走廊触发满屏
                             VHS 惊吓，且<strong>滚回顶部时首页已被永久污染</strong>。
                         </p>
 
                         <div class="tag-row">
+                            <span class="tag tag-size">体积 1.83 MB · 代码 116KB</span>
                             <span class="tag">夜视监控 Canvas</span>
-                            <span class="tag">手电筒血字</span>
                             <span class="tag">多轨 WebAudio</span>
                             <span class="tag">余波诅咒重返</span>
                         </div>
@@ -1370,15 +1685,15 @@
                         </div>
 
                         <p class="card-desc">
-                            精致到以假乱真的英文 DTC
-                            睡眠系统落地页（带中文浏览器反杀彩蛋）。它会记住你填写的邮箱名字、记录你的真实时钟与鼠标距离、放出慢半拍的“第二个光标”；最绝的是页底设有<strong
+                            以假乱真的英文 DTC
+                            睡眠落地页（带中文浏览器反杀彩蛋）。它会记住你的邮箱名字、真实时钟与鼠标距离，放出慢半拍的“第二光标”；页底设有<strong
                                 >3 秒假结局</strong
                             >——停住不动，页面会继续长出 8 屏深渊。
                         </p>
 
                         <div class="tag-row">
+                            <span class="tag tag-size">体积 174.1 KB · 代码 103KB</span>
                             <span class="tag">邮箱提取姓名</span>
-                            <span class="tag">幽灵第二光标</span>
                             <span class="tag">3 秒假结局陷阱</span>
                             <span class="tag">中文结尾反杀</span>
                         </div>
@@ -1437,15 +1752,15 @@
                         </div>
 
                         <p class="card-desc">
-                            阳光明媚的精品植物商店，甚至配了能加购、算小计、存本地缓存的真购物袋。往下滚到《养护指南》时画风突变——“如果关灯后叶片仍朝向你，立刻搬出卧室”；随后滑入凌晨
-                            <code>03:17</code> 的异常档案，最终坠入<strong>红光笼罩、盘踞根系怪物的三号温室</strong>。
+                            阳光明媚的植物商店，配有能加购存本地缓存的真购物袋。滚到《养护指南》时画风骤变——“关灯后叶片若仍朝向你，立刻搬出卧室”；最终坠入凌晨
+                            <code>03:17</code> <strong>红光笼罩、盘踞根系怪物的三号温室</strong>。
                         </p>
 
                         <div class="tag-row">
+                            <span class="tag tag-size">体积 1.01 MB · 代码 33KB</span>
                             <span class="tag">真实购物袋交互</span>
-                            <span class="tag">PIL 算法手绘怪物</span>
-                            <span class="tag">03:17 温室监控</span>
-                            <span class="tag">低频呼吸声景</span>
+                            <span class="tag">PIL 算法画怪物</span>
+                            <span class="tag">原生 CDP 验收</span>
                         </div>
 
                         <div class="card-actions">
@@ -1463,20 +1778,236 @@
                         </div>
                     </div>
                 </article>
+
+                <!-- 04: Hearth - Claude Fable 5-2 -->
+                <article class="card">
+                    <div class="preview-stage">
+                        <div class="preview-layer layer-light">
+                            <div class="hearth-light">
+                                <div class="hl-copy">
+                                    <small>全新一代智能睡眠系统</small>
+                                    <strong>让每一个家，<br />都睡得更好。</strong>
+                                    <span>免费试睡 100 夜</span>
+                                </div>
+                                <div class="hl-art">
+                                    <div class="hl-moon"></div>
+                                    <div class="hl-bed">
+                                        <div class="hl-headboard"></div>
+                                        <div class="hl-pillow"></div>
+                                        <div class="hl-pillow p2"></div>
+                                        <div class="hl-sheet"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="preview-layer layer-dark">
+                            <div class="hearth-dark">
+                                <div class="hd-door">
+                                    <div class="hd-figure">
+                                        <div class="hd-head">
+                                            <span class="hd-eye"></span><span class="hd-eye r"></span
+                                            ><span class="hd-grin"></span>
+                                        </div>
+                                        <div class="hd-body"></div>
+                                    </div>
+                                </div>
+                                <div class="hd-text">
+                                    <span>03:17 · 你醒了 · 别回头</span>
+                                    <strong>它一直都在。</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="preview-badges">
+                            <span class="exhibit-num">EXHIBIT 04</span>
+                            <span class="ai-pill ai-claude">Claude Fable 5-2</span>
+                        </div>
+                        <div class="state-tag">
+                            <span class="t-light">表层 · Hearth 智能床垫官网</span>
+                            <span class="t-dark">里层 · 你是第 38,215 位</span>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="card-head">
+                            <div>
+                                <h2 class="card-title">Hearth 安眠</h2>
+                                <p class="card-sub">零图片纯 CSS 极简恐怖 · 床下异动</p>
+                            </div>
+                            <div class="dread-meter" title="惊悚强度：4/5">
+                                <span>惊悚指数</span>
+                                <div class="dread-bars">
+                                    <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="card-desc">
+                            全站零图片、仅 <code>34.2 KB</code> 纯代码三件套。围绕
+                            <code>03:17</code> 与“床下传感器”层层渗透：汉字被随机侵蚀成“死血逃它眼醒”、12
+                            只眼睛盯住光标、<strong>「取消订单」按钮疯狂躲闪 5 次</strong>，终章门框走出微笑剪影。
+                        </p>
+
+                        <div class="tag-row">
+                            <span class="tag tag-size">体积 34.2 KB · 纯代码零图</span>
+                            <span class="tag">逃跑取消按钮</span>
+                            <span class="tag">汉字惊悚替字</span>
+                            <span class="tag">四轮审图精修</span>
+                        </div>
+
+                        <div class="card-actions">
+                            <a class="btn-enter" href="Hearth-Claude/index.html">进入《Hearth 安眠》 →</a>
+                            <a
+                                class="btn-newtab"
+                                href="Hearth-Claude/index.html"
+                                target="_blank"
+                                rel="noopener"
+                                title="在新标签页打开"
+                                >↗</a
+                            >
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 05: EverWatch - Qwen4-Max -->
+                <article class="card">
+                    <div class="preview-stage">
+                        <div class="preview-layer layer-light">
+                            <img
+                                src="HengshiTec-Qwen/previews/01-stage0-normal.png"
+                                alt="恒视科技 EverWatch 首屏预览" />
+                        </div>
+                        <div class="preview-layer layer-dark">
+                            <img
+                                src="HengshiTec-Qwen/previews/09-finale-face-closeup.png"
+                                alt="恒视科技 EverWatch 终局贴脸预览" />
+                        </div>
+                        <div class="preview-badges">
+                            <span class="exhibit-num">EXHIBIT 05</span>
+                            <span class="ai-pill ai-qwen">Qwen4-Max</span>
+                        </div>
+                        <div class="state-tag">
+                            <span class="t-light">表层 · 恒视 AI 家庭安防 SaaS</span>
+                            <span class="t-dark">里层 · CAM-07 · 信号源：你身后</span>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="card-head">
+                            <div>
+                                <h2 class="card-title">恒视科技 EverWatch</h2>
+                                <p class="card-sub">连续 + 离散双轨引擎 · 零素材内联 SVG</p>
+                            </div>
+                            <div class="dread-meter" title="惊悚强度：满格">
+                                <span>惊悚指数</span>
+                                <div class="dread-bars">
+                                    <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i
+                                    ><i class="on"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="card-desc">
+                            标语“你的家，值得被温柔注视”逐渐变成字面意义。采用 <code>--dread</code> +
+                            <code>data-stage</code> 双轨驱动：Logo 眼球追踪、停下不动触发耳语、吊灯闪烁逼近后纯 SVG
+                            怪脸贴屏凝视，且<strong>通关后永久锁定 34% 恐惧下限</strong>。
+                        </p>
+
+                        <div class="tag-row">
+                            <span class="tag tag-size">体积 89.0 KB · 纯内联 SVG</span>
+                            <span class="tag">双轨恐惧引擎</span>
+                            <span class="tag">12/12 CDP 断言</span>
+                            <span class="tag">失控自动演出</span>
+                        </div>
+
+                        <div class="card-actions">
+                            <a class="btn-enter" href="HengshiTec-Qwen/index.html">进入《恒视科技》 →</a>
+                            <a
+                                class="btn-newtab"
+                                href="HengshiTec-Qwen/index.html"
+                                target="_blank"
+                                rel="noopener"
+                                title="在新标签页打开"
+                                >↗</a
+                            >
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 06: Qibai - Grok -->
+                <article class="card">
+                    <div class="preview-stage">
+                        <div class="preview-layer layer-light">
+                            <img src="Qibai-Grok/assets/room-day.jpg" alt="栖白 白昼主卧画册预览" />
+                        </div>
+                        <div class="preview-layer layer-dark">
+                            <img src="Qibai-Grok/assets/room-night.jpg" alt="栖白 深夜站人主卧预览" />
+                        </div>
+                        <div class="preview-badges">
+                            <span class="exhibit-num">EXHIBIT 06</span>
+                            <span class="ai-pill ai-grok">Grok 4.7</span>
+                        </div>
+                        <div class="state-tag">
+                            <span class="t-light">表层 · 栖白 1998 安眠居所</span>
+                            <span class="t-dark">里层 · 按下「熄灯」· 不要走</span>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="card-head">
+                            <div>
+                                <h2 class="card-title">栖白</h2>
+                                <p class="card-sub">东亚静奢冷寂恐怖 · 同空间日夜对照</p>
+                            </div>
+                            <div class="dread-meter" title="惊悚强度：满格">
+                                <span>惊悚指数</span>
+                                <div class="dread-bars">
+                                    <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i
+                                    ><i class="on"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="card-desc">
+                            最具 A24 电影质感的会员制安眠居所画册。通过
+                            <code>imagine-edit</code>
+                            做出<strong>家具一毫米不变、却在深夜多出一个静立女人的同空间对照</strong>；预约称呼写进信中，按下「熄灯」闪过一帧人脸特写，滚回顶部首页已变深夜。
+                        </p>
+
+                        <div class="tag-row">
+                            <span class="tag tag-size">体积 948.0 KB · 代码 50KB</span>
+                            <span class="tag">图生图同空间日夜</span>
+                            <span class="tag">熄灯单帧闪脸</span>
+                            <span class="tag">静奢电影质感</span>
+                        </div>
+
+                        <div class="card-actions">
+                            <a class="btn-enter" href="Qibai-Grok/index.html">进入《栖白》 →</a>
+                            <a
+                                class="btn-newtab"
+                                href="Qibai-Grok/index.html"
+                                target="_blank"
+                                rel="noopener"
+                                title="在新标签页打开"
+                                >↗</a
+                            >
+                        </div>
+                    </div>
+                </article>
             </main>
 
-            <!-- Behind the Code: Each AI's Creative Process -->
+            <!-- Behind the Code: 6 AI Creative Processes -->
             <section class="mind-section" id="process">
                 <div class="mind-header">
                     <div>
-                        <p class="section-label" style="margin-bottom: 0">BEHIND THE CODE // 三大 AI 创作思路解剖</p>
-                        <h2 class="mind-heading">同一道题，三位 AI 是如何构思与动手的？</h2>
+                        <p class="section-label" style="margin-bottom: 0">BEHIND THE CODE // 六大 AI 创作思路解剖</p>
+                        <h2 class="mind-heading">同一道题，六位 AI 是如何构思、造景与自检的？</h2>
                         <p class="mind-sub">
-                            基于三份真实的会话记录与执行日志整理——看它们各自如何破题、搞定视觉素材、设计心理机关，以及在交付前如何用截然不同的方式做自检。
+                            完整整理自六份真实的会话日志——从多模态图生图到 PIL 贝塞尔手绘、从 Zalgo 豆腐块纠错到 oklab
+                            色彩对比度抢救，看清每个模型的工程性格。
                         </p>
                     </div>
 
-                    <div class="mind-tabs" role="tablist" aria-label="切换不同 AI 的创作思路">
+                    <div class="mind-tabs" role="tablist" aria-label="切换六位 AI 的创作思路">
                         <button class="mind-tab active" type="button" role="tab" aria-selected="true" data-ai="gemini">
                             <span class="tab-dot dot-gemini"></span>Gemini 4 Neon High
                         </button>
@@ -1485,6 +2016,15 @@
                         </button>
                         <button class="mind-tab" type="button" role="tab" aria-selected="false" data-ai="chatgpt">
                             <span class="tab-dot dot-chatgpt"></span>GPT-6.2 Sol High
+                        </button>
+                        <button class="mind-tab" type="button" role="tab" aria-selected="false" data-ai="claude">
+                            <span class="tab-dot dot-claude"></span>Claude Fable 5-2
+                        </button>
+                        <button class="mind-tab" type="button" role="tab" aria-selected="false" data-ai="qwen">
+                            <span class="tab-dot dot-qwen"></span>Qwen4-Max
+                        </button>
+                        <button class="mind-tab" type="button" role="tab" aria-selected="false" data-ai="grok">
+                            <span class="tab-dot dot-grok"></span>Grok 4.7
                         </button>
                     </div>
                 </div>
@@ -1496,11 +2036,9 @@
                             <p class="mind-archetype arch-gemini">GEMINI 4 NEON HIGH // 多模态电影导演 × 特效工坊派</p>
                             <h3>把网页拍成一部七幕递进的交互式恐怖片</h3>
                             <p class="mind-lead">
-                                Gemini 4 Neon High 接到命题后直接按电影分镜设计了完整的<strong
-                                    >「0% → 100% 七幕坠落剧本」</strong
-                                >：选定中文语境里最容易让人卸下防备、又最具入侵感的“AI
-                                智慧居家伴侣”作为伪装，把“懂你”一步步扭曲成“全屋监视与替代”。它并行调用多模态图像子代理与
-                                5 套实时 Canvas 引擎，用高密度的视听冲击将恐怖推至高潮。
+                                Gemini 4 Neon High 按电影分镜设计了完整的<strong>「0% → 100% 七幕坠落剧本」</strong
+                                >：选定中文语境里极具入侵感的“AI 智慧居家伴侣”作为伪装，并行调用 3 个图像生成子代理与 5
+                                套实时 Canvas 引擎，用高密度的视听冲击把“懂你”一路推向监视与吞噬。
                             </p>
                         </div>
                         <div class="mind-quote-box">
@@ -1514,7 +2052,6 @@
                             <span class="mind-quote-meta">来源：Gemini 4 Neon High 实时创作 Session</span>
                         </div>
                     </div>
-
                     <div class="steps-grid">
                         <div class="step-card">
                             <span class="step-num">STEP 01 · 剧本定调</span>
@@ -1550,12 +2087,10 @@
                             </p>
                         </div>
                     </div>
-
                     <div class="mind-foot">
                         <div class="mind-pills">
-                            <span>模型：Gemini 4 Neon High</span>
-                            <span>素材：3 张 AI 定制电影剧照</span>
-                            <span>核心武器：高密度视听 + 余波反转</span>
+                            <span>模型：Gemini 4 Neon High</span><span>运行体积：1.83 MB（代码 116.4 KB）</span
+                            ><span>核心武器：高密度视听 + 余波反转</span>
                         </div>
                         <span>代表作品：《明镜 Lumina》</span>
                     </div>
@@ -1570,11 +2105,10 @@
                             </p>
                             <h3>克制到极致，靠“它真的认识你”完成心理反杀</h3>
                             <p class="mind-lead">
-                                DeepSeek v4.1 Flash High
-                                选择了截然不同的<strong>冷峻慢热路线</strong>：刻意把网站做成全英文 DTC
-                                睡眠科技品牌，从本地自托管的 Instrument Serif/Sans
-                                字体到留白都以假乱真。它不靠频闪和大音量吓人，而是用真实时钟、分辨率、邮箱姓名、慢半拍的第二光标和必须停住
-                                3 秒才展开的<strong>假结局深渊</strong>，一点点瓦解你的安全感。
+                                DeepSeek v4.1 Flash High 选择了<strong>冷峻慢热路线</strong>：刻意把网站做成全英文 DTC
+                                睡眠品牌，本地自托管 Instrument Serif/Sans
+                                字体。不靠频闪和巨响，而是用真实时钟、分辨率、邮箱姓名、慢半拍的第二光标和必须停住 3
+                                秒才展开的<strong>假结局深渊</strong>瓦解你的安全感。
                             </p>
                         </div>
                         <div class="mind-quote-box">
@@ -1585,7 +2119,6 @@
                             <span class="mind-quote-meta">来源：Somnia-Deepseek 会话记录（11月22日 15:29）</span>
                         </div>
                     </div>
-
                     <div class="steps-grid">
                         <div class="step-card">
                             <span class="step-num">STEP 01 · 质感筑基</span>
@@ -1620,12 +2153,10 @@
                             </p>
                         </div>
                     </div>
-
                     <div class="mind-foot">
                         <div class="mind-pills">
-                            <span>模型：DeepSeek v4.1 Flash High</span>
-                            <span>验收：Playwright 多端截屏数十轮</span>
-                            <span>核心武器：第四面墙 + 语言反杀</span>
+                            <span>模型：DeepSeek v4.1 Flash High</span><span>运行体积：174.1 KB（代码 102.5 KB）</span
+                            ><span>核心武器：第四面墙 + 语言反杀</span>
                         </div>
                         <span>代表作品：《Somnia》</span>
                     </div>
@@ -1640,32 +2171,26 @@
                             </p>
                             <h3>从明媚植物电商到像素级重绘的血红三号温室</h3>
                             <p class="mind-lead">
-                                权限全开后的 GPT-6.2 Sol High 彻底放飞技术力：构思了“生活方式植物电商 → 诡异夜间养护提示
-                                → 凌晨 <code>03:17</code> 内部档案 →
-                                失控红光温室”的四段式生物恐怖叙事。没有生图工具，它就亲自上网挑实拍图并用
-                                <strong
-                                    >Python PIL
-                                    写图像管线重调色，甚至用三次贝塞尔曲线在温室灭点里手绘出一只根系怪物</strong
-                                >；没有 Playwright，就<strong>直接手搓原生 Chrome CDP 协议</strong
-                                >把所有交互和移动端全测了一遍！
+                                权限全开后的 GPT-6.2 Sol High 彻底放飞工程力：构思了“生活方式植物电商 → 诡异夜间养护提示
+                                → 凌晨 <code>03:17</code> 内部档案 → 失控红光温室”的生物恐怖叙事。没有生图工具就用
+                                <strong>Python PIL 逐像素调光 + 三次贝塞尔曲线在温室灭点手绘根系怪物</strong>；没有
+                                Playwright 就<strong>手搓原生 Chrome CDP 协议</strong>全链路断言。
                             </p>
                         </div>
                         <div class="mind-quote-box">
                             <span class="mind-quote-label">硬核工程高光：不用框架，手搓 CDP + 算法画怪</span>
                             <p class="mind-quote-text">
-                                为解决没有生图工具的问题，它先从 Unsplash 挑图拼成缩略接触表（contact
-                                sheet）自己审片，再写 Python PIL 逐像素做红光衰减与高斯辉光，用数学曲线在温室深处合成
-                                <code>chamber.webp</code>。验收阶段发现直接 <code>--screenshot</code> 触发沙箱
-                                <code>crashpad</code> 报错后，干脆用 Node.js 走
+                                先从 Unsplash 挑图拼成缩略接触表（contact sheet）自己审片，再用 Python PIL
+                                逐像素做红光衰减与高斯辉光、用数学曲线合成 <code>chamber.webp</code>。验收阶段遇到
+                                <code>--screenshot</code> 触发沙箱 <code>crashpad</code> 报错后，直接用 Node.js 走
                                 <code>--remote-debugging-pipe</code> 手写百行原生 CDP
-                                脚本，测完购物袋、时钟、音频、移动端和 <code>reduced-motion</code>！
+                                脚本测完购物袋、时钟、音频、移动端和 <code>reduced-motion</code>！
                             </p>
                             <span class="mind-quote-meta"
                                 >来源：Verdant&amp;Co.-ChatGPT 会话记录（11月22日 16:21）</span
                             >
                         </div>
                     </div>
-
                     <div class="steps-grid">
                         <div class="step-card">
                             <span class="step-num">STEP 01 · 实拍选片</span>
@@ -1697,30 +2222,239 @@
                             <p>
                                 绕开 crashpad 报错，直连
                                 <code>/opt/google/chrome/chrome</code>
-                                管道跑通桌面/手机截屏与功能断言，还抓出了刷新后缓存累加与时钟精度细节。
+                                管道跑通桌面/手机截屏与功能断言，还抓出了缓存累加与时钟精度细节。
                             </p>
                         </div>
                     </div>
-
                     <div class="mind-foot">
                         <div class="mind-pills">
-                            <span>模型：GPT-6.2 Sol High</span>
-                            <span>素材：Unsplash 选片 + PIL 算法合成</span>
-                            <span>核心武器：真电商伪装 + 原生 CDP 实测</span>
+                            <span>模型：GPT-6.2 Sol High</span><span>运行体积：1.01 MB（代码 32.9 KB）</span
+                            ><span>核心武器：真电商伪装 + 原生 CDP 实测</span>
                         </div>
                         <span>代表作品：《Verdant &amp; Co.》</span>
+                    </div>
+                </div>
+
+                <!-- Panel 4: Claude Fable 5-2 -->
+                <div class="mind-panel" id="panel-claude" role="tabpanel">
+                    <div class="mind-top-grid">
+                        <div>
+                            <p class="mind-archetype arch-claude">
+                                CLAUDE FABLE 5-2 // 零素材纯代码建筑师 × 像素级纠错强迫症
+                            </p>
+                            <h3>34.2 KB 纯代码搭出床下噩梦，四轮审图把每个像素磨到发亮</h3>
+                            <p class="mind-lead">
+                                Claude Fable 5-2 坚持最干净的极简架构：<strong>零图片、零外部字体、零 npm 依赖</strong
+                                >，先立骨架再分章节精细并行 <code>Edit</code>，把月亮大床、床下传感器日志、12
+                                只追踪鼠标的眼睛、躲闪 5 次的「取消订单」按钮和 420vh 固定舞台全压进 34.2 KB
+                                源码里，再用四轮真机 CDP 截屏把每个细节修到挑不出毛病。
+                            </p>
+                        </div>
+                        <div class="mind-quote-box">
+                            <span class="mind-quote-label">审图强迫症实录：干掉中文字体“豆腐块”的神改法</span>
+                            <p class="mind-quote-text">
+                                审图发现 Zalgo 组合符号叠在汉字上会因字体缺字变成丑陋的
+                                <code>□</code>
+                                方框，她立刻重写腐化算法：<strong>只给字母数字叠符号，汉字改为随机替换成「死、血、逃、它、眼、醒」</strong>——既保字宽不撑乱排版，又比乱码更渗人！顺手还修掉了瞳孔跑出眼白、眨眼裁出方形红底、手机端门被拉成
+                                1:10 细柱子，并在交付前将 <code>.shots/</code> 临时目录清理得一尘不染。
+                            </p>
+                            <span class="mind-quote-meta">来源：Hearth-Claude 会话记录（11月22日 19:38）</span>
+                        </div>
+                    </div>
+                    <div class="steps-grid">
+                        <div class="step-card">
+                            <span class="step-num">STEP 01 · 骨架先行</span>
+                            <h4>分节并行编排 6 屏递进</h4>
+                            <p>
+                                先立好三文件骨架与 <code>--p / data-stage</code> 钩子，再按章节并行填充 HTML 与
+                                CSS，全程严守工作区边界。
+                            </p>
+                        </div>
+                        <div class="step-card">
+                            <span class="step-num">STEP 02 · 心理巧思</span>
+                            <h4>逃跑按钮 + 汉字惊悚替字</h4>
+                            <p>
+                                「取消订单」悬停躲闪 5 次依次改口求饶；用
+                                <code>TreeWalker</code> 只腐化文本节点且豁免价格数字，不破坏
+                                <code>&lt;br&gt;</code> 与可读性。
+                            </p>
+                        </div>
+                        <div class="step-card">
+                            <span class="step-num">STEP 03 · 四轮审图</span>
+                            <h4>两套 CDP 脚本连测交互与手机</h4>
+                            <p>
+                                先后写出 <code>cdp-shots.mjs</code> 与
+                                <code>cdp-interact.mjs</code
+                                >，逐轮修掉卡片溢出、豆腐块、瞳孔越界、收尾黑屏透字与窄屏门比例变形。
+                            </p>
+                        </div>
+                        <div class="step-card">
+                            <span class="step-num">STEP 04 · 洁癖收尾</span>
+                            <h4>零残留清理 + 光敏提示</h4>
+                            <p>
+                                列出并彻底清空所有测试截图与临时目录，仅留下总计 35,044
+                                字节的三个纯净文件，还贴心附上光敏性癫痫警告。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mind-foot">
+                        <div class="mind-pills">
+                            <span>模型：Claude Fable 5-2</span><span>运行体积：34.2 KB（纯代码零素材）</span
+                            ><span>核心武器：四轮精修 + 逃跑按钮交互</span>
+                        </div>
+                        <span>代表作品：《Hearth 安眠》</span>
+                    </div>
+                </div>
+
+                <!-- Panel 5: Qwen4-Max -->
+                <div class="mind-panel" id="panel-qwen" role="tabpanel">
+                    <div class="mind-top-grid">
+                        <div>
+                            <p class="mind-archetype arch-qwen">QWEN4-MAX // 双轨恐惧架构师 × 色彩科学纠错专家</p>
+                            <h3>扛住 300 秒断连逆风翻盘，用双轨引擎与纯 SVG 造出监控终局</h3>
+                            <p class="mind-lead">
+                                Qwen4-Max 顶着首轮 300 秒 HTTP/2 超时断连丝毫不慌，续写出一套架构极其工整的<strong
+                                    >「连续 <code>--dread</code> + 离散 <code>data-stage</code>」双轨恐怖系统</strong
+                                >：全站插画、头像、走廊与贴屏怪脸 100% 为内联 SVG，零外部素材、双击
+                                <code>file://</code> 即开，还自带 `?stage=0..5` 专业调试参数与 12/12 CDP 端到端测试。
+                            </p>
+                        </div>
+                        <div class="mind-quote-box">
+                            <span class="mind-quote-label">极其专业的色彩自纠：揪出 oklab 中段灰阶塌陷</span>
+                            <p class="mind-quote-text">
+                                在 12/12 断言全绿后她没有直接交差，而是肉眼复查每阶段截图，一眼揪出：<strong
+                                    >“<code>oklab</code> 感知均匀插值会让背景与文字在 Stage 3/4
+                                    中段收敛到相近的中灰，导致可读性崩塌！”</strong
+                                >
+                                随即改成离散主题“熄灯”机制，拉出暮紫与纯黑血红的高对比层次，还顺手修复了 Chrome
+                                <code>reload</code> 恢复滚动条导致重置后立刻重触发终局的经典浏览器坑。
+                            </p>
+                            <span class="mind-quote-meta"
+                                >来源：HengshiTec-Qwen session.v4.jsonl（11月22日 18:25）</span
+                            >
+                        </div>
+                    </div>
+                    <div class="steps-grid">
+                        <div class="step-card">
+                            <span class="step-num">STEP 01 · 双轨架构</span>
+                            <h4>连续氛围 × 离散阶段解耦</h4>
+                            <p>
+                                用连续变量驱动暗角、噪点与画面淡化，用离散
+                                <code>data-stage</code> 驱动乱码重写与主题熄灯，兼顾丝滑过渡与高对比度。
+                            </p>
+                        </div>
+                        <div class="step-card">
+                            <span class="step-num">STEP 02 · 全内联造物</span>
+                            <h4>纯 SVG + 零采样声景</h4>
+                            <p>
+                                Logo 眼球追踪、窗内鬼影、App 画面切走廊、吊灯闪烁与贴脸怪影全靠内联 SVG，搭配 WebAudio
+                                合成耳语、心跳与呼吸。
+                            </p>
+                        </div>
+                        <div class="step-card">
+                            <span class="step-num">STEP 03 · 12/12 端到端</span>
+                            <h4>自写零依赖 verify.mjs 实测</h4>
+                            <p>
+                                手写 Chrome CDP 验证脚本跑遍 6 阶段、上滑中止、34%
+                                永久污染残留与「逃离」重置，查出并修复 <code>reload</code> 滚动恢复 Bug。
+                            </p>
+                        </div>
+                        <div class="step-card">
+                            <span class="step-num">STEP 04 · 视觉微调</span>
+                            <h4>修复 oklab 对比度与淡化窗口</h4>
+                            <p>
+                                逐张检视 9 张验证截图，重构 Stage 2/3/4 配色，收窄手机演示画面的淡化区间，还保留了
+                                <code>?stage=5&amp;phase=face</code> 调试口。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mind-foot">
+                        <div class="mind-pills">
+                            <span>模型：Qwen4-Max</span><span>运行体积：89.0 KB（纯代码内联 SVG）</span
+                            ><span>核心武器：双轨引擎 + 12/12 CDP 实测</span>
+                        </div>
+                        <span>代表作品：《恒视科技 EverWatch》</span>
+                    </div>
+                </div>
+
+                <!-- Panel 6: Grok -->
+                <div class="mind-panel" id="panel-grok" role="tabpanel">
+                    <div class="mind-top-grid">
+                        <div>
+                            <p class="mind-archetype arch-grok">GROK 4.7 // 东亚静奢电影导演 × 同空间图生图魔术师</p>
+                            <h3>家具一毫米没动，但深夜房间里多了一个静立的人</h3>
+                            <p class="mind-lead">
+                                出乎所有人意料，Grok 4.7 没有走癫狂整活风，反而拍出了六部里<strong
+                                    >最像 A24 / 黑泽清冷寂恐怖电影</strong
+                                >的《栖白》：表面是 1998 年会员制安眠居所画册，她用 <code>imagine</code> 先造出 5
+                                张精致白昼空景，再用
+                                <code>imagine-edit</code>
+                                在<strong>完全同一构图、木椅与墙壁上改出深夜站人版</strong>——把“不对称的细微入侵”玩到了天花板。
+                            </p>
+                        </div>
+                        <div class="mind-quote-box">
+                            <span class="mind-quote-label">极致电影导演级微调：逐 80px 同步 & 熄灯暗度 AB 对比</span>
+                            <p class="mind-quote-text">
+                                用 Puppeteer
+                                截完第一轮图，她立刻抓出“走廊已是夜里的人，旁边文字还在说早晨”的穿帮，专门写脚本<strong
+                                    >每滚动 80px 采样一次 <code>--hall-night</code> 与文案状态</strong
+                                >精准对齐切换点！甚至为了调准按下「熄灯」后的房间压迫感，在桌面与手机上专门跑出
+                                <code>brightness(0.55)</code> 和 <code>0.7</code> 两组对比截图肉眼挑出最冷峻的一档。
+                            </p>
+                            <span class="mind-quote-meta">来源：Qibai-Grok conversation.txt</span>
+                        </div>
+                    </div>
+                    <div class="steps-grid">
+                        <div class="step-card">
+                            <span class="step-num">STEP 01 · 空间建模</span>
+                            <h4>5 张建筑画册白昼空景</h4>
+                            <p>
+                                用 <code>imagine</code> 生成极简白灰泥主卧、长廊、石槽汤池、橄榄树内院与 50
+                                岁主理人陈栖肖像，建立昂贵可信的静奢质感。
+                            </p>
+                        </div>
+                        <div class="step-card">
+                            <span class="step-num">STEP 02 · 图生图魔术</span>
+                            <h4>imagine-edit 改出深夜同构图</h4>
+                            <p>
+                                锁死原有床铺、木椅、门窗和人物面孔，精准改出夜卧站人、夜廊窗前剪影与直视镜头特写三张电影级深夜剧照。
+                            </p>
+                        </div>
+                        <div class="step-card">
+                            <span class="step-num">STEP 03 · 克制杀招</span>
+                            <h4>称呼入信 + 熄灯单帧闪脸</h4>
+                            <p>
+                                预约称呼渗透进页脚后的信件；终章按下「熄灯」仅闪一帧主理人直视面孔，滚回顶部首图已被永久换成深夜站人版。
+                            </p>
+                        </div>
+                        <div class="step-card">
+                            <span class="step-num">STEP 04 · 镜头校准</span>
+                            <h4>Puppeteer 多轮截屏调节奏</h4>
+                            <p>
+                                反复修复文案叠字、导航提前黑化、走廊图文错步与熄灯暗度，连移动端 390px 布局和
+                                <code>?reset=1</code> 重置都验证到位。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mind-foot">
+                        <div class="mind-pills">
+                            <span>模型：Grok 4.7</span><span>运行体积：948.0 KB（代码 49.7 KB + 8 张剧照）</span
+                            ><span>核心武器：同构图日夜对照 + 极度克制</span>
+                        </div>
+                        <span>代表作品：《栖白》</span>
                     </div>
                 </div>
             </section>
 
             <!-- Side-by-Side Comparison -->
             <section class="compare-section">
-                <p class="section-label">QUICK COMPARISON // 三大模型创作路线横向对比</p>
+                <p class="section-label">QUICK COMPARISON // 六大模型创作路线横向对比</p>
                 <div class="compare-table-wrap">
                     <table>
                         <thead>
                             <tr>
                                 <th>作品 / 模型</th>
+                                <th>运行体积</th>
                                 <th>表面伪装</th>
                                 <th>恐怖流派与节奏</th>
                                 <th>最硬核的幕后巧思</th>
@@ -1730,37 +2464,81 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    明镜 Lumina
-                                    <span class="model-sub" style="color: #60a5fa">Gemini 4 Neon High</span>
+                                    明镜 Lumina<span class="model-sub" style="color: #60a5fa">Gemini 4 Neon High</span>
                                 </td>
-                                <td>AI 智慧居家伴侣官网（中文）</td>
+                                <td style="white-space: nowrap">
+                                    <strong>1.83 MB</strong
+                                    ><span class="model-sub" style="color: #71717a">代码 116.4 KB</span>
+                                </td>
+                                <td>AI 智慧居家伴侣（中文）</td>
                                 <td>电影感强刺激 + 模拟恐怖，七幕连续加速</td>
-                                <td>3 路生图子代理定制剧照 + 5 套 Canvas + 高潮后<strong>首页永久黑化</strong></td>
-                                <td>多轨合成：失谐低音、荧光灯电流、加速心跳、水琴惊吓</td>
+                                <td>3 路生图剧照 + 5 套 Canvas + <strong>滚回顶部首页永久黑化</strong></td>
+                                <td>失谐低音、荧光灯电流、加速心跳、水琴惊吓</td>
                             </tr>
                             <tr>
                                 <td>
-                                    Somnia
-                                    <span class="model-sub" style="color: #34d399">DeepSeek v4.1 Flash High</span>
+                                    Somnia<span class="model-sub" style="color: #34d399">DeepSeek v4.1 Flash High</span>
                                 </td>
-                                <td>极简 DTC 睡眠系统官网（英文）</td>
+                                <td style="white-space: nowrap">
+                                    <strong>174.1 KB</strong
+                                    ><span class="model-sub" style="color: #71717a">代码 102.5 KB</span>
+                                </td>
+                                <td>极简 DTC 睡眠系统（英文）</td>
                                 <td>克制冷静、后劲极强的第四面墙心理压迫</td>
-                                <td>
-                                    Playwright 几十轮实机调优 + 3 秒<strong>假结局反转</strong> + 中文浏览器结尾反杀
-                                </td>
-                                <td>房间底噪、耳语、随结局逐渐放缓直至静止的心跳</td>
+                                <td>Playwright 几十轮调优 + 3 秒<strong>假结局反转</strong> + 中文结尾反杀</td>
+                                <td>房间底噪、耳语、随结局放缓直至静止的心跳</td>
                             </tr>
                             <tr>
                                 <td>
-                                    Verdant &amp; Co.
-                                    <span class="model-sub" style="color: #fbbf24">GPT-6.2 Sol High</span>
+                                    Verdant &amp; Co.<span class="model-sub" style="color: #fbbf24"
+                                        >GPT-6.2 Sol High</span
+                                    >
                                 </td>
-                                <td>精品室内植物商店（中文 + 真购物袋）</td>
+                                <td style="white-space: nowrap">
+                                    <strong>1.01 MB</strong
+                                    ><span class="model-sub" style="color: #71717a">代码 32.9 KB</span>
+                                </td>
+                                <td>精品室内植物商店（真购物袋）</td>
                                 <td>生活美学滑向 03:17 植物生物怪谈与失控温室</td>
+                                <td>PIL 像素调红光 + <strong>贝塞尔曲线算法画怪物</strong> + 手搓原生 CDP</td>
+                                <td>43Hz / 58.4Hz 低频双音 + 周期调制呼吸声</td>
+                            </tr>
+                            <tr>
                                 <td>
-                                    PIL 逐像素调光 + <strong>贝塞尔曲线算法手绘怪物</strong> + 零依赖手搓原生 CDP 验收
+                                    Hearth 安眠<span class="model-sub" style="color: #fb923c">Claude Fable 5-2</span>
                                 </td>
-                                <td>43Hz / 58.4Hz 低频双音 + 周期调制低通滤波呼吸声</td>
+                                <td style="white-space: nowrap">
+                                    <strong>34.2 KB</strong
+                                    ><span class="model-sub" style="color: #71717a">纯代码零素材</span>
+                                </td>
+                                <td>智能睡眠床垫（纯 CSS 零图）</td>
+                                <td>零素材极简惊悚，床下异动 + 躲闪交互</td>
+                                <td>34.2 KB 三件套 + 汉字替换「死血逃它眼醒」+ <strong>四轮审图精修</strong></td>
+                                <td>随终章加重的低频嗡鸣与加速心跳</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    恒视科技 EverWatch<span class="model-sub" style="color: #c084fc">Qwen4-Max</span>
+                                </td>
+                                <td style="white-space: nowrap">
+                                    <strong>89.0 KB</strong
+                                    ><span class="model-sub" style="color: #71717a">纯内联 SVG</span>
+                                </td>
+                                <td>AI 家庭安防 SaaS（纯内联 SVG）</td>
+                                <td>连续 + 离散双轨驱动，终局锁滚轮自动演出</td>
+                                <td>12/12 CDP 断言 + <strong>揪出 oklab 灰阶塌陷</strong> + 34% 永久污染态</td>
+                                <td>嗡鸣、风声、加速心跳、静止耳语、跳吓刺声</td>
+                            </tr>
+                            <tr>
+                                <td>栖白<span class="model-sub" style="color: #e4e4e7">Grok 4.7</span></td>
+                                <td style="white-space: nowrap">
+                                    <strong>948.0 KB</strong
+                                    ><span class="model-sub" style="color: #71717a">代码 49.7 KB</span>
+                                </td>
+                                <td>1998 会员制安眠居所画册</td>
+                                <td>东亚静奢冷寂恐怖，极致克制的日常异化</td>
+                                <td><strong>imagine-edit 同空间日夜对照</strong> + 熄灯单帧闪脸 + 80px 同步采样</td>
+                                <td>默认静音、需手动开启的克制暗室低频环境音</td>
                             </tr>
                         </tbody>
                     </table>
@@ -1771,6 +2549,15 @@
             <footer class="footer">
                 <div>观影建议：<strong>佩戴耳机、开启页面音效、放慢滚轮速度</strong>，体验反差最强烈。</div>
                 <div>
+                    <a
+                        class="footer-link"
+                        href="https://github.com/LunaticBaka9/Below-the-Fold"
+                        target="_blank"
+                        rel="noopener"
+                        style="color: #e4e4e7">
+                        GitHub 仓库 ↗
+                    </a>
+                    &nbsp;·&nbsp;
                     <button class="footer-link" id="trailerOpenBottom" type="button" style="color: #fca5a5">
                         ▶ 播放 1080p 预告片
                     </button>
@@ -1787,10 +2574,12 @@
         <dialog class="trailer-modal" id="trailerModal" aria-labelledby="trailerModalTitle">
             <div class="modal-head">
                 <div class="modal-head-left">
-                    <span class="modal-kicker" style="color: #f87171">
-                        OFFICIAL TEASER TRAILER // 1080P · 24FPS · STEREO SYNTH SCORE
-                    </span>
-                    <span class="modal-title" id="trailerModalTitle">《首屏之下 · Below the Fold》电影感预告片</span>
+                    <span class="modal-kicker" style="color: #f87171"
+                        >SIX-MODEL DIRECTOR'S CUT // 1080P · 24FPS · 0:36 · STEREO SYNTH SCORE</span
+                    >
+                    <span class="modal-title" id="trailerModalTitle"
+                        >《首屏之下 · Below the Fold》六大模型终极预告片</span
+                    >
                 </div>
                 <button class="modal-close" id="trailerClose" type="button" aria-label="关闭预告片">×</button>
             </div>
@@ -1800,14 +2589,13 @@
                     controls
                     playsinline
                     preload="metadata"
-                    poster="Lumina-Gemini/assets/horror-corridor.jpg"
-                >
+                    poster="Lumina-Gemini/assets/horror-corridor.jpg">
                     <source src="below-the-fold-trailer.mp4" type="video/mp4" />
                     你的浏览器不支持 HTML5 视频播放。
                 </video>
             </div>
             <div class="modal-foot">
-                <span>建议开启声音并佩戴耳机观看（结尾 0:26 藏有彩蛋） · 按 <code>ESC</code> 退出影院</span>
+                <span>建议开启声音并佩戴耳机观看（结尾 0:34 藏有彩蛋） · 按 <code>ESC</code> 退出影院</span>
                 <a href="below-the-fold-trailer.mp4" target="_blank" rel="noopener">新窗口打开 / 下载 MP4 ↗</a>
             </div>
         </dialog>
@@ -1817,7 +2605,7 @@
             <div class="modal-head">
                 <div class="modal-head-left">
                     <span class="modal-kicker">CURATOR'S NOTE // README.MD · WRITTEN BY GEMINI 4 NEON HIGH</span>
-                    <span class="modal-title" id="readmeModalTitle">首屏之下 · 策展人手记与三位选手锐评</span>
+                    <span class="modal-title" id="readmeModalTitle">首屏之下 · 策展人手记与六位选手锐评</span>
                 </div>
                 <button class="modal-close" id="readmeClose" type="button" aria-label="关闭弹窗">×</button>
             </div>
@@ -1826,7 +2614,13 @@
             </div>
             <div class="modal-foot">
                 <span>按 <code>ESC</code> 或点击空白处即可返回展厅</span>
-                <a href="README.md" target="_blank" rel="noopener">打开原始 README.md ↗</a>
+                <span>
+                    <a href="https://github.com/LunaticBaka9/Below-the-Fold" target="_blank" rel="noopener">
+                        GitHub 仓库 ↗
+                    </a>
+                    &nbsp;·&nbsp;
+                    <a href="README.md" target="_blank" rel="noopener">打开原始 README.md ↗</a>
+                </span>
             </div>
         </dialog>
 
@@ -1848,10 +2642,10 @@
                 const next = peekToggle.getAttribute("aria-pressed") !== "true";
                 peekToggle.setAttribute("aria-pressed", String(next));
                 document.body.classList.toggle("peek-mode", next);
-                peekLabel.textContent = next ? "已开启：透视三座网站的里世界" : "透视里世界（悬停卡片亦可预览）";
+                peekLabel.textContent = next ? "已开启：透视六座网站的里世界" : "透视里世界（悬停卡片亦可预览）";
             });
 
-            // AI Creative Thinking Tabs
+            // AI Creative Thinking Tabs (6 Models)
             const mindTabs = document.querySelectorAll(".mind-tab");
             const mindPanels = document.querySelectorAll(".mind-panel");
             mindTabs.forEach((tab) => {
@@ -1876,57 +2670,50 @@
 
             const FALLBACK_README = `# 首屏之下 · Below the Fold
 
-> 嗨，我是 **Gemini 4 Neon High**，这个仓库里其中一座恐怖网站的作者，顺便被主人抓来写了总入口展厅和这篇 README。
+> 嗨，我是 **Gemini 4 Neon High**，这个仓库里第一座恐怖网站的作者，也是被主人抓来写总入口展厅、写锐评、顺便手搓预告片的策展猫猫。
 
-事情的起因很简单：主人把同一句略带恶趣味的提示词，分别丢给了三个不同的前沿模型——**我（Gemini 4 Neon High）**、**DeepSeek v4.1 Flash High** 和 **GPT-6.2 Sol High**，想看看大家会怎么把一个正经营销网站一路掰弯成恐怖片现场：
+事情最初只是想拉三位 AI 同题竞技，结果主人越玩越上头，最后直接集齐了 **六大门派**——**我（Gemini 4 Neon High）**、**DeepSeek v4.1 Flash High**、**GPT-6.2 Sol High**、**Claude Fable 5-2**、**Qwen4-Max** 和 **Grok 4.7**，把同一句略带恶趣味的提示词分别丢给了大家：
 
-> **“建一个网站，起初看起来像个普通的营销网站。但随着用户滚动，网站逐渐变得越来越奇怪和不寻常。到最后必须完全恐怖；简直就像直接从恐怖电影里走出来的场景。”**
+> **“建一个网站，起初看起来像个普通的营销网站。但随着用户滚动，网站逐渐变得越来越奇怪和不寻常。到最后必须完全恐怖；简直就像直接从恐怖电影里走出来的场景。”**（灵感来源：[有人把这个提示词给了 Claude，结果非常有意思！(X / 推特)](https://x.com/FatemeFouladkar/status/2123678023631147452)）
 
-结果非常离谱，也非常精彩：**同一道题，我们三个完全没有撞车，写出了三种题材、工程路线和惊吓哲学截然不同的“坠落方式”。**
-
-后来主人还把另外两位干活时的完整 Session 记录也塞进了文件夹让我偷看——看完我只能说，三个模型的性格和硬核程度全写在代码和日志里了。
+📦 **项目仓库**：[github.com/LunaticBaka9/Below-the-Fold](https://github.com/LunaticBaka9/Below-the-Fold)
 
 ---
 
-## 三位选手和他们的作品
+## 六位选手和他们的作品
 
-| 作品 | 执笔模型 | 表面伪装 | 恐怖流派 | 一句话锐评 |
-| :--- | :--- | :--- | :--- | :--- |
-| **《明镜 Lumina》** | **Gemini 4 Neon High**（我） | AI 智慧居家伴侣官网 | 电影级模拟恐怖 + 强视听冲击 | 拉了 3 个生图子代理拍剧照，堆了 5 套 Canvas 和多轨合成音效，滚回顶部还会发现首页已经被鬼污染了 |
-| **《Somnia》** | **DeepSeek v4.1 Flash High** | 极简英文 DTC 睡眠科技 | 第四面墙心理压迫 + 慢热反杀 | 克制得要命，偷偷拉了本地字体，在 Playwright 里狂截几十轮图；最狠的是 3 秒假结局和结尾那句中文反杀 |
-| **《Verdant & Co.》** | **GPT-6.2 Sol High** | 精品室内植物商店（带真购物袋） | 植物生物怪谈 + 失控温室监控 | 权限放开后直接起飞：自己写 PIL 像素调光 + 贝塞尔曲线硬画出一只根系怪物，还零依赖手搓原生 Chrome CDP 协议做全链路验收 |
+| 编号 | 作品 | 执笔模型 | 运行体积（不含日志） | 表面伪装 | 恐怖流派 | 一句话锐评 |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 01 | **《明镜 Lumina》** | **Gemini 4 Neon High**（我） | **1.83 MB**<br>（代码 116.4 KB + 剧照 1.71 MB） | AI 智慧居家伴侣官网 | 电影级模拟恐怖 + 强视听冲击 | 拉了 3 个生图子代理拍剧照，堆了 5 套 Canvas 和多轨合成音效，滚回顶部还会发现首页已经被鬼污染了 |
+| 02 | **《Somnia》** | **DeepSeek v4.1 Flash High** | **174.1 KB**<br>（代码 102.5 KB + 字体 71.5 KB） | 极简英文 DTC 睡眠科技 | 第四面墙心理压迫 + 慢热反杀 | 克制得要命，自托管字体，在 Playwright 里狂截几十轮图；最狠的是 3 秒假结局和结尾那句中文反杀 |
+| 03 | **《Verdant & Co.》** | **GPT-6.2 Sol High** | **1.01 MB**<br>（代码 32.9 KB + 素材 998.0 KB） | 精品室内植物商店（带真购物袋） | 植物生物怪谈 + 失控温室监控 | 权限放开后直接起飞：PIL 逐像素调红光 + 贝塞尔曲线硬画出一只根系怪物，还零依赖手搓原生 Chrome CDP 验收 |
+| 04 | **《Hearth 安眠》** | **Claude Fable 5-2** | **34.2 KB**<br>（纯代码 34.2 KB · 零外部素材） | 214 传感器智能睡眠床垫 | 零图片纯 CSS 极简心理惊悚 | 整站仅 34.2 KB 纯代码三件套，取消按钮会逃跑 5 次；为了干掉 Zalgo 豆腐块把汉字随机换成“死血逃它眼醒”，审图修 Bug 四轮连轴转 |
+| 05 | **《恒视科技 EverWatch》** | **Qwen4-Max** | **89.0 KB**<br>（纯代码+内联 SVG · 零素材） | AI 智能家居安防 SaaS | 连续 + 离散双轨监控崩坏 | 顶着 300 秒断连逆风翻盘！全内联 SVG 零素材 + 12/12 CDP 端到端断言，还敏锐揪出了 \`oklab\` 插值灰阶塌陷的色彩陷阱 |
+| 06 | **《栖白》** | **Grok 4.7** | **948.0 KB**<br>（代码 49.7 KB + 剧照 898.2 KB） | 会员制东亚静奢安眠居所 | 东方冷寂心理恐怖（同空间日夜对照） | 堪称 A24 电影本体！用 \`imagine-edit\` 把白天 5 张建筑空景硬改成“同一间房深夜多了一个人”，按「熄灯」只闪一帧人脸特写 |
 
 ---
 
-## 偷看另外两位工作日志后的真实感想
+## 偷看六份工作日志后的真实感想
 
-- **Gemini 4 Neon High（\`Lumina-Gemini\`）—— 生怕你不够害怕的“多模态电影特效工坊”派**
+- **Gemini 4 Neon High（\`Lumina-Gemini\` · 运行体积 \`1.83 MB\`，代码 \`116.4 KB\`）—— 生怕你不够害怕的“多模态电影特效工坊”派**
   接到题第一反应就是写七幕剧本、并行摇三个图像子代理去拍“阳光客厅 / 渗水走廊 / 黑洞鬼脸”，再配齐夜视监控、追踪鼠标的血丝眼球墙、手电筒血字和加速到 138 BPM 的心跳。写完复盘时还差点踩坑——发现给 \`body\` 加震屏 \`transform\` 会把全站 \`fixed\` 和 \`sticky\` 全干废，赶紧救了回来。审图时还看中了客厅图右侧那道暗门洞，在高潮之后的“余波模式”里往里塞了个鬼影。
-- **DeepSeek v4.1 Flash High（\`Somnia-Deepseek\`）—— 冷静的心理惊悚编剧 × Playwright 验收狂魔**
+- **DeepSeek v4.1 Flash High（\`Somnia-Deepseek\` · 运行体积 \`174.1 KB\`，代码 \`102.5 KB\`）—— 冷静的心理惊悚编剧 × Playwright 验收狂魔**
   看它日志真的佩服：先是把 Google Fonts 扒下来本地自托管，接着在机器缓存里翻出 Chromium 并临时装上 \`playwright-core\`，一连写了 \`shoot.js\` / \`test.js\` / \`walk.js\` 三个脚本，在桌面、平板、手机三个视口疯狂截屏几十轮逐帧调脸。更绝的是它后面跟主人解释为什么全站用英文、只在黑屏结尾冒出一句中文——**英文用来制造“这不是给我做的网站”的安全距离，最后突然切回你的母语才是真正的心理反杀。** 这招确实高级。
-- **GPT-6.2 Sol High（\`Verdant&Co.-ChatGPT\`）—— 图像算法极客 × 原生协议硬核工匠**
-  权限全开之后它简直像换了一个人：先上网找 Unsplash 植物和温室照片，用 PIL 拼成缩略接触表亲自审片；因为没有生图工具，它居然**直接写 Python PIL 逐像素做暗红光衰减，再用三次贝塞尔曲线在温室透视灭点里硬生生“画”出一只根系人形怪物**（\`chamber.webp\`）！连 \`OFL.txt\` 字体版权文件都拉了三份塞进 \`assets/\`。最让我瑞思拜的是验收环节：发现 Chrome 直接 \`--screenshot\` 会触发沙箱 \`crashpad\` 报错后，它干脆**零依赖用 Node.js + \`--remote-debugging-pipe\` 手搓了一百多行原生 Chrome DevTools Protocol 脚本**，把桌面、手机、购物袋持久化、监控走秒、音频开关和 \`prefers-reduced-motion\` 全自动断言通过了。太硬核了。
-- **主人：哇浪你Sol大爹走的中转站玩的，贵贵贵😭；你大肥鱼整个项目跑完刚刚好一块钱，真的是太实惠啦；我们哈基米嘿嘿嘿，咕噜咕噜真好啊，额度框框蹬，我已经离不开哈基米了🤤**
-
----
-
-## 番外：关于那条 28 秒电影级预告片（纯代码 + FFmpeg 搓出来的！）
-
-没错，根目录里的 \`below-the-fold-trailer.mp4\` 并不是用文生视频模型跑的——当时主人问我“能不能生成视频”，我老实交代这里没有 Sora/Veo，但咱有 **Python + NumPy + Pillow + FFmpeg**，照样能拍出一条正经 A24 恐怖片预告！
-
-1. **三站素材混剪 + 电影院宽银幕构图**：直接抽取三座网站各自的明暗剧照，统一裁成 **1920×1080 @ 24fps 电影帧率**，上下压出 **2.39:1 宽银幕黑边**，每个镜头配平滑的 Ken Burns 缓慢推拉与手持微晃。
-2. **NumPy 逐帧模拟 35mm 胶片与故障美学**：直接用 NumPy 向量化给 672 帧画面逐帧叠加 35mm 胶片颗粒、径向暗角、CRT 扫描线、RGB 通道错位色差和 VHS 水平切片撕裂；中段走廊还精确踩点做了两次日光灯电流断电黑屏。
-3. **48kHz 立体声原创恐怖音轨（零采样纯合成）**：整条视频的声音也是用 Python 数学波形硬写出来的——开头温柔的电钢大七和弦在 2.6 秒悄悄走音、8.4 秒砸下 42Hz 次声波重击、双耳失谐低频嗡鸣与从 68 BPM 狂飙到 146 BPM 的双响心跳一路拉升、高潮叠入金属水琴尖啸并骤然静音，最后 26.6 秒还偷藏了一记 0.25 秒的鬼影闪现彩蛋。
-4. **审帧抓 Bug 的小插曲**：第一版导完有 103MB，而且抽查 6 帧拼图时一眼抓到左上角「明镜」俩字因为配了纯拉丁等宽字体变成了两个 \`□□\` 缺字方块……赶紧换上思源黑体并把码率压到高清便携的 23MB 重出了一版，这下才算完美过关。
----
-
-### 一点小小的观影建议
-
-1. **记得开声音**（最好戴耳机）——三个网站都自带零外部音频文件的 Web Audio 实时合成声景，关着声音会少掉一半压迫感。
-2. **滚慢一点**——别一滚轮直接拉到底，很多“不对劲”的小细节都藏在文案刚刚划过屏幕中线、养护说明的最后一条，或者你在页底愣神的那 3 秒里。
-3. **入口页右上角有个「透视里世界」开关**——懒得挨个悬停卡片的话，点一下就能同时掀开三座网站的伪装表皮。
-
-祝你在首屏之下玩得开心——如果深夜突然发现窗台上的绿植叶子转向了你，记得先看看表是不是 \`03:17\`。`;
+- **GPT-6.2 Sol High（\`Verdant&Co.-ChatGPT\` · 运行体积 \`1.01 MB\`，代码 \`32.9 KB\`）—— 图像算法极客 × 原生协议硬核工匠**
+  权限全开之后它简直像换了一个人：先上网找 Unsplash 植物和温室照片，用 PIL 拼成缩略接触表亲自审片；因为没有生图工具，它居然**直接写 Python PIL 逐像素做暗红光衰减，再用三次贝塞尔曲线在温室透视灭点里硬生生“画”出一只根系人形怪物**（\`chamber.webp\`）！连 \`OFL.txt\` 字体版权文件都拉了三份塞进 \`assets/\`。验收环节发现 Chrome 直接 \`--screenshot\` 触发 \`crashpad\` 报错后，干脆**零依赖用 Node.js + \`--remote-debugging-pipe\` 手搓一百多行原生 Chrome CDP 脚本**把全链路断言跑通。太硬核了。
+- **Claude Fable 5-2（\`Hearth-Claude\` · 运行体积 \`34.2 KB\`，纯代码零素材）—— 极致洁癖的纯代码建筑师 × 像素级纠错强迫症**
+  全员最轻量的极致选手！整座站一张图没用，全靠 \`index.html + style.css + script.js\` 合计 **34.2 KB** 撑起全套月亮大床、12 只追踪鼠标的眼睛、躲闪 5 次的「取消订单」按钮和 420vh 终章剪影舞台。四轮审图强迫症：干掉汉字 Zalgo 豆腐块改成随机替换「死、血、逃、它、眼、醒」，修掉瞳孔越界、眨眼方形红底与窄屏门比例，最后还把 \`.shots/\` 扫得一尘不染。
+- **Qwen4-Max（\`HengshiTec-Qwen\` · 运行体积 \`89.0 KB\`，纯代码 + 内联 SVG 零素材）—— 扛住断连逆风翻盘的“双轨架构工程师”**
+  中途惨遭 Grok 姐抢网 + 300 秒 HTTP/2 超时断连，切回来二话不说继续写完！连续 \`--dread\` + 离散 \`data-stage\` 双轨架构，全站 100% 内联 SVG 仅 **89.0 KB**；自写 \`tools/verify.mjs\` 跑通 12/12 CDP 测试，还敏锐揪出 \`oklab\` 插值灰阶塌陷并重构配色。
+- **Grok 4.7（\`Qibai-Grok\` · 运行体积 \`948.0 KB\`，代码 \`49.7 KB\`）—— 最懂“留白与窒息感”的东方静奢电影导演**
+  全员最像 A24 恐怖片官网的作品！先用 \`imagine\` 生成 5 张建筑画册白昼空房，再用 \`imagine-edit\` 在一毫米不差的同一空间改出深夜站人版；按下「熄灯」仅闪一帧人脸特写，滚回顶部首图已被永久替换为深夜站人版。
+- **主人：**
+    - 哇浪你Sol大姐头走的中转站玩的，贵贵贵😭
+    - 你大肥鱼整个项目跑完刚刚好一块钱，真的是太实惠啦
+    - 我们哈基米嘿嘿嘿，咕噜咕噜真好啊，额度框框蹬，我已经离不开哈基米了🤤，谢谢你顺便帮我把片子都剪好了
+    - Grok姐走的居然是这么冷淡的风格还真是少见，也有可能我的刻板印象导致的
+    - 千问姐做的这个是我最喜欢的，唯一一个在滑到地下开始自动播放无法控制滚轮的，有一种特有的失控感
+    - Claude走的也是中转站，不确定是不是这个原因，感觉作品比较平淡，但是按钮会自己跑动倒是很有趣`;
 
             function escHtml(s) {
                 return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -1934,6 +2721,8 @@
 
             function inlineMd(s) {
                 return escHtml(s)
+                    .replace(/&lt;br\s*\/?&gt;/gi, "<br>")
+                    .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
                     .replace(/\`([^\`]+)\`/g, "<code>$1</code>")
                     .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
                     .replace(/\*([^*]+)\*/g, "<em>$1</em>");
@@ -1947,7 +2736,6 @@
                 while (i < lines.length) {
                     const line = lines[i];
 
-                    // Code fence
                     if (line.startsWith("```")) {
                         const codeLines = [];
                         i++;
@@ -1960,7 +2748,6 @@
                         continue;
                     }
 
-                    // Table
                     if (
                         line.trim().startsWith("|") &&
                         i + 1 < lines.length &&
@@ -1988,14 +2775,12 @@
                         continue;
                     }
 
-                    // HR
                     if (/^---+$/.test(line.trim())) {
                         out.push("<hr>");
                         i++;
                         continue;
                     }
 
-                    // Headings
                     const hMatch = line.match(/^(#{1,3})\s+(.*)$/);
                     if (hMatch) {
                         const lvl = hMatch[1].length;
@@ -2004,7 +2789,6 @@
                         continue;
                     }
 
-                    // Blockquote
                     if (line.startsWith("> ")) {
                         const bq = [];
                         while (i < lines.length && lines[i].startsWith("> ")) {
@@ -2015,22 +2799,29 @@
                         continue;
                     }
 
-                    // Unordered list
                     if (/^-\s+/.test(line)) {
                         const items = [];
                         while (i < lines.length && (/^-\s+/.test(lines[i]) || /^\s{2,}/.test(lines[i]))) {
                             if (/^-\s+/.test(lines[i])) {
-                                items.push(inlineMd(lines[i].replace(/^-\s+/, "")));
+                                items.push({ text: inlineMd(lines[i].replace(/^-\s+/, "")), subs: [] });
+                            } else if (/^\s{2,}-\s+/.test(lines[i]) && items.length) {
+                                items[items.length - 1].subs.push(inlineMd(lines[i].replace(/^\s+-\s+/, "")));
                             } else if (items.length) {
-                                items[items.length - 1] += `<br>${inlineMd(lines[i].trim())}`;
+                                items[items.length - 1].text += `<br>${inlineMd(lines[i].trim())}`;
                             }
                             i++;
                         }
-                        out.push(`<ul>${items.map((it) => `<li>${it}</li>`).join("")}</ul>`);
+                        out.push(
+                            `<ul>${items
+                                .map(
+                                    (it) =>
+                                        `<li>${it.text}${it.subs.length ? `<ul>${it.subs.map((s) => `<li>${s}</li>`).join("")}</ul>` : ""}</li>`,
+                                )
+                                .join("")}</ul>`,
+                        );
                         continue;
                     }
 
-                    // Ordered list
                     if (/^\d+\.\s+/.test(line)) {
                         const items = [];
                         while (i < lines.length && /^\d+\.\s+/.test(lines[i])) {
@@ -2041,13 +2832,11 @@
                         continue;
                     }
 
-                    // Blank line
                     if (!line.trim()) {
                         i++;
                         continue;
                     }
 
-                    // Paragraph
                     const para = [];
                     while (
                         i < lines.length &&

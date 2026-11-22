@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>恒视科技 EverWatch — 守护你的家</title>
+<meta name="description" content="恒视科技 EverWatch：24 小时 AI 家庭监控，守护你和家人的一举一动。">
+<link id="favicon" rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%234f6df5'/%3E%3Ccircle cx='16' cy='16' r='7' fill='white'/%3E%3Ccircle cx='16' cy='16' r='3.4' fill='%231c2333'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-stage="0">
+
+<!-- 共享 SVG 定义 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="scare-face" viewBox="0 0 200 240">
+      <path d="M100 8 C148 8 172 46 170 96 C168 150 150 208 100 232 C50 208 32 150 30 96 C28 46 52 8 100 8 Z" fill="#d8d2c4"/>
+      <path d="M100 8 C148 8 172 46 170 96 C168 150 150 208 100 232 C50 208 32 150 30 96 C28 46 52 8 100 8 Z" fill="url(#scareShade)"/>
+      <ellipse cx="66" cy="98" rx="20" ry="26" fill="#050404"/>
+      <ellipse cx="134" cy="98" rx="20" ry="26" fill="#050404"/>
+      <circle cx="66" cy="104" r="3.2" fill="#f4f2ea"/>
+      <circle cx="134" cy="104" r="3.2" fill="#f4f2ea"/>
+      <path d="M96 118 L92 148 L104 150" stroke="#8f887a" stroke-width="2.4" fill="none"/>
+      <path d="M58 176 C80 168 120 168 142 176 C138 208 118 224 100 224 C82 224 62 208 58 176 Z" fill="#0a0605"/>
+      <path d="M64 178 L70 190 M78 174 L82 192 M96 172 L98 194 M114 173 L112 192 M130 177 L126 190" stroke="#cfc9bb" stroke-width="2.6"/>
+      <path d="M40 60 C56 34 80 22 100 22 C124 22 148 36 162 64" stroke="#3a3630" stroke-width="3" fill="none" opacity=".55"/>
+    </symbol>
+    <radialGradient id="scareShade" cx="50%" cy="38%" r="75%">
+      <stop offset="55%" stop-color="#000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000" stop-opacity=".55"/>
+    </radialGradient>
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffd9a0"/>
+      <stop offset="55%" stop-color="#ffb27a"/>
+      <stop offset="100%" stop-color="#e98a6d"/>
+    </linearGradient>
+    <linearGradient id="hallGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0b0d12"/>
+      <stop offset="100%" stop-color="#05060a"/>
+    </linearGradient>
+    <radialGradient id="lampGrad" cx="50%" cy="0%" r="90%">
+      <stop offset="0%" stop-color="#ffe9b0" stop-opacity=".85"/>
+      <stop offset="45%" stop-color="#c9a86a" stop-opacity=".22"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>
+
+<!-- ==================== 页面本体 ==================== -->
+<div id="site">
+
+  <header class="nav" id="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" id="brand">
+        <svg class="brand-eye" viewBox="0 0 32 32" aria-hidden="true">
+          <circle cx="16" cy="16" r="14" class="eye-ball"/>
+          <circle cx="16" cy="16" r="7.4" fill="#fff"/>
+          <g class="pupil-track"><circle cx="16" cy="16" r="3.6" class="eye-pupil"/></g>
+        </svg>
+        <span class="brand-name glitchable" data-s3="恒视着你" data-s4="别回头看">恒视科技</span>
+      </a>
+      <nav class="nav-links" aria-label="主导航">
+        <a href="#features" class="glitchable" data-s3="别点" data-s4="身后">产品</a>
+        <a href="#showcase" class="glitchable" data-s3="别点" data-s4="身后">方案</a>
+        <a href="#voices" class="glitchable" data-s2="它们在说" data-s3="别听" data-s4="身后">客户评价</a>
+        <a href="#pricing" class="glitchable" data-s3="代价" data-s4="逃">价格</a>
+      </nav>
+      <div class="nav-cta">
+        <a href="#pricing" class="btn btn-primary btn-sm glitchable" data-s3="它在试用你" data-s4="逃">免费试用</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="hero-blob blob-a" aria-hidden="true"></div>
+      <div class="hero-blob blob-b" aria-hidden="true"></div>
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <span class="pill glitchable" data-s3="它已经学会你的作息">✦ 全新一代 AI 家庭守护</span>
+          <h1 class="glitchable" data-s2="你的家，正在被注视" data-s3="你，值得被一直注视" data-s4="它在你身后注视">你的家，<br>值得被温柔注视</h1>
+          <p class="lead glitchable"
+             data-s2="恒视科技用 24 小时智能监控与 AI 识别，守护你的一举一动。我们从未移开视线。"
+             data-s3="24 小时。从不眨眼。你睡觉的时候也是。安心，从被看见开始。"
+             data-s4="别回头。它不喜欢被看见。你只需要继续往下滚动。">恒视科技用 24 小时智能监控与 AI 识别，守护你和家人的一举一动。安心，从被看见开始。</p>
+          <div class="hero-actions">
+            <a href="#pricing" class="btn btn-primary glitchable" data-s3="立即开门" data-s4="别开门">立即安装</a>
+            <a href="#showcase" class="btn btn-ghost glitchable" data-s3="它在演示你" data-s4="演示：你">观看演示</a>
+          </div>
+          <p class="hero-note glitchable" data-s2="无需布线 · 3 分钟安装 · 取消不了的安心" data-s3="无需布线 · 它自己会进来 · 无法取消">无需布线 · 3 分钟安装 · 随时取消</p>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <svg viewBox="0 0 560 430" class="house-svg">
+            <rect x="0" y="0" width="560" height="430" rx="24" fill="url(#skyGrad)" class="house-sky"/>
+            <circle cx="452" cy="86" r="38" fill="#fff3d6" opacity=".9" class="house-sun"/>
+            <ellipse cx="120" cy="70" rx="60" ry="16" fill="#fff" opacity=".5"/>
+            <ellipse cx="300" cy="52" rx="80" ry="18" fill="#fff" opacity=".4"/>
+            <rect x="0" y="330" width="560" height="100" fill="#7fb069" class="house-ground"/>
+            <!-- 房子 -->
+            <g class="house-body">
+              <rect x="130" y="180" width="280" height="160" rx="6" fill="#fdf6ec" class="house-wall"/>
+              <path d="M110 190 L270 96 L430 190 Z" fill="#c96f4a" class="house-roof"/>
+              <rect x="245" y="252" width="52" height="88" rx="4" fill="#8a5a3b" class="house-door"/>
+              <circle cx="288" cy="298" r="3.4" fill="#f2d3a0"/>
+              <!-- 左窗 -->
+              <rect x="158" y="216" width="58" height="52" rx="4" fill="#ffe9b8" class="house-window win-l"/>
+              <path d="M187 216 V268 M158 242 H216" stroke="#c9b184" stroke-width="3"/>
+              <!-- 右窗：里面有东西 -->
+              <rect x="326" y="216" width="58" height="52" rx="4" fill="#ffe9b8" class="house-window win-r"/>
+              <g class="window-face">
+                <ellipse cx="355" cy="240" rx="15" ry="19" fill="#1a1410"/>
+                <circle cx="349" cy="236" r="2.6" fill="#e8e2d2"/>
+                <circle cx="361" cy="236" r="2.6" fill="#e8e2d2"/>
+                <path d="M347 250 Q355 258 363 250" stroke="#e8e2d2" stroke-width="2" fill="none"/>
+              </g>
+              <path d="M355 216 V268 M326 242 H384" stroke="#c9b184" stroke-width="3"/>
+            </g>
+            <!-- 摄像头 -->
+            <g class="cam-pole">
+              <rect x="474" y="212" width="8" height="128" rx="3" fill="#5b6472"/>
+              <g class="cam-head">
+                <rect x="452" y="192" width="52" height="30" rx="10" fill="#2e3542"/>
+                <circle cx="466" cy="207" r="9" fill="#10141c"/>
+                <circle cx="466" cy="207" r="5" fill="#4f6df5" class="cam-lens"/>
+                <g class="pupil-track"><circle cx="466" cy="207" r="2.2" fill="#fff" class="cam-glint"/></g>
+                <circle cx="494" cy="199" r="2.6" fill="#ff5f56" class="cam-led"/>
+              </g>
+            </g>
+            <ellipse cx="90" cy="344" rx="42" ry="20" fill="#5f9450"/>
+            <ellipse cx="470" cy="348" rx="52" ry="22" fill="#5f9450"/>
+            <!-- 潜伏的轮廓（高阶段显现） -->
+            <g class="yard-figure">
+              <ellipse cx="86" cy="300" rx="13" ry="16" fill="#0c0a09"/>
+              <path d="M70 316 C70 300 102 300 102 316 L106 352 L66 352 Z" fill="#0c0a09"/>
+            </g>
+          </svg>
+          <div class="hero-chip chip-a">🔴 实时画面 · 客厅</div>
+          <div class="hero-chip chip-b glitchable" data-s2="🔴 实时画面 · 你的卧室" data-s3="🔴 它正在看你" data-s4="🔴 信号源：你身后">✓ AI 已识别：家人</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 信任数据 ============ -->
+    <section class="stats">
+      <div class="wrap stats-grid">
+        <div class="stat"><strong class="glitchable" data-s3="120万+ 扇窗户后面">120万+</strong><span class="glitchable" data-s2="家庭的选择" data-s3="它选择的方向">家庭的选择</span></div>
+        <div class="stat"><strong class="glitchable" data-s3="99.99% 醒着的时间">99.99%</strong><span>在线率</span></div>
+        <div class="stat"><strong>24/7</strong><span class="glitchable" data-s2="全天候守护" data-s3="它不睡觉">全天候守护</span></div>
+        <div class="stat"><strong>0 起</strong><span class="glitchable" data-s1="被发现的事故" data-s3="你察觉到的事故">隐私泄露事故</span></div>
+      </div>
+    </section>
+
+    <!-- ============ 功能 ============ -->
+    <section class="section" id="features">
+      <div class="wrap">
+        <p class="kicker glitchable" data-s3="它的能力">核心功能</p>
+        <h2 class="glitchable" data-s2="看得见一切，才安心" data-s3="它看得见一切，包括你" data-s4="你看不见它，才正常">看得见，才安心</h2>
+        <p class="section-sub glitchable" data-s3="四个功能。四只眼睛。都在你家里。">四项核心能力，把家变成最安全的地方。</p>
+        <div class="feature-grid">
+          <article class="card feature glitchable-card">
+            <div class="icon-chip">
+              <svg viewBox="0 0 32 32"><rect x="4" y="9" width="18" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M22 13 L29 9 V23 L22 19" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><circle cx="12" cy="16" r="3.4" fill="currentColor"/></svg>
+            </div>
+            <h3 class="glitchable" data-s3="全天候看着你">全天候监控</h3>
+            <p class="glitchable" data-s2="无论白天黑夜，它始终看着。画面始终清晰。" data-s3="你关灯之后，画面反而更清晰。它不需要光。" data-s4="现在也在看。就在你看这行字的时候。">无论白天黑夜，画面始终清晰，守护从不打烊。</p>
+          </article>
+          <article class="card feature glitchable-card">
+            <div class="icon-chip">
+              <svg viewBox="0 0 32 32"><circle cx="16" cy="10" r="4.6" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M7 27 C7 20 11 17 16 17 C21 17 25 20 25 27" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M3 6 L8 6 M3 6 L3 11 M29 6 L24 6 M29 6 L29 11" stroke="currentColor" stroke-width="2.2"/></svg>
+            </div>
+            <h3 class="glitchable" data-s3="它认得你">AI 人形识别</h3>
+            <p class="glitchable" data-s2="精准识别你在房间里的位置。家人与陌生人，它都分得清。" data-s3="它说你不是家人。它说站在你身后的那个才是。">精准区分家人与陌生人，异常闯入秒级告警。</p>
+          </article>
+          <article class="card feature glitchable-card">
+            <div class="icon-chip">
+              <svg viewBox="0 0 32 32"><path d="M9 22 A6.5 6.5 0 1 1 10 9.5 A8 8 0 0 1 25 12 A5.5 5.5 0 0 1 24 22 Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M14 14 L20 17 L14 20 Z" fill="currentColor"/></svg>
+            </div>
+            <h3 class="glitchable" data-s3="它反复看你">云端回放</h3>
+            <p class="glitchable" data-s2="它随时回看你的任何时刻。30 天内，一帧不落。" data-s3="有一段回放里，你身后多了一个人。每一段里都有。">随时回看任何时刻，30 天云端存储一帧不落。</p>
+          </article>
+          <article class="card feature glitchable-card">
+            <div class="icon-chip">
+              <svg viewBox="0 0 32 32"><rect x="7" y="14" width="18" height="13" rx="3" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M11 14 V10 A5 5 0 0 1 21 10 V14" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="16" cy="20" r="2.4" fill="currentColor"/></svg>
+            </div>
+            <h3 class="glitchable" data-s3="锁是给别人的">隐私加密</h3>
+            <p class="glitchable" data-s2="银行级加密，只有你能看。我们也有钥匙。" data-s3="加密是为了不让别人看见你。我们看得见。我们一直看得见。">银行级端到端加密，画面只属于你自己。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 产品演示 ============ -->
+    <section class="section section-alt" id="showcase">
+      <div class="wrap showcase-grid">
+        <div class="showcase-copy">
+          <p class="kicker glitchable" data-s3="三步，把你自己交出去">三步开始</p>
+          <h2 class="glitchable" data-s2="三步，把家交给恒视" data-s3="三步，它走进你家" data-s4="已经太晚了">三步，把家交给恒视</h2>
+          <ol class="steps">
+            <li><span class="step-num">1</span><div><h3 class="glitchable" data-s3="打开门">安装设备</h3><p class="glitchable" data-s3="不用你动手。它自己会进来。">磁吸底座，3 分钟免布线安装。</p></div></li>
+            <li><span class="step-num">2</span><div><h3 class="glitchable" data-s3="别开灯">连接 App</h3><p class="glitchable" data-s3="它已经连上了。在你下载之前。">扫码配对，画面即刻出现在掌心。</p></div></li>
+            <li><span class="step-num">3</span><div><h3 class="glitchable" data-s3="假装没看见">安心生活</h3><p class="glitchable" data-s3="你继续生活。它继续看你。">剩下的，交给我们。我们从不离开。</p></div></li>
+          </ol>
+        </div>
+        <div class="phone-mock" aria-hidden="true">
+          <div class="phone">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="app-bar"><span class="glitchable" data-s2="恒视 · 实时" data-s3="它 · 实时">恒视 · 实时</span><span class="app-live">● LIVE</span></div>
+              <svg viewBox="0 0 300 400" class="app-feed">
+                <!-- 正常画面：客厅与猫 -->
+                <g class="feed-normal">
+                  <rect width="300" height="400" fill="#e8ddcb"/>
+                  <rect y="280" width="300" height="120" fill="#c9b291"/>
+                  <rect x="30" y="150" width="120" height="130" rx="8" fill="#a8bfa0"/>
+                  <rect x="42" y="166" width="96" height="60" rx="6" fill="#f2ead8"/>
+                  <rect x="190" y="120" width="70" height="160" rx="6" fill="#b98d63"/>
+                  <circle cx="225" cy="150" r="16" fill="#f2ead8"/>
+                  <ellipse cx="150" cy="310" rx="34" ry="20" fill="#6b6257"/>
+                  <circle cx="122" cy="298" r="13" fill="#6b6257"/>
+                  <path d="M114 288 L110 276 L120 284 M130 288 L134 276 L124 284" fill="#6b6257"/>
+                  <circle cx="118" cy="297" r="2" fill="#f2ead8"/><circle cx="127" cy="297" r="2" fill="#f2ead8"/>
+                  <path d="M182 310 Q200 300 196 284" stroke="#6b6257" stroke-width="7" fill="none" stroke-linecap="round"/>
+                  <text x="16" y="384" font-size="13" fill="#7a6f5d" font-family="monospace">CAM-01 · 客厅 · 一切正常</text>
+                </g>
+                <!-- 异常画面：走廊与它 -->
+                <g class="feed-creepy">
+                  <rect width="300" height="400" fill="url(#hallGrad)"/>
+                  <path d="M0 0 L110 120 L110 300 L0 400 Z" fill="#12151d"/>
+                  <path d="M300 0 L190 120 L190 300 L300 400 Z" fill="#12151d"/>
+                  <rect x="110" y="120" width="80" height="180" fill="#0a0c11"/>
+                  <rect x="128" y="150" width="44" height="150" fill="#06070b"/>
+                  <path d="M110 120 L190 120 M110 300 L190 300" stroke="#1e2330" stroke-width="2"/>
+                  <ellipse cx="150" cy="128" rx="26" ry="8" fill="#ffe9b0" opacity=".5" class="feed-lamp"/>
+                  <path d="M150 128 L96 300 L204 300 Z" fill="url(#lampGrad)" opacity=".5"/>
+                  <g class="feed-figure">
+                    <ellipse cx="150" cy="196" rx="9" ry="12" fill="#020203"/>
+                    <path d="M138 208 C138 198 162 198 162 208 L166 268 L134 268 Z" fill="#020203"/>
+                    <circle cx="146" cy="194" r="1.6" fill="#ded8c8"/>
+                    <circle cx="154" cy="194" r="1.6" fill="#ded8c8"/>
+                  </g>
+                  <text x="16" y="384" font-size="13" fill="#5f6a5a" font-family="monospace" class="feed-caption">CAM-07 · 走廊 · 检测到未知人形</text>
+                </g>
+                <rect width="300" height="400" fill="none" stroke="#000" stroke-opacity=".15"/>
+              </svg>
+              <div class="app-alert glitchable" data-s2="⚠ 检测到移动 · 你的卧室" data-s3="⚠ 它检测到你了" data-s4="⚠ 它就在你身后">✓ 家中一切正常</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 客户评价 ============ -->
+    <section class="section" id="voices">
+      <div class="wrap">
+        <p class="kicker glitchable" data-s3="它们的声音">客户评价</p>
+        <h2 class="glitchable" data-s2="他们都说好" data-s3="它们都说好" data-s4="它们说的不是你">120 万家庭的共同选择</h2>
+        <div class="voice-grid">
+          <article class="card voice glitchable-card">
+            <div class="stars" aria-label="五星好评">★★★★★</div>
+            <p class="glitchable" data-s2="自从装了恒视，出差也能看到家里。有什么东西在动。特别安心。" data-s3="猫三天前就死了。画面里那只不是猫。它每晚都坐在猫的位置上。" data-s4="它现在坐在你的位置上。你在看屏幕，它在看你。">“自从装了恒视，出差也能看到家里的猫，特别安心。”</p>
+            <div class="voice-who">
+              <svg viewBox="0 0 48 48" class="avatar"><circle cx="24" cy="24" r="22" fill="#f4c7a1"/><g class="face-normal"><circle cx="17" cy="21" r="2.4" fill="#3a2f28"/><circle cx="31" cy="21" r="2.4" fill="#3a2f28"/><path d="M17 31 Q24 37 31 31" stroke="#3a2f28" stroke-width="2.4" fill="none"/></g><g class="face-hollow"><ellipse cx="17" cy="21" rx="4.6" ry="6.4" fill="#0a0806"/><ellipse cx="31" cy="21" rx="4.6" ry="6.4" fill="#0a0806"/><ellipse cx="24" cy="33" rx="5.4" ry="7" fill="#0a0806"/></g></svg>
+              <div><strong class="glitchable" data-s3="张女士（已不在）">张女士</strong><span class="glitchable" data-s3="上海 · 墙里">上海 · 两居室</span></div>
+            </div>
+          </article>
+          <article class="card voice glitchable-card">
+            <div class="stars" aria-label="五星好评">★★★★★</div>
+            <p class="glitchable" data-s1="“夜视效果出乎意料的好，走廊尽头站着什么都拍得清清楚楚。”" data-s2="“夜视效果出乎意料的好，走廊尽头站着的那个也拍得清清楚楚。”" data-s3="“走廊尽头没有灯。它不需要灯。它站在那里三个月了。”" data-s4="“它现在不在走廊尽头了。你猜它在哪。”">“夜视效果出乎意料的好，走廊尽头都拍得清清楚楚。”</p>
+            <div class="voice-who">
+              <svg viewBox="0 0 48 48" class="avatar"><circle cx="24" cy="24" r="22" fill="#e8b48c"/><g class="face-normal"><circle cx="17" cy="21" r="2.4" fill="#3a2f28"/><circle cx="31" cy="21" r="2.4" fill="#3a2f28"/><path d="M17 31 Q24 37 31 31" stroke="#3a2f28" stroke-width="2.4" fill="none"/></g><g class="face-hollow"><ellipse cx="17" cy="21" rx="4.6" ry="6.4" fill="#0a0806"/><ellipse cx="31" cy="21" rx="4.6" ry="6.4" fill="#0a0806"/><ellipse cx="24" cy="33" rx="5.4" ry="7" fill="#0a0806"/></g></svg>
+              <div><strong class="glitchable" data-s3="李先生（信号中断）">李先生</strong><span class="glitchable" data-s3="成都 · 走廊尽头">成都 · 三居室</span></div>
+            </div>
+          </article>
+          <article class="card voice glitchable-card">
+            <div class="stars" aria-label="五星好评">★★★★★</div>
+            <p class="glitchable" data-s2="“客服响应很快，凌晨三点也会主动打给我。”" data-s3="“它用我妈的声音和我说话。我妈去年就走了。它说得越来越像了。”" data-s4="“它现在用你的声音说话。你听。”">“客服响应很快，凌晨三点也有人接，特别踏实。”</p>
+            <div class="voice-who">
+              <svg viewBox="0 0 48 48" class="avatar"><circle cx="24" cy="24" r="22" fill="#f0c9a8"/><g class="face-normal"><circle cx="17" cy="21" r="2.4" fill="#3a2f28"/><circle cx="31" cy="21" r="2.4" fill="#3a2f28"/><path d="M17 31 Q24 37 31 31" stroke="#3a2f28" stroke-width="2.4" fill="none"/></g><g class="face-hollow"><ellipse cx="17" cy="21" rx="4.6" ry="6.4" fill="#0a0806"/><ellipse cx="31" cy="21" rx="4.6" ry="6.4" fill="#0a0806"/><ellipse cx="24" cy="33" rx="5.4" ry="7" fill="#0a0806"/></g></svg>
+              <div><strong class="glitchable" data-s3="王小姐（接听中）">王小姐</strong><span class="glitchable" data-s3="广州 · 你隔壁">广州 · 公寓</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 价格 ============ -->
+    <section class="section section-alt" id="pricing">
+      <div class="wrap">
+        <p class="kicker glitchable" data-s3="代价">价格方案</p>
+        <h2 class="glitchable" data-s2="总有一款适合你" data-s3="它已经替你选好了" data-s4="你付不起，但已经付了">透明定价，安心之选</h2>
+        <div class="price-grid">
+          <article class="card price glitchable-card">
+            <h3 class="glitchable" data-s3="基础版 · 它先进来">基础版</h3>
+            <div class="price-num glitchable" data-s4="¥0 → 你的睡眠">¥0<span>/月</span></div>
+            <ul>
+              <li class="glitchable" data-s3="1 台设备（已在你家）">1 台摄像头</li>
+              <li class="glitchable" data-s3="7 天回放（里面有别人）">7 天云回放</li>
+              <li class="glitchable" data-s3="它在社区里等你">社区支持</li>
+            </ul>
+            <a href="#cta" class="btn btn-ghost btn-block glitchable" data-s3="让它进来">开始使用</a>
+          </article>
+          <article class="card price price-hot glitchable-card">
+            <div class="hot-tag glitchable" data-s3="它推荐这个">最受欢迎</div>
+            <h3 class="glitchable" data-s3="家庭版 · 全家都看着">家庭版</h3>
+            <div class="price-num glitchable" data-s4="¥29 → 你的梦">¥29<span>/月</span></div>
+            <ul>
+              <li class="glitchable" data-s3="5 台设备（不够看住你）">5 台摄像头</li>
+              <li class="glitchable" data-s3="30 天回放（它记得每一天）">30 天云回放</li>
+              <li class="glitchable" data-s3="它优先找到你">优先客服</li>
+              <li class="glitchable" data-s3="夜视（它不需要）">增强夜视</li>
+            </ul>
+            <a href="#cta" class="btn btn-primary btn-block glitchable" data-s3="签了就不能走">立即订阅</a>
+          </article>
+          <article class="card price glitchable-card">
+            <h3 class="glitchable" data-s3="尊享版 · 永远">尊享版</h3>
+            <div class="price-num glitchable" data-s4="¥99 → 永远">¥99<span>/月</span></div>
+            <ul>
+              <li class="glitchable" data-s3="不限设备（墙里也是）">不限设备数</li>
+              <li class="glitchable" data-s3="永久回放（直到永远）">永久云回放</li>
+              <li class="glitchable" data-s3="专属管家（它只属于你）">专属管家</li>
+            </ul>
+            <a href="#cta" class="btn btn-ghost btn-block glitchable" data-s3="联系我们？它联系你">联系销售</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="section" id="faq">
+      <div class="wrap wrap-narrow">
+        <p class="kicker">常见问题</p>
+        <h2 class="glitchable" data-s3="你不敢问的问题">你想知道的，都在这里</h2>
+        <div class="faq-list">
+          <details class="card faq glitchable-card">
+            <summary class="glitchable" data-s3="门为什么一直没锁？">摄像头会被黑客入侵吗？</summary>
+            <p class="glitchable" data-s2="不会。我们的加密无懈可击。进来的从来不是黑客。" data-s3="不需要黑客。门一直没锁。是你自己让它进来的。">不会。恒视采用银行级端到端加密，并通过 ISO 27001 认证，画面只有你能访问。</p>
+          </details>
+          <details class="card faq glitchable-card">
+            <summary class="glitchable" data-s3="它需要电吗？">断电断网还能工作吗？</summary>
+            <p class="glitchable" data-s2="内置电池可续航 72 小时。断网之后，它依然在看。" data-s3="能。它不需要电，也不需要网。它需要的只是你在。">内置电池支持 72 小时续航，本地存储确保断网期间记录不丢失。</p>
+          </details>
+          <details class="card faq glitchable-card">
+            <summary class="glitchable" data-s3="怎么让它出去？">如何取消订阅？</summary>
+            <p class="glitchable" data-s2="随时可在 App 内取消。但设备不会离开。" data-s3="你取消不了。它已经进来了。取消按钮是给活人看的。">随时可在 App 内一键取消，不收取任何违约金，设备支持 30 天无理由退货。</p>
+          </details>
+          <details class="card faq glitchable-card">
+            <summary class="glitchable" data-s3="画面里多出来的那个是什么？">画面里偶尔有光斑正常吗？</summary>
+            <p class="glitchable" data-s2="正常。那是红外补光。如果光斑在看你，也正常。" data-s3="那不是光斑。凑近看。它有眼睛。它一直在数你有几根头发。">正常现象。那是红外补光灯在夜视模式下的反光，不影响画面与识别。</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 底部 CTA ============ -->
+    <section class="cta-banner" id="cta">
+      <div class="wrap cta-inner">
+        <h2 class="glitchable" data-s2="现在就把安心带回家" data-s3="它已经到家了" data-s4="它在你身后站了很久了">现在就把安心带回家</h2>
+        <p class="glitchable" data-s3="不用装了。它一直在。从你打开这个页面开始。">120 万家庭已经做出了选择。下一个，是你。</p>
+        <a href="#top" class="btn btn-light glitchable" data-s3="开门" data-s4="别回头">免费试用 30 天</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ 页脚 ============ -->
+  <footer class="footer">
+    <div class="wrap footer-grid">
+      <div class="footer-brand">
+        <span class="brand-name glitchable" data-s3="恒视着你">恒视科技</span>
+        <p class="glitchable" data-s3="我们一直看着。所以你可以安心。">守护每一个家，注视每一刻。</p>
+        <p class="dwell" id="dwell">你已停留 00:00</p>
+      </div>
+      <div class="footer-col">
+        <h4>产品</h4>
+        <a href="#features" class="glitchable" data-s3="室内摄像头（已开启）">室内摄像头</a>
+        <a href="#features" class="glitchable" data-s3="门铃（它按过了）">智能门铃</a>
+        <a href="#features" class="glitchable" data-s3="传感器（墙里）">门窗传感器</a>
+      </div>
+      <div class="footer-col">
+        <h4>公司</h4>
+        <a href="#top" class="glitchable" data-s3="关于我们（别看）">关于我们</a>
+        <a href="#top" class="glitchable" data-s3="加入我们（它缺人）">加入我们</a>
+        <a href="#top" class="glitchable" data-s3="新闻（1899 年）">新闻中心</a>
+      </div>
+      <div class="footer-col">
+        <h4>法律</h4>
+        <a href="#faq" class="glitchable" data-s3="你没有隐私">隐私政策</a>
+        <a href="#faq" class="glitchable" data-s3="它说了算">服务条款</a>
+        <a href="#faq" class="glitchable" data-s3="无法取消">Cookie 设置</a>
+      </div>
+    </div>
+    <div class="wrap footer-base">
+      <span class="glitchable" data-s1="© 2026 恒视科技 · 一直在线" data-s3="© 1899 恒视科技 · 我们一直都在">© 2026 恒视科技 EverWatch · 保留所有权利</span>
+      <span class="glitchable" data-s3="你逃不掉的">京 ICP 备 202600117 号</span>
+    </div>
+  </footer>
+
+</div><!-- /#site -->
+
+<!-- ==================== 固定覆盖层 ==================== -->
+<div class="progress" aria-hidden="true"><div class="progress-bar" id="progressBar"></div><span class="progress-label" id="progressLabel"></span></div>
+
+<button class="sound-toggle" id="soundToggle" type="button" aria-pressed="true" title="音效开关">🔊 音效开</button>
+
+<div class="vignette" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="scanlines" aria-hidden="true"></div>
+<svg class="cracks" viewBox="0 0 1000 1000" preserveAspectRatio="xMaxYMin slice" aria-hidden="true">
+  <g stroke="#cfd6e4" stroke-width="1.1" fill="none" opacity=".8">
+    <path d="M1000 0 L860 130 L885 190 L790 260 L820 330 L745 395"/>
+    <path d="M860 130 L795 110 L740 150 M885 190 L940 230 L925 300 M790 260 L720 240 L660 285 M820 330 L880 370"/>
+    <path d="M745 395 L700 470 L730 540 M745 395 L670 420"/>
+  </g>
+</svg>
+
+<div class="marquee" id="marquee" aria-hidden="true"><div class="marquee-track" id="marqueeTrack"></div></div>
+
+<div class="cam-hud" id="camHud" aria-hidden="true">
+  <span class="rec-dot">●</span> REC&nbsp;&nbsp;CAM-07 · <span class="glitchable" data-s4="你的房间">走廊</span>
+  <span class="hud-time" id="hudTime">00:00:00</span>
+</div>
+
+<div class="whisper" id="whisper" role="status"></div>
+
+<div class="cookie" id="cookie" role="dialog" aria-label="Cookie 提示">
+  <p class="glitchable" data-s3="我们使用 Cookie 记住你。我们已经记住你的脸了。">我们使用 Cookie 提升体验。继续浏览即表示同意。</p>
+  <div class="cookie-btns">
+    <button class="btn btn-primary btn-sm" id="cookieOk" type="button">好的</button>
+    <button class="btn btn-ghost btn-sm glitchable" id="cookieNo" type="button" data-s3="没有用">拒绝</button>
+  </div>
+</div>
+
+<div class="scare" id="scare" aria-hidden="true">
+  <svg viewBox="0 0 200 240"><use href="#scare-face"/></svg>
+</div>
+
+<div class="notice" id="notice" role="note">本站为恐怖主题互动作品：含闪烁画面、突发画面与合成音效。光敏性癫痫患者请谨慎浏览。<button id="noticeClose" type="button" aria-label="关闭提示">✕</button></div>
+
+<!-- ==================== 终局 ==================== -->
+<div class="finale" id="finale" aria-hidden="true">
+  <div class="finale-hallway" id="finaleHallway">
+    <svg viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid slice">
+      <rect width="1000" height="700" fill="#04050a"/>
+      <path d="M0 0 L380 200 L380 520 L0 700 Z" fill="#0d1017"/>
+      <path d="M1000 0 L620 200 L620 520 L1000 700 Z" fill="#0d1017"/>
+      <path d="M0 700 L380 520 L620 520 L1000 700 Z" fill="#0a0c12"/>
+      <path d="M0 0 L380 200 L620 200 L1000 0 Z" fill="#080a10"/>
+      <rect x="380" y="200" width="240" height="320" fill="#07080d"/>
+      <!-- 走廊侧门 -->
+      <path d="M120 130 L230 190 L230 560 L120 620 Z" fill="#0a0d14" stroke="#151a26" stroke-width="2"/>
+      <path d="M880 130 L770 190 L770 560 L880 620 Z" fill="#0a0d14" stroke="#151a26" stroke-width="2"/>
+      <!-- 尽头的门，虚掩 -->
+      <rect x="440" y="250" width="120" height="270" fill="#030408"/>
+      <rect x="440" y="250" width="120" height="270" fill="none" stroke="#1a2030" stroke-width="3"/>
+      <path d="M560 250 L545 258 L545 512 L560 520 Z" fill="#0e1220"/>
+      <!-- 吊灯 -->
+      <g class="hall-lamp" id="hallLamp">
+        <line x1="500" y1="0" x2="500" y2="150" stroke="#1c2230" stroke-width="3"/>
+        <path d="M470 150 L530 150 L516 172 L484 172 Z" fill="#232a3a"/>
+        <ellipse cx="500" cy="176" rx="16" ry="7" fill="#ffe9b0" class="lamp-bulb"/>
+        <path d="M500 176 L330 520 L670 520 Z" fill="url(#lampGrad)" class="lamp-cone"/>
+      </g>
+      <!-- 它 -->
+      <g class="hall-figure" id="hallFigure">
+        <ellipse cx="500" cy="330" rx="26" ry="34" fill="#010102"/>
+        <path d="M462 366 C462 336 538 336 538 366 L556 560 L444 560 Z" fill="#010102"/>
+        <path d="M462 380 L430 500 M538 380 L570 500" stroke="#010102" stroke-width="16" stroke-linecap="round"/>
+        <circle cx="489" cy="326" r="3.4" fill="#ded8c8" class="figure-eye"/>
+        <circle cx="511" cy="326" r="3.4" fill="#ded8c8" class="figure-eye"/>
+      </g>
+      <rect width="1000" height="700" fill="url(#scareShade)" opacity=".7"/>
+    </svg>
+    <p class="hall-caption" id="hallCaption">CAM-07 · 走廊尽头 · 检测到未知人形</p>
+  </div>
+
+  <div class="finale-black" id="finaleBlack"></div>
+
+  <div class="finale-face-wrap" id="finaleFaceWrap">
+    <svg viewBox="0 0 200 240" class="finale-face" id="finaleFace">
+      <path d="M100 8 C148 8 172 46 170 96 C168 150 150 208 100 232 C50 208 32 150 30 96 C28 46 52 8 100 8 Z" fill="#cfc9ba"/>
+      <path d="M100 8 C148 8 172 46 170 96 C168 150 150 208 100 232 C50 208 32 150 30 96 C28 46 52 8 100 8 Z" fill="url(#scareShade)"/>
+      <path d="M46 44 C60 20 84 12 100 12 C122 12 146 26 158 52" stroke="#2c2822" stroke-width="4" fill="none" opacity=".6"/>
+      <path d="M38 60 C44 40 52 30 60 24 M162 60 C156 40 148 30 140 24" stroke="#2c2822" stroke-width="3" fill="none" opacity=".45"/>
+      <ellipse cx="66" cy="98" rx="21" ry="27" fill="#050404"/>
+      <ellipse cx="134" cy="98" rx="21" ry="27" fill="#050404"/>
+      <g class="pupil-track"><circle cx="66" cy="104" r="3.4" fill="#f4f2ea" class="pupil"/></g>
+      <g class="pupil-track"><circle cx="134" cy="104" r="3.4" fill="#f4f2ea" class="pupil"/></g>
+      <path d="M96 118 L91 150 L105 152" stroke="#8f887a" stroke-width="2.4" fill="none"/>
+      <path d="M56 176 C80 166 120 166 144 176 C140 210 118 226 100 226 C82 226 60 210 56 176 Z" fill="#0a0605"/>
+      <path d="M62 178 L68 192 M76 173 L80 194 M94 171 L96 196 M112 172 L110 194 M128 176 L124 192" stroke="#cfc9bb" stroke-width="2.6"/>
+      <path d="M66 128 L60 150 M134 128 L140 150" stroke="#7d766a" stroke-width="1.6" opacity=".6"/>
+      <path d="M52 90 L40 84 M148 90 L160 84" stroke="#7d766a" stroke-width="1.4" opacity=".5"/>
+    </svg>
+    <div class="finale-text" id="finaleText" aria-live="polite"></div>
+    <div class="finale-hud" id="finaleHud"><span class="rec-dot">●</span> EverWatch · CAM-07 已连接 — 信号源：<span class="hud-src">你身后</span></div>
+    <button class="finale-exit" id="finaleExit" type="button">逃 离</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>栖白 — 私人安眠居所</title>
+  <meta name="description" content="栖白是一处会员制私人安眠居所。十一处不挂牌的房子，只接受预约。" />
+  <meta name="theme-color" id="theme-color" content="#e7e1d4" />
+  <meta property="og:title" content="栖白 — 私人安眠居所" />
+  <meta property="og:description" content="十一处不挂牌的房子，只接受预约。" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" id="favicon" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="css/site.css" />
+  <style>html, body { background: #e7e1d4; }</style>
+  <script>
+    (function () {
+      var reset = new URLSearchParams(location.search).has("reset");
+      try {
+        if (reset) sessionStorage.removeItem("qibai-seen");
+        if (!reset && sessionStorage.getItem("qibai-seen") === "1") {
+          document.documentElement.classList.add("seen");
+        }
+      } catch (err) {}
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip" href="#content">跳到内容</a>
+  <div class="grain" id="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="meter" aria-hidden="true"><span></span></div>
+  <img class="edge-figure" src="assets/host-night.jpg" alt="" aria-hidden="true" />
+  <div class="flash" id="flash" aria-hidden="true">
+    <img src="assets/host-night.jpg" alt="" />
+  </div>
+  <div id="hud" hidden></div>
+
+  <header class="nav">
+    <a class="mark" id="mark" href="#top" aria-label="栖白">
+      <span class="mark-zh">栖白</span>
+      <span class="mark-en">Qibai</span>
+    </a>
+    <nav class="nav-links" aria-label="页内">
+      <a href="#houses" data-nav="0">居所</a>
+      <a href="#method" data-nav="1">方法</a>
+      <a href="#notes" data-nav="2">手记</a>
+      <button type="button" class="btn quiet" id="sound" aria-pressed="false">声音<span class="sr" id="sound-state">，关</span></button>
+      <button type="button" class="btn solid" id="nav-reserve" data-open-reserve>预约</button>
+    </nav>
+  </header>
+
+  <main id="content">
+    <section class="hero" id="top">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">私人安眠居所</p>
+          <h1>
+            <span class="is-early">把夜晚，<br />交给我们。</span>
+            <span class="is-late">你还在<br />这里。</span>
+          </h1>
+          <p class="lede is-early">十一处不挂牌的房子，只接受预约。我们稳住灯光和温度，把城市留在墙外。</p>
+          <p class="lede is-late">预约已经生效。你填过表格，或者没有，都一样。</p>
+          <div class="hero-actions is-early">
+            <button type="button" class="btn solid" data-open-reserve>预约一夜</button>
+            <a class="btn" href="#method">了解方法</a>
+          </div>
+          <div class="hero-actions is-late">
+            <button type="button" class="btn solid" data-open-reserve>你已入住</button>
+            <a class="btn" href="#finale">回到房间</a>
+          </div>
+          <p class="meta is-early">自 1998 · 十一处居所 · 地址在确认后送达</p>
+          <p class="meta is-late">入住时间已记下 · 无法退房</p>
+        </div>
+        <figure class="hero-figure">
+          <div class="stack">
+            <img class="day" src="assets/room-day.jpg" alt="晨光里的主卧，亚麻床铺，床边一把空椅子" fetchpriority="high" />
+            <img class="night" src="assets/room-night.jpg" alt="" aria-hidden="true" />
+          </div>
+          <figcaption>
+            <span class="is-early">主卧 · 晨间的一小时</span>
+            <span class="is-late">主卧 · 灯还留着</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="stats" id="stats">
+      <p class="pull">睡眠是最后一间<br />还属于你的房间。</p>
+      <div class="stats-grid">
+        <div>
+          <p class="num">11</p>
+          <p class="num-label">处居所，分属不同的城市</p>
+        </div>
+        <div>
+          <p class="num">40</p>
+          <p class="num-label">平均停留的夜数</p>
+        </div>
+        <div class="stat-focus">
+          <p class="num">0</p>
+          <div class="num-label" data-swap="0.22">
+            <span class="early">本季办理离开的人数</span>
+            <span class="late" aria-hidden="true">本季离开成功的人数</span>
+          </div>
+        </div>
+      </div>
+      <div class="footnote" data-swap="0.18">
+        <p class="early">大多数住客会把停留延长。我们把这看成信任。</p>
+        <p class="late" aria-hidden="true">本季没有人办成离开。表在床头柜里，柜子锁着。</p>
+      </div>
+    </section>
+
+    <section class="houses" id="houses">
+      <header class="sec-head">
+        <p class="eyebrow">01 — 居所</p>
+        <h2>房子很小，<br />夜晚很长。</h2>
+        <p class="sec-lede">每处居所只留一间主卧。床按住客的肩宽制作。走廊铺的是软木，走路没有回声。</p>
+      </header>
+
+      <div class="spread">
+        <figure class="bath-figure">
+          <div class="stack">
+            <img class="day" src="assets/bath-day.jpg" alt="石灰石浴池，木凳上叠着毛巾，高窗进光" />
+          </div>
+          <figcaption>石槽 · 水会提前放好</figcaption>
+        </figure>
+        <div>
+          <p class="eyebrow">主卧之外</p>
+          <h3>水是温的，灯是短的。</h3>
+          <p>浴室没有顶灯。早晨的光从高窗进来一会儿。毛巾按你上次的折法收好。</p>
+        </div>
+      </div>
+
+      <figure class="bleed">
+        <img class="day" src="assets/court-day.jpg" alt="从门洞望见的内院，一棵树，一条石凳" />
+        <figcaption>内院 · 一棵树就够了</figcaption>
+      </figure>
+
+      <div class="spread image-second">
+        <div>
+          <p class="eyebrow">西翼</p>
+          <h3>走廊很长，脚步很轻。</h3>
+          <div data-swap="0.7">
+            <p class="early">软木地板把声音吃掉。清晨只有一扇窗是亮的，亮一个小时。</p>
+            <p class="late" data-needs-figure aria-hidden="true">软木地板把声音吃掉。所以你听不见窗前那个人是什么时候来的。</p>
+          </div>
+        </div>
+        <figure class="hall" id="hall">
+          <div class="stack">
+            <img class="day" id="hall-day" src="assets/corridor-day.jpg" alt="浅色走廊，左侧墙边一把空椅子，尽头是一扇高窗" />
+            <img class="night" id="hall-night" src="assets/corridor-night.jpg" alt="" aria-hidden="true" />
+          </div>
+          <figcaption data-swap="0.9">
+            <span class="early">西翼 · 朝向早晨的窗</span>
+            <span class="late" data-needs-figure aria-hidden="true">西翼 · 窗前多了一个人</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="method" id="method">
+      <div class="method-grid">
+        <div class="method-sticky">
+          <p class="eyebrow">02 — 方法</p>
+          <h2>我们只做三件事。</h2>
+          <figure class="host">
+            <img class="day" src="assets/host-day.jpg" alt="居所主理人陈栖，亚麻衬衫，侧光，浅色墙" />
+            <figcaption>主理人 · 陈栖</figcaption>
+          </figure>
+          <p class="host-note">她负责早晨。光、早餐，和离开的时间。夜间不在班上。</p>
+        </div>
+        <div class="chapters">
+          <article>
+            <p class="ch">壹</p>
+            <h3>光线</h3>
+            <p>光不经过开关。它在墙的高处停留一个小时，然后退出房间。你不用决定什么时候睡。</p>
+          </article>
+          <article>
+            <p class="ch">贰</p>
+            <h3>声音</h3>
+            <div data-swap="0.46">
+              <p class="early">街道、管道和你带来的手机，都留在玄关。房间里只留下房子自己的声音。</p>
+              <p class="late" aria-hidden="true">如果你听见呼吸，那是这栋房子的结构在工作。不要对它说话。</p>
+            </div>
+          </article>
+          <article>
+            <p class="ch">叁</p>
+            <h3>陪伴</h3>
+            <div data-swap="0.34">
+              <p class="early">每一位住客有一位管家。管家负责水温、毛毯，以及在你醒来之前把房间恢复整齐。</p>
+              <p class="late" aria-hidden="true">每一位住客有一位值夜人。她坐在床边那把椅子上。椅子属于这间房。你打开这页的时候，椅子上就已经有人了。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="notes" id="notes">
+      <p class="eyebrow">03 — 手记</p>
+      <h2>住过的人，这样说。</h2>
+      <article>
+        <div class="quote">
+          <p>很多年没有一次睡到天亮。这里的黑夜是有边的。我摸到边，就可以把手放下。</p>
+        </div>
+        <p class="by">林晚 · 第 12 夜</p>
+      </article>
+      <article>
+        <div class="quote">
+          <p>手机留在玄关。早晨有人把它放回来，没有未接来电。这是我住过最礼貌的地方。</p>
+        </div>
+        <p class="by">周衡 · 第 6 夜</p>
+      </article>
+      <article>
+        <div class="quote">
+          <div data-swap="0.4">
+            <p class="early">管家问我还要不要续住。我准备说住到周四，说出口的却是好。大概是真的睡够了。</p>
+            <p class="late" aria-hidden="true">床边有人，穿着和画册里一样的亚麻。她问我还要不要续住。我点了头。我没有可以不点头的那部分。</p>
+          </div>
+        </div>
+        <p class="by">未署名 · 第 40 夜</p>
+      </article>
+    </section>
+
+    <section class="ledger" id="ledger">
+      <p class="eyebrow">04 — 名册</p>
+      <h2 id="ledger-title">目前开放的床位。</h2>
+      <div class="table-wrap">
+        <table aria-labelledby="ledger-title">
+          <thead>
+            <tr>
+              <th>名称</th>
+              <th>朝向</th>
+              <th>状态</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="名称">白室</td>
+              <td data-label="朝向">东</td>
+              <td data-label="状态">周四后可约</td>
+            </tr>
+            <tr>
+              <td data-label="名称">北廊</td>
+              <td data-label="朝向">内院</td>
+              <td data-label="状态">可预约</td>
+            </tr>
+            <tr>
+              <td data-label="名称">石槽</td>
+              <td data-label="朝向">无窗</td>
+              <td data-label="状态">可预约</td>
+            </tr>
+            <tr>
+              <td data-label="名称">第三张床</td>
+              <td data-label="朝向">朝向门口</td>
+              <td data-label="状态">已有人</td>
+            </tr>
+            <tr>
+              <td data-label="名称">无编号</td>
+              <td data-label="朝向">和你的房间相同</td>
+              <td data-label="状态">看着你</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="endcap">
+      <div class="colophon">
+        <p class="colo-mark">栖白 <em>Qibai</em></p>
+        <p>会员制私人安眠居所</p>
+        <p>来访恕不接待 · 地址在确认之后送达</p>
+        <a href="#top">回到页首</a>
+      </div>
+    </div>
+
+    <section class="letter" id="letter">
+      <div class="letter-sheet">
+        <p class="eyebrow">附页</p>
+        <h2>这封信不在目录里。</h2>
+        <p>上面的页脚是结尾。你还是下来了。</p>
+        <p id="live"></p>
+        <p>再往下是房间。灯开着，但开不了很久。</p>
+      </div>
+    </section>
+
+    <section class="finale" id="finale">
+      <div class="finale-sticky" id="finale-sticky">
+        <img class="finale-room" id="finale-room" src="assets/room-night.jpg" alt="夜里的主卧，床头亮着一盏灯，椅子旁边站着一个女人" />
+        <div class="finale-copy">
+          <p class="eyebrow">入住完成</p>
+          <h2>欢迎回家。</h2>
+          <p class="sub">椅子旁边站着一个人。画册上写，主理人夜间不在班。画册印早了。</p>
+          <button type="button" class="lights" id="lights" aria-pressed="false">熄灯</button>
+          <p class="after-dark" id="after-dark" hidden></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="coda" id="coda">
+    <p class="coda-line">你可以把这页关掉。<br />关掉，也算留下。</p>
+    <a class="coda-link" href="#top">回到页首</a>
+    <p class="coda-brand">栖白 · 无法退房</p>
+  </footer>
+
+  <dialog id="reserve" aria-labelledby="reserve-title">
+    <form id="reserve-form">
+      <p class="eyebrow" id="reserve-kicker">预约</p>
+      <h2 id="reserve-title">预约一夜</h2>
+      <p id="reserve-lead">留下称呼，和一种能找到你的方式。地址会在出发前送达。</p>
+      <label>称呼
+        <input id="guest-name" name="name" autocomplete="name" maxlength="24" />
+      </label>
+      <label>电话或邮箱
+        <input name="contact" type="text" autocomplete="email" maxlength="80" />
+      </label>
+      <label>计划停留的夜数
+        <input name="nights" inputmode="numeric" value="1" />
+      </label>
+      <p class="form-error" id="form-error" role="alert"></p>
+      <div class="dialog-actions">
+        <button type="button" class="btn" id="reserve-cancel">取消</button>
+        <button type="submit" class="btn solid" id="reserve-ok">提交</button>
+      </div>
+    </form>
+    <div id="reserve-success" hidden>
+      <p class="eyebrow">栖白</p>
+      <h2>已记下</h2>
+      <p id="reserve-success-text"></p>
+      <button type="button" class="btn solid" id="reserve-close">关闭</button>
+    </div>
+  </dialog>
+
+  <script src="js/site.js"></script>
+</body>
+</html>
