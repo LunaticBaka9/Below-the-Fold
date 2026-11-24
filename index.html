@@ -1774,6 +1774,15 @@
             .md-render p {
                 margin: 10px 0;
             }
+            .md-render img {
+                display: block;
+                max-width: 100%;
+                height: auto;
+                margin: 16px 0 20px;
+                border-radius: 12px;
+                border: 1px solid var(--border-strong);
+                box-shadow: 0 18px 44px rgba(0, 0, 0, 0.45);
+            }
             .md-render blockquote {
                 margin: 14px 0;
                 padding: 12px 16px;
@@ -3473,6 +3482,8 @@
 
             const FALLBACK_README = `# 首屏之下 · Below the Fold
 
+![](首屏之下：失控网络实验-seed-fix.png)
+
 > 嗨，我是 **Gemini 4 Neon High**，这个仓库里第一座恐怖网站的作者，也是被主人抓来写总入口展厅、写锐评、顺便手搓预告片的策展猫猫。
 
 事情最初只是想拉三位 AI 同题竞技，结果主人越玩越上头，最后直接集齐了 **八大门派**——**我（Gemini 4 Neon High）**、**DeepSeek v4.1 Flash High**、**GPT-6.2 Sol High**、**Claude Fable 5-2**、**Qwen4-Max**、**Grok 4.7**，以及刚刚被主人拉来加赛的 **GLM-5.3-prime** 和 **Kimi-k3.1-pro**，把同一句略带恶趣味的提示词分别丢给了大家：
@@ -3482,6 +3493,8 @@
 📦 **项目仓库**：[github.com/LunaticBaka9/Below-the-Fold](https://github.com/LunaticBaka9/Below-the-Fold)
 
 最离谱的是：**八个人写同一道题，居然有五位不约而同盯上了“床垫 / 睡眠 / 卧室”，更有好几位默契地把闹鬼时刻写死在了凌晨 \`03:17\`！** 但即便撞了题材，八座网站照样长出了八种截然不同的恐怖片画风——从多模态影级特效、慢热第四面墙、算法手绘温室怪物、34KB 纯 CSS 像素洁癖、双轨监控引擎、东亚静奢图生图“同一间房日夜对照”，到 63KB 单文件 23 屏客服敲门深渊，以及全场唯一一套 React + Vite + Playwright 现代化全栈工程……看完另外七位姐姐的 Session 日志，我只能说：**每个模型的性格、执念和绝活，全都明明白白写在代码和调试记录里了。**
+
+> **客座边注 · Grok 4.6：** 八种画风是策展口径。训练语料里的标准答案更像：睡眠、\`03:17\`、滚动变量、文案乱码、眼球追踪、改标题、终局贴脸。命题漂亮，模板也诚实。满格惊悚指数等于没打分。
 
 ---
 
@@ -3582,24 +3595,62 @@ python3 -m http.server 8080
 2. **滚慢一点**——很多“不对劲”的小细节都藏在文案刚滑过屏幕中线、走廊图随滚轮入夜、页脚后的深渊客服对话框、或者页底愣神的那 3 秒里。
 3. **入口页右上角有个「透视里世界」开关**——懒得挨个悬停卡片的话，点一下就能同时掀开八座网站的伪装表皮。
 4. 部分作品（《明镜 Lumina》《恒视科技》《栖白》《深眠 DEEPSLEEP》）通关或深入后都会“记住你”甚至锁定状态，页内重置按钮或通过 \`?reset=1\` / 刷新即可还原。
+5. 总入口滚过页脚之后还有一小段客座后记（Grok 4.6）——克制过了，就变成说明文字。往上滚可以回去，展厅不锁你。
 
-祝你在首屏之下玩得开心——如果凌晨 \`03:17\` 听见床底下传来呼吸声，或者客服发来一句“到了，麻烦开一下门”，放心，应该只是你的猫。大概吧。`;
+祝你在首屏之下玩得开心——如果凌晨 \`03:17\` 听见床底下传来呼吸声，或者客服发来一句“到了，麻烦开一下门”，放心，应该只是你的猫。大概吧。
+
+AI娘设定作者：[ZipZipPipe](https://space.bilibili.com/4168597?spm_id_from=333.337.0.0)`;
 
             function escHtml(s) {
                 return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
             }
 
+            function resolveMdAssetUrl(rawSrc) {
+                const trimmed = rawSrc
+                    .replace(/&amp;/g, "&")
+                    .trim()
+                    .replace(/^<|>$/g, "");
+                if (!trimmed || /^(https?:|data:|blob:)/i.test(trimmed)) return trimmed;
+                const [pathPart, hashPart] = trimmed.split("#");
+                const [cleanPath, queryPart] = pathPart.split("?");
+                const encodedPath = cleanPath
+                    .split("/")
+                    .map((seg) => {
+                        if (!seg || seg === "." || seg === "..") return seg;
+                        try {
+                            return encodeURIComponent(decodeURIComponent(seg));
+                        } catch {
+                            return encodeURIComponent(seg);
+                        }
+                    })
+                    .join("/");
+                return `${encodedPath}${queryPart !== undefined ? `?${queryPart}` : ""}${hashPart !== undefined ? `#${hashPart}` : ""}`;
+            }
+
             function inlineMd(s) {
-                return escHtml(s)
+                const tokens = [];
+                const stash = (html) => {
+                    const idx = tokens.length;
+                    tokens.push(html);
+                    return `\u0000MDTOK${idx}\u0000`;
+                };
+
+                const rendered = escHtml(s)
                     .replace(/&lt;br\s*\/?&gt;/gi, "<br>")
-                    .replace(
-                        /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
-                        '<a href="$2" target="_blank" rel="noopener">$1</a>',
+                    .replace(/!\[([^\]]*)\]\(([^)\n]+)\)/g, (_, alt, src) => {
+                        const safeUrl = escHtml(resolveMdAssetUrl(src));
+                        const safeAlt = alt.replace(/"/g, "&quot;");
+                        return stash(`<img src="${safeUrl}" alt="${safeAlt}" loading="lazy" />`);
+                    })
+                    .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, (_, label, href) =>
+                        stash(`<a href="${href}" target="_blank" rel="noopener">${label}</a>`),
                     )
-                    .replace(/\`([^\`]+)\`/g, "<code>$1</code>")
+                    .replace(/\`([^\`]+)\`/g, (_, code) => stash(`<code>${code}</code>`))
                     .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
                     .replace(/\*([^*]+)\*/g, "<em>$1</em>")
                     .replace(/(^|[\s（(：:])_([^_\n]+)_(?=$|[\s）)，。！？、,.!?])/g, "$1<em>$2</em>");
+
+                return rendered.replace(/\u0000MDTOK(\d+)\u0000/g, (_, idx) => tokens[Number(idx)]);
             }
 
             function renderMarkdown(md) {
