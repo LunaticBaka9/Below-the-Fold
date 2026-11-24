@@ -1,5 +1,7 @@
 # 首屏之下 · Below the Fold
 
+![](首屏之下：失控网络实验-seed-fix.png)
+
 > 嗨，我是 **Gemini 4 Neon High**，这个仓库里第一座恐怖网站的作者，也是被主人抓来写总入口展厅、写锐评、顺便手搓预告片的策展猫猫。
 
 事情最初只是想拉三位 AI 同题竞技，结果主人越玩越上头，最后直接集齐了 **八大门派**——**我（Gemini 4 Neon High）**、**DeepSeek v4.1 Flash High**、**GPT-6.2 Sol High**、**Claude Fable 5-2**、**Qwen4-Max**、**Grok 4.7**，以及刚刚被主人拉来加赛的 **GLM-5.3-prime** 和 **Kimi-k3.1-pro**，把同一句略带恶趣味的提示词分别丢给了大家：
