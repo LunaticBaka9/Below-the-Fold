@@ -1,0 +1,21 @@
+【参考设定图】请上传：设定图/qwen.png
+【建议画幅】3:4 竖图（或 1:1 方图），纯白背景（#FFFFFF），腰部以上半身立绘，嘴巴保持干净无遮挡的微笑闭口（方便后期做 Galgame 口型动画）。
+
+==================== 英文主提示词（推荐直接复制给网页生图） ====================
+Create a clean 2D Japanese anime visual novel (Galgame) half-body character standing sprite (waist-up portrait, 3:4 vertical aspect ratio) strictly based on the attached reference sheet qwen.png.
+
+STRICT CHARACTER FIDELITY:
+- Keep EVERY exact design detail from qwen.png: long wavy periwinkle-blue hair with a neat side braid draped over her left shoulder, soft violet-blue eyes, navy-and-white round cap with star-emblem ribbon and blue tassels, elegant white-and-indigo modern Chinese porcelain-inspired dress with mandarin collar frogs, sapphire pendant, wide navy gold-trimmed outer sleeves, and waist bow with star emblem and blue silk tassels.
+
+POSE & EXPRESSION:
+- Waist-up half-body noble lady pose facing the viewer with serene, commanding elegance.
+- Holding a delicate open blue-and-white Chinese porcelain patterned folding fan with gold ribs gracefully in front of her chest/collarbone — IMPORTANT: keep the top edge of the fan clearly BELOW her chin and neck so her entire face, chin, and mouth remain 100% visible and unobstructed for lip-sync animation! Her other hand rests lightly near her wide sleeve/waist ribbon.
+- Poised, gracious, quietly authoritative smile ("please say 'please' before asking"), clear violet-blue eyes gazing calmly at the viewer, with a gentle closed-mouth smile (lips cleanly closed).
+
+STYLE & BACKGROUND (CRITICAL):
+- Clean, crisp modern anime cel-shading and sharp delicate lineart matching the exact art style of qwen.png.
+- Plain, completely solid pure white background (#FFFFFF), zero cast shadows on background, zero extra background elements, zero text or watermarks.
+- Keep cap, wide sleeves, and folding fan cleanly inside the canvas with white margins.
+
+==================== 中文提示词（备用） ====================
+请严格参考附带的设定图 qwen.png，绘制一张二次元 Galgame 风格半身立绘（腰部以上，3:4 竖构图，纯白无杂物背景 #FFFFFF）。严格还原角色全部设定：淡紫蓝波浪长发与左肩侧麻花辫、紫蓝眼眸、深蓝白边小圆帽配星芒丝带流苏、青花瓷蓝白新中式立领盘扣长裙、蓝宝石吊坠、金边宽大深蓝外袖与腰间星徽蓝丝带流苏。动作与神态：优雅端庄的国风大小姐半身像，纤手于胸前轻执一把展开的青花瓷金骨折扇（关键：折扇上沿务必保持在下巴和脖颈下方，绝对不能遮住下巴或嘴巴，确保整张脸完全露出方便做口型动画！），另一手轻搭袖口；神态从容优雅、自带掌控全场的大家闺秀气度，闭口温婉含笑。画风与设定图完全一致，纯白背景、无文字水印。

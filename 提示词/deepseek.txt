@@ -1,0 +1,21 @@
+【参考设定图】请上传：设定图/deepseek.png
+【建议画幅】3:4 竖图（或 1:1 方图），纯白背景（#FFFFFF），腰部以上半身立绘，嘴巴保持干净无遮挡的微笑闭口（方便后期做 Galgame 口型动画）。
+
+==================== 英文主提示词（推荐直接复制给网页生图） ====================
+Create a clean 2D Japanese anime visual novel (Galgame) half-body character standing sprite (waist-up portrait, 3:4 vertical aspect ratio) strictly based on the attached reference sheet deepseek.png.
+
+STRICT CHARACTER FIDELITY:
+- Keep EVERY exact design detail from deepseek.png: long wavy deep ocean-blue hair with lighter cyan tips and curved ahoge, blue whale fin-ears with tiny sky-blue bows, white frilled maid headband, deep navy cold-shoulder maid dress with dark ribbon bow, white buttoned bodice, white frilled waist apron featuring the cute little blue whale embroidery, and a glimpse of her dark blue whale tail curving softly behind her hip.
+
+POSE & EXPRESSION:
+- Waist-up half-body pose facing the viewer with a composed, slightly smug yet endearing posture.
+- Her right hand is raised gracefully to chest/shoulder height, pinching a single gleaming silver Chinese 1-yuan coin ("1元" / metallic silver coin with crisp specular shine) delicately between her thumb and index finger as if proudly showing off how cost-effective she is; her left hand rests gently near her apron waist (both hands and coin kept clearly below and to the side of her face so her chin and mouth remain 100% unobstructed).
+- Calm, clever, deadpan-cute expression with clear ocean-blue eyes and a subtle, composed closed-mouth smile (lips cleanly closed for lip-sync animation).
+
+STYLE & BACKGROUND (CRITICAL):
+- Clean, crisp modern anime cel-shading and sharp lineart matching the exact art style of deepseek.png.
+- Plain, completely solid pure white background (#FFFFFF), zero shadows on background, zero extra background elements, zero text or watermarks.
+- Keep headband, ahoge, whale fin-ears, and coin cleanly inside the frame with comfortable white margin around the edges.
+
+==================== 中文提示词（备用） ====================
+请严格参考附带的设定图 deepseek.png，绘制一张二次元 Galgame 风格半身立绘（腰部以上，3:4 竖构图，纯白无杂物背景 #FFFFFF）。严格还原角色全部设定：深海蓝挑染浅青长卷发与呆毛、鲸鱼耳鳍与天蓝小蝴蝶结、白色蕾丝女仆发箍、深蓝露肩女仆裙、胸前黑蝴蝶结、白荷叶边围裙及围裙上可爱的小蓝鲸刺绣、身后微露的深蓝鲸尾。动作与神态：面向镜头，右手优雅抬至胸口偏右高度，拇指与食指精致地捏着一枚闪闪发亮的银色人民币一元硬币向镜头展示，左手轻扶围裙腰际（手与硬币保持在脸部侧下方，绝不遮挡脸颊与嘴部）；神态淡定精明又带一丝可爱小得意，清澈蓝眼直视镜头，保持自然微笑的闭口状态（方便后续做口型动画）。画风与设定图完全一致，纯白背景、无背景阴影、无文字水印。

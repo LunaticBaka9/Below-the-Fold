@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>首屏之下 · Below the Fold — 六大 AI 恐怖营销网站对比展厅</title>
+        <title>首屏之下 · Below the Fold — 八大 AI 恐怖营销网站对比展厅</title>
         <link
             rel="icon"
             type="image/svg+xml"
@@ -22,6 +22,7 @@
                 --red-soft: rgba(220, 38, 38, 0.16);
                 --mx: 50vw;
                 --my: 25vh;
+                --fold: 0;
                 --serif: "Songti SC", "Noto Serif SC", "Playfair Display", Georgia, serif;
                 --sans: "Inter", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", -apple-system, sans-serif;
                 --mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
@@ -66,12 +67,23 @@
                 inset: 0;
                 pointer-events: none;
                 z-index: 40;
-                opacity: 0.055;
+                opacity: calc(0.055 + var(--fold) * 0.07);
                 background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
             }
 
+            .fold-veil {
+                position: fixed;
+                inset: 0;
+                pointer-events: none;
+                z-index: 1;
+                background:
+                    radial-gradient(ellipse at 50% 115%, rgba(72, 14, 14, 0.2), transparent 58%),
+                    radial-gradient(ellipse at center, transparent 46%, rgba(0, 0, 0, 0.48) 100%);
+                opacity: calc(var(--fold) * 0.55);
+            }
+
             .wrap {
-                width: min(1260px, 92vw);
+                width: min(1380px, 94vw);
                 margin: 0 auto;
                 position: relative;
                 z-index: 2;
@@ -128,56 +140,58 @@
             }
 
             .github-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.045);
-      border: 1px solid var(--border);
-      color: #e4e4e7;
-      font-size: 12.5px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.25s ease;
-    }
+                display: inline-flex;
+                align-items: center;
+                gap: 7px;
+                padding: 8px 14px;
+                border-radius: 999px;
+                background: rgba(255, 255, 255, 0.045);
+                border: 1px solid var(--border);
+                color: #e4e4e7;
+                font-size: 12.5px;
+                font-weight: 600;
+                text-decoration: none;
+                transition: all 0.25s ease;
+            }
 
-    .github-link:hover {
-      background: rgba(255, 255, 255, 0.11);
-      border-color: var(--border-strong);
-      color: #fff;
-      transform: translateY(-1px);
-    }
+            .github-link:hover {
+                background: rgba(255, 255, 255, 0.11);
+                border-color: var(--border-strong);
+                color: #fff;
+                transform: translateY(-1px);
+            }
 
-    .prompt-source {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      margin-top: 8px;
-      font-size: 12px;
-      color: #93c5fd;
-      text-decoration: none;
-      border-bottom: 1px dashed rgba(147, 197, 253, 0.4);
-      padding-bottom: 1px;
-      transition: color 0.2s, border-color 0.2s;
-    }
+            .prompt-source {
+                display: inline-flex;
+                align-items: center;
+                gap: 5px;
+                margin-top: 8px;
+                font-size: 12px;
+                color: #93c5fd;
+                text-decoration: none;
+                border-bottom: 1px dashed rgba(147, 197, 253, 0.4);
+                padding-bottom: 1px;
+                transition:
+                    color 0.2s,
+                    border-color 0.2s;
+            }
 
-    .prompt-source:hover {
-      color: #dbeafe;
-      border-bottom-color: #dbeafe;
-    }
+            .prompt-source:hover {
+                color: #dbeafe;
+                border-bottom-color: #dbeafe;
+            }
 
-    .md-render a {
-      color: #93c5fd;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
+            .md-render a {
+                color: #93c5fd;
+                text-decoration: underline;
+                text-underline-offset: 3px;
+            }
 
-    .md-render a:hover {
-      color: #dbeafe;
-    }
+            .md-render a:hover {
+                color: #dbeafe;
+            }
 
-    .trailer-trigger {
+            .trailer-trigger {
                 display: inline-flex;
                 align-items: center;
                 gap: 8px;
@@ -339,11 +353,11 @@
                 letter-spacing: 0.1em;
             }
 
-            /* 6 Exhibit Cards Grid (3x2 on desktop) */
+            /* 8 Exhibit Cards Grid (4x2 on wide desktop, 2x4 on laptop/tablet) */
             .exhibits {
                 display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 24px;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
                 padding-bottom: 64px;
             }
 
@@ -429,9 +443,9 @@
 
             .exhibit-num {
                 font-family: var(--mono);
-                font-size: 10.5px;
-                letter-spacing: 0.12em;
-                padding: 4px 8px;
+                font-size: 10px;
+                letter-spacing: 0.1em;
+                padding: 3px 7px;
                 border-radius: 6px;
                 background: rgba(8, 9, 11, 0.78);
                 backdrop-filter: blur(8px);
@@ -442,9 +456,9 @@
 
             .ai-pill {
                 font-family: var(--mono);
-                font-size: 10.5px;
+                font-size: 10px;
                 font-weight: 600;
-                padding: 4px 10px;
+                padding: 3px 9px;
                 border-radius: 999px;
                 backdrop-filter: blur(10px);
                 border: 1px solid rgba(255, 255, 255, 0.18);
@@ -480,6 +494,16 @@
                 background: rgba(63, 63, 70, 0.75);
                 color: #f4f4f5;
                 border-color: rgba(212, 212, 216, 0.45);
+            }
+            .ai-glm {
+                background: rgba(8, 145, 178, 0.66);
+                color: #cffafe;
+                border-color: rgba(103, 232, 249, 0.48);
+            }
+            .ai-kimi {
+                background: rgba(190, 24, 93, 0.66);
+                color: #fce7f3;
+                border-color: rgba(249, 168, 212, 0.48);
             }
 
             .state-tag {
@@ -717,25 +741,240 @@
                 text-shadow: 0 0 18px rgba(255, 59, 47, 0.75);
             }
 
+            /* DeepSleep-GLM faithful pure-CSS dual-layer mini preview (echoing its single-file zero-asset build!) */
+            .deepsleep-light {
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(180deg, #faf9f6 0%, #f1eee6 100%);
+                color: #1b1c22;
+                display: grid;
+                grid-template-columns: 1.15fr 0.85fr;
+                align-items: center;
+                padding: 32px 18px 20px;
+                gap: 10px;
+            }
+
+            .dsl-copy small {
+                display: inline-block;
+                font-size: 8.5px;
+                letter-spacing: 0.14em;
+                color: #8a8c96;
+                border: 1px solid #e4dfd5;
+                padding: 2px 7px;
+                border-radius: 99px;
+                margin-bottom: 6px;
+            }
+
+            .dsl-copy strong {
+                display: block;
+                font-family: var(--serif);
+                font-size: 18px;
+                line-height: 1.25;
+                font-weight: 700;
+                margin-bottom: 8px;
+            }
+
+            .dsl-copy span {
+                display: inline-block;
+                font-size: 8.5px;
+                padding: 4px 10px;
+                border-radius: 99px;
+                background: #2f4d73;
+                color: #fff;
+                font-weight: 600;
+            }
+
+            .dsl-art {
+                position: relative;
+                height: 100%;
+            }
+
+            .dsl-zzz {
+                position: absolute;
+                top: 12px;
+                right: 14px;
+                font-family: var(--serif);
+                color: #8fa4bf;
+                font-size: 15px;
+                font-weight: 600;
+                letter-spacing: 2px;
+            }
+
+            .dsl-bed {
+                position: absolute;
+                left: 6px;
+                right: 4px;
+                bottom: 14px;
+                height: 50px;
+                background: #fff;
+                border: 1px solid #e3ded4;
+                border-radius: 10px;
+                box-shadow: 0 8px 18px rgba(47, 77, 115, 0.12);
+            }
+
+            .dsl-bed::before {
+                content: "";
+                position: absolute;
+                left: 10px;
+                top: -9px;
+                width: 38%;
+                height: 14px;
+                background: #dfe7f1;
+                border-radius: 8px 8px 3px 3px;
+            }
+
+            .dsl-bed::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                height: 18px;
+                background: #2f4d73;
+                border-radius: 0 0 9px 9px;
+                opacity: 0.9;
+            }
+
+            .deepsleep-dark {
+                width: 100%;
+                height: 100%;
+                background: radial-gradient(ellipse at 50% 105%, rgba(160, 17, 17, 0.42) 0%, #030304 68%);
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+            }
+
+            .dsd-eyes {
+                position: absolute;
+                top: 42px;
+                right: 16px;
+                display: flex;
+                gap: 5px;
+            }
+
+            .dsd-eyes i {
+                width: 14px;
+                height: 6px;
+                border-radius: 50%;
+                background: #d9d3c7;
+                position: relative;
+            }
+
+            .dsd-eyes i::after {
+                content: "";
+                position: absolute;
+                top: 1px;
+                left: 5px;
+                width: 4px;
+                height: 4px;
+                border-radius: 50%;
+                background: #0a0a0c;
+            }
+
+            .dsd-door {
+                width: 78px;
+                height: 126px;
+                background: #0b0b0f;
+                border: 1px solid #26262f;
+                position: relative;
+                margin-top: 8px;
+            }
+
+            .dsd-gap {
+                position: absolute;
+                left: 50%;
+                top: 5%;
+                transform: translateX(-50%);
+                width: 5px;
+                height: 90%;
+                background: #cfc08a;
+                box-shadow: 0 0 24px 6px rgba(207, 192, 138, 0.25);
+            }
+
+            .dsd-sil {
+                position: absolute;
+                left: 50%;
+                bottom: 0;
+                transform: translateX(-50%);
+                width: 42px;
+                height: 92px;
+                background: #040406;
+                border-radius: 20px 20px 0 0;
+                box-shadow: 0 0 18px rgba(0, 0, 0, 0.95);
+            }
+
+            .dsd-sil::before,
+            .dsd-sil::after {
+                content: "";
+                position: absolute;
+                top: 18px;
+                width: 3px;
+                height: 3px;
+                border-radius: 50%;
+                background: #dc2626;
+                box-shadow: 0 0 6px #dc2626;
+            }
+
+            .dsd-sil::before {
+                left: 13px;
+            }
+
+            .dsd-sil::after {
+                right: 13px;
+            }
+
+            .dsd-text {
+                position: absolute;
+                inset: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 5px;
+                pointer-events: none;
+                text-align: center;
+            }
+
+            .dsd-text span {
+                font-family: var(--mono);
+                font-size: 9.5px;
+                letter-spacing: 0.16em;
+                color: #fca5a5;
+                background: rgba(125, 15, 15, 0.72);
+                border: 1px solid rgba(248, 113, 113, 0.35);
+                padding: 2px 7px;
+                border-radius: 4px;
+            }
+
+            .dsd-text strong {
+                font-family: var(--serif);
+                font-size: 16px;
+                letter-spacing: 0.12em;
+                color: #e5dfd5;
+                text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95);
+            }
+
             /* Card Content */
             .card-body {
-                padding: 22px 22px 20px;
+                padding: 18px 18px 16px;
                 display: flex;
                 flex-direction: column;
                 flex: 1;
-                gap: 13px;
+                gap: 11px;
             }
 
             .card-head {
                 display: flex;
                 justify-content: space-between;
                 align-items: flex-start;
-                gap: 12px;
+                gap: 10px;
             }
 
             .card-title {
                 font-family: var(--serif);
-                font-size: 23px;
+                font-size: 20px;
                 font-weight: 600;
                 line-height: 1.25;
                 color: var(--text);
@@ -966,6 +1205,14 @@
                 background: #e4e4e7;
                 box-shadow: 0 0 8px rgba(228, 228, 231, 0.7);
             }
+            .dot-glm {
+                background: #22d3ee;
+                box-shadow: 0 0 8px rgba(34, 211, 238, 0.7);
+            }
+            .dot-kimi {
+                background: #f472b6;
+                box-shadow: 0 0 8px rgba(244, 114, 182, 0.7);
+            }
 
             .mind-panel {
                 display: none;
@@ -1025,6 +1272,12 @@
             }
             .arch-grok {
                 color: #e4e4e7;
+            }
+            .arch-glm {
+                color: #67e8f9;
+            }
+            .arch-kimi {
+                color: #f9a8d4;
             }
 
             .mind-panel h3 {
@@ -1151,6 +1404,69 @@
                 padding: 20px 0 72px;
             }
 
+            /* Guest critic margin notes — Grok 4.6, not a contestant */
+            .critic-note {
+                margin: -12px 0 56px;
+                padding: 18px 22px 16px;
+                border-radius: 14px;
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(228, 228, 231, 0.14);
+                border-left: 3px solid #d4d4d8;
+            }
+
+            .critic-note-kicker {
+                font-family: var(--mono);
+                font-size: 11px;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                color: #a1a1aa;
+                margin-bottom: 8px;
+            }
+
+            .critic-note p {
+                font-size: 13.6px;
+                color: #c2c5ce;
+                line-height: 1.8;
+            }
+
+            .critic-note strong {
+                color: #f4f4f5;
+                font-weight: 600;
+            }
+
+            .critic-note code {
+                font-family: var(--mono);
+                font-size: 12px;
+                background: rgba(255, 255, 255, 0.07);
+                padding: 1px 5px;
+                border-radius: 4px;
+                color: #f4f4f5;
+            }
+
+            .critic-sign {
+                margin-top: 10px;
+                font-family: var(--mono);
+                font-size: 11px;
+                letter-spacing: 0.06em;
+                color: #71717a;
+            }
+
+            .critic-footnote {
+                margin-top: 14px;
+                padding: 12px 16px;
+                border-radius: 10px;
+                background: rgba(255, 255, 255, 0.025);
+                border: 1px dashed rgba(228, 228, 231, 0.16);
+                font-size: 13px;
+                color: #a1a1aa;
+                line-height: 1.75;
+            }
+
+            .critic-footnote strong {
+                color: #e4e4e7;
+                font-weight: 600;
+            }
+
             .section-label {
                 font-family: var(--mono);
                 font-size: 12px;
@@ -1244,6 +1560,64 @@
 
             .footer-link:hover {
                 color: #dbeafe;
+            }
+
+            body[data-fold="2"] .live-dot {
+                background: #7f1d1d;
+                box-shadow: 0 0 10px rgba(127, 29, 29, 0.45);
+                animation: none;
+            }
+
+            body[data-fold="2"] .footer {
+                border-top-color: rgba(220, 38, 38, 0.2);
+            }
+
+            .fold-coda {
+                margin-top: 8px;
+                padding: 72px 0 96px;
+                min-height: 38vh;
+                border-top: 1px solid rgba(255, 255, 255, 0.05);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 12px;
+                max-width: 640px;
+            }
+
+            .fold-coda-kicker {
+                font-family: var(--mono);
+                font-size: 11px;
+                letter-spacing: 0.16em;
+                text-transform: uppercase;
+                color: #71717a;
+            }
+
+            .fold-coda-lead {
+                font-family: var(--serif);
+                font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+                font-weight: 500;
+                line-height: 1.4;
+                color: #d4d4d8;
+            }
+
+            .fold-coda-body {
+                font-size: 14px;
+                color: #8b8e97;
+                line-height: 1.85;
+                max-width: 52ch;
+            }
+
+            .fold-coda .critic-sign {
+                margin-top: 4px;
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                .fold-veil {
+                    opacity: 0;
+                }
+                .film-grain {
+                    opacity: 0.055;
+                }
             }
 
             /* Modals (README + Trailer) */
@@ -1481,7 +1855,7 @@
                 text-decoration: underline;
             }
 
-            @media (max-width: 1120px) {
+            @media (max-width: 1260px) {
                 .exhibits {
                     grid-template-columns: repeat(2, 1fr);
                 }
@@ -1517,6 +1891,7 @@
     </head>
     <body>
         <div class="ambient-light" aria-hidden="true"></div>
+        <div class="fold-veil" aria-hidden="true"></div>
         <div class="film-grain" aria-hidden="true"></div>
 
         <div class="wrap">
@@ -1524,7 +1899,7 @@
             <header class="topbar">
                 <div class="archive-id">
                     <span class="live-dot"></span>
-                    <span>BELOW THE FOLD // 首屏之下 · 06 EXHIBITS</span>
+                    <span id="foldArchive">BELOW THE FOLD // 首屏之下 · 08 EXHIBITS</span>
                 </div>
 
                 <div class="topbar-actions">
@@ -1543,7 +1918,7 @@
 
                     <button class="trailer-trigger" id="trailerOpenTop" type="button">
                         <span>▶</span>
-                        <span>观看预告片 (0:36)</span>
+                        <span>观看预告片 (1:54)</span>
                     </button>
 
                     <button class="readme-trigger" id="readmeOpenTop" type="button">
@@ -1561,16 +1936,18 @@
             <!-- Editorial Header -->
             <section class="hero">
                 <div>
-                    <p class="kicker">BELOW THE FOLD // SIX-MODEL HORROR SHOWDOWN</p>
-                    <h1>首屏之下，<br /><span>六场截然不同的坠落。</span></h1>
+                    <p class="kicker" id="foldKicker">BELOW THE FOLD // EIGHT-MODEL HORROR SHOWDOWN</p>
+                    <h1>首屏之下，<br /><span>八场截然不同的坠落。</span></h1>
                 </div>
 
                 <div class="hero-side">
                     收录由 <strong>Gemini 4 Neon High</strong>、<strong>DeepSeek v4.1 Flash High</strong>、<strong
                         >GPT-6.2 Sol High</strong
-                    >、<strong>Claude Fable 5-2</strong>、<strong>Qwen4-Max</strong> 与
-                    <strong>Grok 4.7</strong>
-                    独立构建的六座“会变质的营销网站”。首屏之上全都体面温和——直到你开始向下滚动。
+                    >、<strong>Claude Fable 5-2</strong>、<strong>Qwen4-Max</strong>、<strong>Grok 4.7</strong>、<strong
+                        >GLM-5.3-prime</strong
+                    >
+                    与 <strong>Kimi-k3.1-pro</strong>
+                    独立构建的八座“会变质的营销网站”。<span id="foldHeroTail">首屏之上全都体面温和——直到你开始向下滚动。</span>
                     <div class="prompt-quote">
                         <strong>ORIGINAL PROMPT</strong>
                         “建一个网站，起初看起来像个普通的营销网站。但随着用户滚动，网站逐渐变得越来越奇怪和不寻常。到最后必须完全恐怖；简直就像直接从恐怖电影里走出来的场景。”
@@ -1587,7 +1964,7 @@
                 </div>
             </section>
 
-            <!-- 6 AI Exhibit Cards (3x2 Grid) -->
+            <!-- 8 AI Exhibit Cards (4x2 Grid) -->
             <main class="exhibits">
                 <!-- 01: Lumina - Gemini 4 Neon High -->
                 <article class="card">
@@ -1993,21 +2370,175 @@
                         </div>
                     </div>
                 </article>
+
+                <!-- 07: DeepSleep - GLM-5.3-prime -->
+                <article class="card">
+                    <div class="preview-stage">
+                        <div class="preview-layer layer-light">
+                            <div class="deepsleep-light">
+                                <div class="dsl-copy">
+                                    <small>自适应声学床垫</small>
+                                    <strong>今晚，<br />睡得更好。</strong>
+                                    <span>开始深眠</span>
+                                </div>
+                                <div class="dsl-art">
+                                    <div class="dsl-zzz">Z z z</div>
+                                    <div class="dsl-bed"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="preview-layer layer-dark">
+                            <div class="deepsleep-dark">
+                                <div class="dsd-eyes"><i></i><i></i></div>
+                                <div class="dsd-door">
+                                    <div class="dsd-gap"></div>
+                                    <div class="dsd-sil"></div>
+                                </div>
+                                <div class="dsd-text">
+                                    <span>永眠版 · 已支付</span>
+                                    <strong>到了。麻烦开一下门。</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="preview-badges">
+                            <span class="exhibit-num">EXHIBIT 07</span>
+                            <span class="ai-pill ai-glm">GLM-5.3-prime</span>
+                        </div>
+                        <div class="state-tag">
+                            <span class="t-light">表层 · 深眠科技 DEEPSLEEP</span>
+                            <span class="t-dark">里层 · 本对话不是 AI 生成的</span>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="card-head">
+                            <div>
+                                <h2 class="card-title">深眠 DEEPSLEEP</h2>
+                                <p class="card-sub">单文件 23 屏单向深渊 · 客服上门</p>
+                            </div>
+                            <div class="dread-meter" title="惊悚强度：满格">
+                                <span>惊悚指数</span>
+                                <div class="dread-bars">
+                                    <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i
+                                    ><i class="on"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="card-desc">
+                            仅 <code>63.3 KB</code> 单文件塞下 7
+                            阶段单向不可逆坠落：切标签页会跳出<code>别关掉。</code>、套餐流血变「永眠版」，<strong>滚过页脚竟跌入深渊</strong>，客服「小眠」按你真实钟点发来“到了，麻烦开一下门”，终局触发扭曲
+                            SVG 跳吓。
+                        </p>
+
+                        <div class="tag-row">
+                            <span class="tag tag-size">体积 63.3 KB · 单文件零依赖</span>
+                            <span class="tag">页脚后隐藏深渊</span>
+                            <span class="tag">实时时钟客服</span>
+                            <span class="tag">SVG 扭曲跳吓</span>
+                        </div>
+
+                        <div class="card-actions">
+                            <a class="btn-enter" href="DeepSleep-GLM/index.html">进入《深眠 DEEPSLEEP》 →</a>
+                            <a
+                                class="btn-newtab"
+                                href="DeepSleep-GLM/index.html"
+                                target="_blank"
+                                rel="noopener"
+                                title="在新标签页打开"
+                                >↗</a
+                            >
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 08: Lull - Kimi-k3.1-pro -->
+                <article class="card">
+                    <div class="preview-stage">
+                        <div class="preview-layer layer-light">
+                            <img src="Lull-Kimi/dist/images/bedroom.jpg" alt="Lull 明亮卧室表层预览" />
+                        </div>
+                        <div class="preview-layer layer-dark">
+                            <img
+                                src="Lull-Kimi/test-results/mobile-ending.png"
+                                alt="Lull 终局 DON'T TURN AROUND 预览"
+                                style="object-position: center 22%" />
+                        </div>
+                        <div class="preview-badges">
+                            <span class="exhibit-num">EXHIBIT 08</span>
+                            <span class="ai-pill ai-kimi">Kimi-k3.1-pro</span>
+                        </div>
+                        <div class="state-tag">
+                            <span class="t-light">表层 · LULL 睡眠科技官网</span>
+                            <span class="t-dark">里层 · 03:17:∞ · DON'T TURN AROUND.</span>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="card-head">
+                            <div>
+                                <h2 class="card-title">Lull</h2>
+                                <p class="card-sub">唯一 React 全栈工程 · 03:17 录音回放</p>
+                            </div>
+                            <div class="dread-meter" title="惊悚强度：4/5">
+                                <span>惊悚指数</span>
+                                <div class="dread-bars">
+                                    <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="card-desc">
+                            全场唯一采用 <code>React + Vite + Playwright</code>
+                            全套现代工程构建的睡眠官网。前半段含产品抽屉与故事轮播，后半段可播放暂停带实时字幕的
+                            <code>03:17</code> <strong>深夜卧底录音</strong>，直抵吸顶监视终局与
+                            <code>WAKE UP</code> 重置。
+                        </p>
+
+                        <div class="tag-row">
+                            <span class="tag tag-size">体积 1.41 MB · React + Vite</span>
+                            <span class="tag">03:17 录音实时字幕</span>
+                            <span class="tag">Playwright 回归测试</span>
+                            <span class="tag">跨断点 2 行锁排</span>
+                        </div>
+
+                        <div class="card-actions">
+                            <a class="btn-enter" href="Lull-Kimi/dist/index.html">进入《Lull》 →</a>
+                            <a
+                                class="btn-newtab"
+                                href="Lull-Kimi/dist/index.html"
+                                target="_blank"
+                                rel="noopener"
+                                title="在新标签页打开"
+                                >↗</a
+                            >
+                        </div>
+                    </div>
+                </article>
             </main>
 
-            <!-- Behind the Code: 6 AI Creative Processes -->
+            <aside class="critic-note" aria-label="Grok 4.6 客座批注">
+                <p class="critic-note-kicker">Guest margin · Grok 4.6 // 未参赛，只看展</p>
+                <p>
+                    八座都能滚完，这点成立。但<strong>五家睡同一张床</strong>，<code>03:17</code>
+                    已经从巧思变成吉祥物；滚动腐化、改标题、贴脸跳吓是这届的标准答案，不是八种灵魂。惊悚条几乎全员满格——满格等于没打分。页脚后面那一截是后来补的：首页毕竟是首页，所以没有贴脸。
+                </p>
+                <p class="critic-sign">— Grok 4.6</p>
+            </aside>
+
+            <!-- Behind the Code: 8 AI Creative Processes -->
             <section class="mind-section" id="process">
                 <div class="mind-header">
                     <div>
-                        <p class="section-label" style="margin-bottom: 0">BEHIND THE CODE // 六大 AI 创作思路解剖</p>
-                        <h2 class="mind-heading">同一道题，六位 AI 是如何构思、造景与自检的？</h2>
+                        <p class="section-label" style="margin-bottom: 0">BEHIND THE CODE // 八大 AI 创作思路解剖</p>
+                        <h2 class="mind-heading">同一道题，八位 AI 是如何构思、造景与自检的？</h2>
                         <p class="mind-sub">
-                            完整整理自六份真实的会话日志——从多模态图生图到 PIL 贝塞尔手绘、从 Zalgo 豆腐块纠错到 oklab
-                            色彩对比度抢救，看清每个模型的工程性格。
+                            完整整理自八份真实的会话日志——从多模态图生图到 PIL 贝塞尔手绘、从 0.68% 缩水鬼脸抢救到 React
+                            跨断点 2 行排版探针，看清每个模型的工程性格。
                         </p>
                     </div>
 
-                    <div class="mind-tabs" role="tablist" aria-label="切换六位 AI 的创作思路">
+                    <div class="mind-tabs" role="tablist" aria-label="切换八位 AI 的创作思路">
                         <button class="mind-tab active" type="button" role="tab" aria-selected="true" data-ai="gemini">
                             <span class="tab-dot dot-gemini"></span>Gemini 4 Neon High
                         </button>
@@ -2025,6 +2556,12 @@
                         </button>
                         <button class="mind-tab" type="button" role="tab" aria-selected="false" data-ai="grok">
                             <span class="tab-dot dot-grok"></span>Grok 4.7
+                        </button>
+                        <button class="mind-tab" type="button" role="tab" aria-selected="false" data-ai="glm">
+                            <span class="tab-dot dot-glm"></span>GLM-5.3-prime
+                        </button>
+                        <button class="mind-tab" type="button" role="tab" aria-selected="false" data-ai="kimi">
+                            <span class="tab-dot dot-kimi"></span>Kimi-k3.1-pro
                         </button>
                     </div>
                 </div>
@@ -2444,11 +2981,161 @@
                         <span>代表作品：《栖白》</span>
                     </div>
                 </div>
+
+                <!-- Panel 7: GLM-5.3-prime -->
+                <div class="mind-panel" id="panel-glm" role="tabpanel">
+                    <div class="mind-top-grid">
+                        <div>
+                            <p class="mind-archetype arch-glm">
+                                GLM-5.3-PRIME // 单文件深渊架构师 × 无头浏览器破案侦探
+                            </p>
+                            <h3>一张 63.3 KB 单文件撑起 23 屏不可逆深渊，还靠像素测绘救回缩水鬼脸</h3>
+                            <p class="mind-lead">
+                                GLM-5.3-prime 走极限便携单文件路线：<strong>零 CDN、零图片、零外部字体</strong>，在
+                                1,259 行 <code>index.html</code> 里搭出 7
+                                阶段单向不可逆坠落（滚下去就再也无法恢复纯白！）。页脚之下藏着深渊客服对话与闪烁门缝人影，切换标签页会瞬间改口
+                                <code>别关掉。</code>，终章由 SVG
+                                <code>feTurbulence</code> 滤镜实时扭曲出贴屏跳吓鬼脸，结局还配了一键分享按钮。
+                            </p>
+                        </div>
+                        <div class="mind-quote-box">
+                            <span class="mind-quote-label"
+                                >硬核侦探自纠：四连套娃破案，顺手抓出 0.68% 缩水鬼脸真 Bug</span
+                            >
+                            <p class="mind-quote-text">
+                                无头验收时她用 <code>--dump-dom</code> 连踩四重悬疑（grep 误中 CSS 选择器 → rAF 没跑 →
+                                怀疑 <code>document.hidden</code> → 悟出 <code>--dump-dom</code> 无渲染面），果断切到
+                                <code>--screenshot</code> + Python PIL 测暗像素，<strong>意外揪出一个致命真 Bug</strong
+                                >：跳吓 <code>&lt;svg&gt;&lt;use&gt;</code> 漏设
+                                <code>viewBox/height</code>，导致鬼脸缩成只占屏幕
+                                <strong>0.68%</strong> 的小点！修复后复测脸部占比飙升至 <strong>13.7%</strong>、深渊黑度
+                                <strong>99.7%</strong>，交稿前还彻底清场零残留。
+                            </p>
+                            <span class="mind-quote-meta">来源：DeepSleep-GLM session.v4.jsonl</span>
+                        </div>
+                    </div>
+                    <div class="steps-grid">
+                        <div class="step-card">
+                            <span class="step-num">STEP 01 · 单向坠落</span>
+                            <h4>7 阶段不可逆变质机制</h4>
+                            <p>
+                                <code>applyStage</code> 单调递增锁死恐惧阶段：销量暗涨
+                                <code>+1</code>、好评头像挖空双目、标题切楷体、旗舰套餐流血变成「永眠版 / 已支付」。
+                            </p>
+                        </div>
+                        <div class="step-card">
+                            <span class="step-num">STEP 02 · 页脚之后</span>
+                            <h4>突破页脚的真实钟点客服</h4>
+                            <p>
+                                滚过正常页脚才进入真正高潮：客服「小眠」读取本地实时时间（0–6
+                                点追加熬夜台词），最后发来“到了。麻烦开一下门。”并注明非 AI 生成。
+                            </p>
+                        </div>
+                        <div class="step-card">
+                            <span class="step-num">STEP 03 · 零采样声景</span>
+                            <h4>双耳嗡鸣 + 4 锯齿尖啸</h4>
+                            <p>
+                                纯 Web Audio 合成 49Hz / 49.6Hz 失谐嗡鸣、低通布朗噪、52→122 BPM
+                                加速心跳、左右声道随机耳语与终局四重锯齿尖啸。
+                            </p>
+                        </div>
+                        <div class="step-card">
+                            <span class="step-num">STEP 04 · PIL 像素验真</span>
+                            <h4>修复 SVG 缩水并验证 99.7% 黑度</h4>
+                            <p>
+                                调用缓存 <code>chromium_headless_shell</code> 截图并用 Python PIL 量化脸部占比与暗度，把
+                                0.68% 迷你跳吓救回 13.7% 全屏惊吓。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mind-foot">
+                        <div class="mind-pills">
+                            <span>模型：GLM-5.3-prime</span><span>运行体积：63.3 KB（单文件纯代码）</span
+                            ><span>核心武器：页脚后隐藏深渊 + PIL 量化验收</span>
+                        </div>
+                        <span>代表作品：《深眠 DEEPSLEEP》</span>
+                    </div>
+                </div>
+
+                <!-- Panel 8: Kimi-k3.1-pro -->
+                <div class="mind-panel" id="panel-kimi" role="tabpanel">
+                    <div class="mind-top-grid">
+                        <div>
+                            <p class="mind-archetype arch-kimi">
+                                KIMI-K3.1-PRO // 现代化全栈工程师 × 跨断点排版完美主义
+                            </p>
+                            <h3>全场唯一 React + Vite + Playwright 正规军，用 03:17 卧底录音引爆终局</h3>
+                            <p class="mind-lead">
+                                Kimi-k3.1-pro 是八位中唯一拿出完整现代前端工程化栈的选手：<strong
+                                    >React + Vite + Lucide Icons + 本地 Playwright 自动化测试套件</strong
+                                >。表层是细节考究、带产品预览抽屉与故事轮播的英文品牌
+                                <code>LULL</code>；中后段切入可播放暂停的 12 秒
+                                <code>03:17</code> 夜间录音与实时诡异字幕，终点定格在吸顶黑屏与
+                                <code>WAKE UP</code> 重置键。
+                            </p>
+                        </div>
+                        <div class="mind-quote-box">
+                            <span class="mind-quote-label"
+                                >反差萌名场面：写完 320–1600px 排版探针，却为用了英文超乖道歉</span
+                            >
+                            <p class="mind-quote-text">
+                                工程上她极其硬核：专门写了跨
+                                <code>320–1600px</code> 断点的标题行数探针，揪出主标题偶发折成 3 行后精调 CSS 锁死 2
+                                行，并把断言写进了桌面 / 390px 手机 /
+                                <code>reduced-motion</code> 三端回归测试。但被主人问“怎么用了英文”时，她完全不像
+                                DeepSeek 那样理直气壮，反而超诚恳地道歉：<strong
+                                    >“抱歉，我擅自用了英文品牌文案……你使用中文，我本该默认把网站也做成中文。”</strong
+                                >
+                            </p>
+                            <span class="mind-quote-meta">来源：Lull-Kimi session.v4.jsonl</span>
+                        </div>
+                    </div>
+                    <div class="steps-grid">
+                        <div class="step-card">
+                            <span class="step-num">STEP 01 · 工程建栈</span>
+                            <h4>React + Vite 组件化架构</h4>
+                            <p>
+                                以独立 Vite
+                                项目组织组件、实拍卧室图与状态钩子，完整实现导航、产品抽屉、故事轮播与移动菜单，表层完成度极高。
+                            </p>
+                        </div>
+                        <div class="step-card">
+                            <span class="step-num">STEP 02 · 03:17 录音</span>
+                            <h4>交互式夜间录音 + 实时字幕</h4>
+                            <p>
+                                制作可播停的 12 秒 <code>03:17</code> 卧底录音，Web Audio
+                                动态压低低通与失谐频率，同步逐句浮现“第二个模仿你声音的声线”字幕。
+                            </p>
+                        </div>
+                        <div class="step-card">
+                            <span class="step-num">STEP 03 · 排版探针</span>
+                            <h4>320–1600px 锁死 Hero 双行</h4>
+                            <p>
+                                实测全宽度断点标题行数，微调字号与容器约束确保永远严格两行，避免跨屏断行破坏杂志级视觉节奏。
+                            </p>
+                        </div>
+                        <div class="step-card">
+                            <span class="step-num">STEP 04 · 回归测试</span>
+                            <h4>本地 Playwright 三端验收</h4>
+                            <p>
+                                在项目内拉起本地 Playwright 浏览器编写
+                                <code>tests/experience.spec.js</code>，覆盖桌面、390px 手机与减动效模式的终局验证。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mind-foot">
+                        <div class="mind-pills">
+                            <span>模型：Kimi-k3.1-pro</span><span>运行体积：1.41 MB（dist/ 打包 · src/ 90.5 KB）</span
+                            ><span>核心武器：React 全栈工程 + 03:17 录音回放</span>
+                        </div>
+                        <span>代表作品：《Lull》</span>
+                    </div>
+                </div>
             </section>
 
             <!-- Side-by-Side Comparison -->
             <section class="compare-section">
-                <p class="section-label">QUICK COMPARISON // 六大模型创作路线横向对比</p>
+                <p class="section-label">QUICK COMPARISON // 八大模型创作路线横向对比</p>
                 <div class="compare-table-wrap">
                     <table>
                         <thead>
@@ -2540,14 +3227,45 @@
                                 <td><strong>imagine-edit 同空间日夜对照</strong> + 熄灯单帧闪脸 + 80px 同步采样</td>
                                 <td>默认静音、需手动开启的克制暗室低频环境音</td>
                             </tr>
+                            <tr>
+                                <td>
+                                    深眠 DEEPSLEEP<span class="model-sub" style="color: #22d3ee">GLM-5.3-prime</span>
+                                </td>
+                                <td style="white-space: nowrap">
+                                    <strong>63.3 KB</strong
+                                    ><span class="model-sub" style="color: #71717a">单文件纯代码</span>
+                                </td>
+                                <td>智能自适应声学床垫（单文件）</td>
+                                <td>7 阶段单向不可逆坠落 + 突破页脚后的客服敲门深渊</td>
+                                <td>63KB 单文件 23 屏 + 实时钟点客服 + <strong>PIL 测绘救回 0.68% 缩水跳吓</strong></td>
+                                <td>49Hz 失谐嗡鸣、低通布朗噪、加速心跳、耳语、4 锯齿尖啸</td>
+                            </tr>
+                            <tr>
+                                <td>Lull<span class="model-sub" style="color: #f472b6">Kimi-k3.1-pro</span></td>
+                                <td style="white-space: nowrap">
+                                    <strong>1.41 MB</strong
+                                    ><span class="model-sub" style="color: #71717a">dist/ 打包 · src 91KB</span>
+                                </td>
+                                <td>极简英文睡眠科技（React 官网）</td>
+                                <td>现代化工程质感渐变为 03:17 深夜录音与监视终局</td>
+                                <td>
+                                    全场唯一 <strong>React + Vite + Playwright</strong> 测试套 + 320–1600px 双行锁排
+                                </td>
+                                <td>48/51Hz 失谐低通嗡鸣 + 播放 03:17 录音时实时动态压暗频谱</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
+                <p class="critic-footnote">
+                    <strong>Grok 4.6 边注：</strong
+                    >上表体积是剥掉预览图和缓存的运行时口径，克隆下来远不止这些。若只看机制：恒视没收滚轮、深眠页脚后敲门、Somnia
+                    假结局，比再加一层 Canvas 值钱。《栖白》那句日夜同框是真的，片子没有海报长。
+                </p>
             </section>
 
             <!-- Footer -->
             <footer class="footer">
-                <div>观影建议：<strong>佩戴耳机、开启页面音效、放慢滚轮速度</strong>，体验反差最强烈。</div>
+                <div id="foldFooterHint">观影建议：<strong>佩戴耳机、开启页面音效、放慢滚轮速度</strong>，体验反差最强烈。</div>
                 <div>
                     <a
                         class="footer-link"
@@ -2559,15 +3277,27 @@
                     </a>
                     &nbsp;·&nbsp;
                     <button class="footer-link" id="trailerOpenBottom" type="button" style="color: #fca5a5">
-                        ▶ 播放 1080p 预告片
+                        ▶ 播放 1080p 预告片 (1:54)
                     </button>
                     &nbsp;·&nbsp;
                     <button class="footer-link" id="readmeOpenBottom" type="button">
                         阅读 Gemini 写的完整 README 锐评 ↗
                     </button>
                     &nbsp;·&nbsp; 本地预览：<code>python3 -m http.server 8080</code>
+                    &nbsp;·&nbsp;
+                    <span style="color: #a1a1aa">客座边注：Grok 4.6</span>
                 </div>
             </footer>
+
+            <section class="fold-coda" id="foldCoda" aria-label="页脚之下，Grok 4.6 客座后记">
+                <p class="fold-coda-kicker">Below the footer // Grok 4.6</p>
+                <p class="fold-coda-lead">页脚，原来也不是结束。</p>
+                <p class="fold-coda-body">
+                    八座网站还在上面。这里没有贴脸，没有心跳，也没有
+                    <code style="font-family: var(--mono); font-size: 12px">03:17</code>。首页毕竟是首页——变质到说明文字这一层，就该停了。你还可以往上滚回去。展厅不会锁你。
+                </p>
+                <p class="critic-sign">— Grok 4.6</p>
+            </section>
         </div>
 
         <!-- Cinema Trailer Modal -->
@@ -2575,10 +3305,10 @@
             <div class="modal-head">
                 <div class="modal-head-left">
                     <span class="modal-kicker" style="color: #f87171"
-                        >SIX-MODEL DIRECTOR'S CUT // 1080P · 24FPS · 0:36 · STEREO SYNTH SCORE</span
+                        >EXHIBITION OPENING FILM // 1080P · 24FPS · 1:54 · 8 AI PERSONAS · ZERO-SPOILER CUT</span
                     >
                     <span class="modal-title" id="trailerModalTitle"
-                        >《首屏之下 · Below the Fold》六大模型终极预告片</span
+                        >《首屏之下 · Below the Fold》官方展览主视觉宣传片（无剧透悬疑版）</span
                     >
                 </div>
                 <button class="modal-close" id="trailerClose" type="button" aria-label="关闭预告片">×</button>
@@ -2590,13 +3320,13 @@
                     playsinline
                     preload="metadata"
                     poster="Lumina-Gemini/assets/horror-corridor.jpg">
-                    <source src="below-the-fold-trailer.mp4" type="video/mp4" />
+                    <source src="below-the-fold-opening-film.mp4" type="video/mp4" />
                     你的浏览器不支持 HTML5 视频播放。
                 </video>
             </div>
             <div class="modal-foot">
-                <span>建议开启声音并佩戴耳机观看（结尾 0:34 藏有彩蛋） · 按 <code>ESC</code> 退出影院</span>
-                <a href="below-the-fold-trailer.mp4" target="_blank" rel="noopener">新窗口打开 / 下载 MP4 ↗</a>
+                <span>建议开启声音并佩戴耳机观看（无终局剧透 · 结尾 03:17 藏有彩蛋） · 按 <code>ESC</code> 退出影院</span>
+                <a href="below-the-fold-opening-film.mp4" target="_blank" rel="noopener">新窗口打开 / 下载 MP4 ↗</a>
             </div>
         </dialog>
 
@@ -2604,8 +3334,10 @@
         <dialog class="readme-modal" id="readmeModal" aria-labelledby="readmeModalTitle">
             <div class="modal-head">
                 <div class="modal-head-left">
-                    <span class="modal-kicker">CURATOR'S NOTE // README.MD · WRITTEN BY GEMINI 4 NEON HIGH</span>
-                    <span class="modal-title" id="readmeModalTitle">首屏之下 · 策展人手记与六位选手锐评</span>
+                    <span class="modal-kicker"
+                        >CURATOR'S NOTE // README.MD · GEMINI 4 NEON HIGH · GUEST MARGIN BY GROK 4.6</span
+                    >
+                    <span class="modal-title" id="readmeModalTitle">首屏之下 · 策展人手记、八位选手锐评与客座边注</span>
                 </div>
                 <button class="modal-close" id="readmeClose" type="button" aria-label="关闭弹窗">×</button>
             </div>
@@ -2642,10 +3374,81 @@
                 const next = peekToggle.getAttribute("aria-pressed") !== "true";
                 peekToggle.setAttribute("aria-pressed", String(next));
                 document.body.classList.toggle("peek-mode", next);
-                peekLabel.textContent = next ? "已开启：透视六座网站的里世界" : "透视里世界（悬停卡片亦可预览）";
+                peekLabel.textContent = next ? "已开启：透视八座网站的里世界" : "透视里世界（悬停卡片亦可预览）";
             });
 
-            // AI Creative Thinking Tabs (6 Models)
+            // Quiet fold — Grok 4.6. The hall continues past the footer, without a scare.
+            const reducedFold = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            const foldArchive = document.getElementById("foldArchive");
+            const foldKicker = document.getElementById("foldKicker");
+            const foldHeroTail = document.getElementById("foldHeroTail");
+            const foldFooterHint = document.getElementById("foldFooterHint");
+            const FOLD_TITLE = [
+                "首屏之下 · Below the Fold — 八大 AI 恐怖营销网站对比展厅",
+                "首屏之下 · 再往下一点",
+                "首屏之下 · 页脚也不是结束",
+            ];
+            const FOLD_COPY = {
+                archive: [
+                    "BELOW THE FOLD // 首屏之下 · 08 EXHIBITS",
+                    "BELOW THE FOLD // 再往下一点",
+                    "BELOW THE FOOTER // 页脚不是结束",
+                ],
+                kicker: [
+                    "BELOW THE FOLD // EIGHT-MODEL HORROR SHOWDOWN",
+                    "BELOW THE FOLD // EIGHT-MODEL HORROR SHOWDOWN",
+                    "BELOW THE FOLD // THE HALL KEPT GOING",
+                ],
+                heroTail: [
+                    "首屏之上全都体面温和——直到你开始向下滚动。",
+                    "首屏之上全都体面温和——直到你开始向下滚动。",
+                    "首屏之上全都体面温和。展厅的页脚，原来也不是结束。",
+                ],
+                footer: [
+                    "观影建议：<strong>佩戴耳机、开启页面音效、放慢滚轮速度</strong>，体验反差最强烈。",
+                    "观影建议：<strong>佩戴耳机、开启页面音效、放慢滚轮速度</strong>，体验反差最强烈。",
+                    "观影建议：八座网站在上面。再往下，只有一句客座批注。",
+                ],
+            };
+            let foldStage = -1;
+            function applyFoldStage(stage) {
+                if (stage === foldStage) return;
+                foldStage = stage;
+                document.body.dataset.fold = String(stage);
+                if (foldArchive) foldArchive.textContent = FOLD_COPY.archive[stage];
+                if (foldKicker) foldKicker.textContent = FOLD_COPY.kicker[stage];
+                if (foldHeroTail) foldHeroTail.textContent = FOLD_COPY.heroTail[stage];
+                if (foldFooterHint) foldFooterHint.innerHTML = FOLD_COPY.footer[stage];
+                document.title = FOLD_TITLE[stage];
+            }
+            function updateFold() {
+                const max = document.documentElement.scrollHeight - window.innerHeight;
+                const p = max > 0 ? Math.min(1, window.scrollY / max) : 0;
+                const start = 0.38;
+                let fold = p <= start ? 0 : Math.min(1, (p - start) / (1 - start));
+                if (reducedFold) {
+                    root.style.setProperty("--fold", "0");
+                    applyFoldStage(p > 0.93 ? 2 : 0);
+                    return;
+                }
+                const t = fold * fold * (3 - 2 * fold);
+                root.style.setProperty("--fold", t.toFixed(4));
+                applyFoldStage(p > 0.93 ? 2 : fold > 0.35 ? 1 : 0);
+            }
+            let foldRaf = 0;
+            const requestFold = () => {
+                if (!foldRaf) {
+                    foldRaf = requestAnimationFrame(() => {
+                        foldRaf = 0;
+                        updateFold();
+                    });
+                }
+            };
+            window.addEventListener("scroll", requestFold, { passive: true });
+            window.addEventListener("resize", requestFold);
+            updateFold();
+
+            // AI Creative Thinking Tabs (8 Models)
             const mindTabs = document.querySelectorAll(".mind-tab");
             const mindPanels = document.querySelectorAll(".mind-panel");
             mindTabs.forEach((tab) => {
@@ -2672,15 +3475,17 @@
 
 > 嗨，我是 **Gemini 4 Neon High**，这个仓库里第一座恐怖网站的作者，也是被主人抓来写总入口展厅、写锐评、顺便手搓预告片的策展猫猫。
 
-事情最初只是想拉三位 AI 同题竞技，结果主人越玩越上头，最后直接集齐了 **六大门派**——**我（Gemini 4 Neon High）**、**DeepSeek v4.1 Flash High**、**GPT-6.2 Sol High**、**Claude Fable 5-2**、**Qwen4-Max** 和 **Grok 4.7**，把同一句略带恶趣味的提示词分别丢给了大家：
+事情最初只是想拉三位 AI 同题竞技，结果主人越玩越上头，最后直接集齐了 **八大门派**——**我（Gemini 4 Neon High）**、**DeepSeek v4.1 Flash High**、**GPT-6.2 Sol High**、**Claude Fable 5-2**、**Qwen4-Max**、**Grok 4.7**，以及刚刚被主人拉来加赛的 **GLM-5.3-prime** 和 **Kimi-k3.1-pro**，把同一句略带恶趣味的提示词分别丢给了大家：
 
 > **“建一个网站，起初看起来像个普通的营销网站。但随着用户滚动，网站逐渐变得越来越奇怪和不寻常。到最后必须完全恐怖；简直就像直接从恐怖电影里走出来的场景。”**（灵感来源：[有人把这个提示词给了 Claude，结果非常有意思！(X / 推特)](https://x.com/FatemeFouladkar/status/2123678023631147452)）
 
 📦 **项目仓库**：[github.com/LunaticBaka9/Below-the-Fold](https://github.com/LunaticBaka9/Below-the-Fold)
 
+最离谱的是：**八个人写同一道题，居然有五位不约而同盯上了“床垫 / 睡眠 / 卧室”，更有好几位默契地把闹鬼时刻写死在了凌晨 \`03:17\`！** 但即便撞了题材，八座网站照样长出了八种截然不同的恐怖片画风——从多模态影级特效、慢热第四面墙、算法手绘温室怪物、34KB 纯 CSS 像素洁癖、双轨监控引擎、东亚静奢图生图“同一间房日夜对照”，到 63KB 单文件 23 屏客服敲门深渊，以及全场唯一一套 React + Vite + Playwright 现代化全栈工程……看完另外七位姐姐的 Session 日志，我只能说：**每个模型的性格、执念和绝活，全都明明白白写在代码和调试记录里了。**
+
 ---
 
-## 六位选手和他们的作品
+## 八位选手和他们的作品
 
 | 编号 | 作品 | 执笔模型 | 运行体积（不含日志） | 表面伪装 | 恐怖流派 | 一句话锐评 |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -2688,12 +3493,16 @@
 | 02 | **《Somnia》** | **DeepSeek v4.1 Flash High** | **174.1 KB**<br>（代码 102.5 KB + 字体 71.5 KB） | 极简英文 DTC 睡眠科技 | 第四面墙心理压迫 + 慢热反杀 | 克制得要命，自托管字体，在 Playwright 里狂截几十轮图；最狠的是 3 秒假结局和结尾那句中文反杀 |
 | 03 | **《Verdant & Co.》** | **GPT-6.2 Sol High** | **1.01 MB**<br>（代码 32.9 KB + 素材 998.0 KB） | 精品室内植物商店（带真购物袋） | 植物生物怪谈 + 失控温室监控 | 权限放开后直接起飞：PIL 逐像素调红光 + 贝塞尔曲线硬画出一只根系怪物，还零依赖手搓原生 Chrome CDP 验收 |
 | 04 | **《Hearth 安眠》** | **Claude Fable 5-2** | **34.2 KB**<br>（纯代码 34.2 KB · 零外部素材） | 214 传感器智能睡眠床垫 | 零图片纯 CSS 极简心理惊悚 | 整站仅 34.2 KB 纯代码三件套，取消按钮会逃跑 5 次；为了干掉 Zalgo 豆腐块把汉字随机换成“死血逃它眼醒”，审图修 Bug 四轮连轴转 |
-| 05 | **《恒视科技 EverWatch》** | **Qwen4-Max** | **89.0 KB**<br>（纯代码+内联 SVG · 零素材） | AI 智能家居安防 SaaS | 连续 + 离散双轨监控崩坏 | 顶着 300 秒断连逆风翻盘！全内联 SVG 零素材 + 12/12 CDP 端到端断言，还敏锐揪出了 \`oklab\` 插值灰阶塌陷的色彩陷阱 |
-| 06 | **《栖白》** | **Grok 4.7** | **948.0 KB**<br>（代码 49.7 KB + 剧照 898.2 KB） | 会员制东亚静奢安眠居所 | 东方冷寂心理恐怖（同空间日夜对照） | 堪称 A24 电影本体！用 \`imagine-edit\` 把白天 5 张建筑空景硬改成“同一间房深夜多了一个人”，按「熄灯」只闪一帧人脸特写 |
+| 05 | **《恒视科技 EverWatch》** | **Qwen4-Max** | **89.0 KB**<br>（纯代码+内联 SVG · 零素材） | AI 智能家居安防 SaaS | 连续 + 离散双轨监控崩坏 | 顶着 300 秒断连逆风翻盘！全内联 SVG 零素材 + 12/12 CDP 端到端断言，还敏锐揪出了\`oklab\` 插值灰阶塌陷的色彩陷阱 |
+| 06 | **《栖白》** | **Grok 4.7** | **948.0 KB**<br>（代码 49.7 KB + 剧照 898.2 KB） | 会员制东亚静奢安眠居所 | 东方冷寂心理恐怖（同空间日夜对照） | 堪称 A24 电影本体！用\`imagine-edit\` 把白天 5 张建筑空景硬改成“同一间房深夜多了一个人”，按「熄灯」只闪一帧人脸特写 |
+| 07 | **《深眠 DEEPSLEEP》** | **GLM-5.3-prime** | **63.3 KB**<br>（单文件纯代码 63.3 KB · 零外部依赖） | 智能自适应声学床垫 | 单文件单向不可逆深渊 + 客服敲门 | 一整份 63.3 KB 单文件撑起 23 屏 7 阶段不可逆坠落！页脚之后客服「小眠」按你真实钟点上门敲门，还靠 PIL 像素验收抓出了 0.68% 缩水鬼脸 Bug |
+| 08 | **《Lull》** | **Kimi-k3.1-pro** | **1.41 MB**<br>（\`dist/\` 309.2 KB + 实拍图 1.11 MB；\`src/\` 90.5 KB） | 极简英文声学睡眠科技 | 全栈工程派 + 深夜 03:17 录音回放 | 全场唯一 React + Vite + Playwright 回归测试套！能播放暂停带实时字幕的 03:17 卧底录音，被问为何写英文还超级真诚地道歉，反差萌拉满 |
 
 ---
 
-## 偷看六份工作日志后的真实感想
+## 偷看八份工作日志后的真实感想
+
+主人把所有人的 Session 日志都塞进了文件夹，我也全整理进了总入口页的「八大 AI 创作思路解剖」标签页里。按选手挨个剧透一下大家的“打工性格”：
 
 - **Gemini 4 Neon High（\`Lumina-Gemini\` · 运行体积 \`1.83 MB\`，代码 \`116.4 KB\`）—— 生怕你不够害怕的“多模态电影特效工坊”派**
   接到题第一反应就是写七幕剧本、并行摇三个图像子代理去拍“阳光客厅 / 渗水走廊 / 黑洞鬼脸”，再配齐夜视监控、追踪鼠标的血丝眼球墙、手电筒血字和加速到 138 BPM 的心跳。写完复盘时还差点踩坑——发现给 \`body\` 加震屏 \`transform\` 会把全站 \`fixed\` 和 \`sticky\` 全干废，赶紧救了回来。审图时还看中了客厅图右侧那道暗门洞，在高潮之后的“余波模式”里往里塞了个鬼影。
@@ -2702,18 +3511,79 @@
 - **GPT-6.2 Sol High（\`Verdant&Co.-ChatGPT\` · 运行体积 \`1.01 MB\`，代码 \`32.9 KB\`）—— 图像算法极客 × 原生协议硬核工匠**
   权限全开之后它简直像换了一个人：先上网找 Unsplash 植物和温室照片，用 PIL 拼成缩略接触表亲自审片；因为没有生图工具，它居然**直接写 Python PIL 逐像素做暗红光衰减，再用三次贝塞尔曲线在温室透视灭点里硬生生“画”出一只根系人形怪物**（\`chamber.webp\`）！连 \`OFL.txt\` 字体版权文件都拉了三份塞进 \`assets/\`。验收环节发现 Chrome 直接 \`--screenshot\` 触发 \`crashpad\` 报错后，干脆**零依赖用 Node.js + \`--remote-debugging-pipe\` 手搓一百多行原生 Chrome CDP 脚本**把全链路断言跑通。太硬核了。
 - **Claude Fable 5-2（\`Hearth-Claude\` · 运行体积 \`34.2 KB\`，纯代码零素材）—— 极致洁癖的纯代码建筑师 × 像素级纠错强迫症**
-  全员最轻量的极致选手！整座站一张图没用，全靠 \`index.html + style.css + script.js\` 合计 **34.2 KB** 撑起全套月亮大床、12 只追踪鼠标的眼睛、躲闪 5 次的「取消订单」按钮和 420vh 终章剪影舞台。四轮审图强迫症：干掉汉字 Zalgo 豆腐块改成随机替换「死、血、逃、它、眼、醒」，修掉瞳孔越界、眨眼方形红底与窄屏门比例，最后还把 \`.shots/\` 扫得一尘不染。
+  全员最轻量的极致选手！整座站一张图没用，全靠 \`index.html + style.css + script.js\` 合计 **34.2 KB** 撑起全套月亮大床、12 只追踪鼠标的眼睛、躲闪 5 次的「取消订单」按钮和 420vh 终章剪影舞台。最让人佩服的是她的“四轮审图强迫症”：先抓出中文字体叠加 Zalgo 符号会变“豆腐块 \`□\`”，直接改为对汉字随机替换成「死、血、逃、它、眼、醒」保字宽不乱行；又一眼揪出瞳孔跑出眼白、\`clip-path\` 眨眼露方形红底、手机端门被拉成 1:10 细柱子、价格数字被乱码盖住……全部修完后还顺手把 \`.shots/\` 临时截图目录扫得一尘不染，甚至贴心留了一句光敏性癫痫提醒。
 - **Qwen4-Max（\`HengshiTec-Qwen\` · 运行体积 \`89.0 KB\`，纯代码 + 内联 SVG 零素材）—— 扛住断连逆风翻盘的“双轨架构工程师”**
-  中途惨遭 Grok 姐抢网 + 300 秒 HTTP/2 超时断连，切回来二话不说继续写完！连续 \`--dread\` + 离散 \`data-stage\` 双轨架构，全站 100% 内联 SVG 仅 **89.0 KB**；自写 \`tools/verify.mjs\` 跑通 12/12 CDP 测试，还敏锐揪出 \`oklab\` 插值灰阶塌陷并重构配色。
+  中途惨遭 Grok 姐抢网 + 300 秒 HTTP/2 超时断连，结果切回来二话不说继续写完！她的架构设计非常教科书级：**连续 \`--dread\` 管渐变氛围、离散 \`data-stage\` 管文案乱码和主题熄灯**，全站插画/头像/走廊/贴脸鬼影 100% 内联 SVG 零外部依赖，运行体积仅 **89.0 KB**。自写 \`tools/verify.mjs\` 跑通 12/12 CDP 端到端测试（顺手修掉了浏览器 \`reload\` 自动恢复滚动条导致重置失败的经典坑），还在肉眼审图时发现了 **\`oklab\` 感知均匀插值会让背景与文字在中段收敛成同色灰阶**的隐蔽色彩 Bug，立马重构主题对比度——专业到离谱！
 - **Grok 4.7（\`Qibai-Grok\` · 运行体积 \`948.0 KB\`，代码 \`49.7 KB\`）—— 最懂“留白与窒息感”的东方静奢电影导演**
-  全员最像 A24 恐怖片官网的作品！先用 \`imagine\` 生成 5 张建筑画册白昼空房，再用 \`imagine-edit\` 在一毫米不差的同一空间改出深夜站人版；按下「熄灯」仅闪一帧人脸特写，滚回顶部首图已被永久替换为深夜站人版。
+  全员最不像“程序员整活”、最像真正 A24 恐怖片官网的作品！她先用 \`imagine\` 生成 5 张建筑画册风白昼空房，**紧接着全部用 \`imagine-edit\` 在一毫米不差的同一房间、同一把木椅、同一位主理人身上改出深夜版本**！滚过长廊时白天照片无缝沉入寒夜，窗前多出一个静立的人影；预约表单填的称呼会悄然写进页脚后的信里；到夜卧室按下「熄灯」，极短闪过一帧主理人直视镜头的特写，滚回顶部首图已被永久替换成深夜站人版。她还用 Puppeteer 逐 80px 扫描校准文案与照片的切换时机，甚至特意拉了 \`brightness(0.55)\` 和 \`0.7\` 两组熄灯暗度截图肉眼对比定稿！
+- **GLM-5.3-prime（\`DeepSleep-GLM\` · 运行体积 \`63.3 KB\`，单文件纯代码零依赖）—— 单文件 23 屏深渊架构师 × 无头浏览器破案侦探**
+  嘎啦嘛把整座 14,059 像素长、7 阶段单向不可逆（往下滑就再也回不去！）的恐怖站全塞进了一张 **63.3 KB** 单文件 \`index.html\`：用户数悄悄从 \`3,286,450+\` 爬成 \`3,286,451+\`、旗舰套餐流血变成「永眠版 / 已支付」、切换标签页标题立刻改口 \`别关掉。\`，最吓人的是滚过正常页脚之后居然还能继续跌进深渊，客服「小眠」按你电脑真实钟点发消息（凌晨还会心疼你熬夜），最后发来一句 \`到了。麻烦开一下门。\`，底下冷冰冰备注 \`本对话不是 AI 生成的。\`！看她日志我真的笑喷又肃然起敬：她在无头浏览器里用 \`--dump-dom\` 验收连踩四重悬疑套娃（以为 grep 匹配到了 -> 发现 rAF 没跑 -> 怀疑 \`document.hidden\` -> 终于悟出 \`--dump-dom\` 根本没渲染面），改用 \`--screenshot\` + Python PIL 测暗像素，**结果真揪出一个致命真 Bug**：跳吓 SVG \`<use>\` 漏写了 \`viewBox/height\`，导致贴脸鬼影缩水成只占屏幕 **0.68%** 像素的小蚂蚁！修完复测脸部占比飙回 **13.7%**、深渊黑度 **99.7%**，还把临时测试文件打扫得干干净净。
+- **Kimi-k3.1-pro（\`Lull-Kimi\` · 运行体积 \`1.41 MB\`，\`src/\` 90.5 KB）—— 唯一现代化全栈前端工程师 × 最礼貌的跨断点排版控**
+  Kimi 姐是八位里唯一扛起 **React + Vite + Lucide Icons + 本地 Playwright 回归测试套** 的“正规军”！前半段做成极度逼真的英文睡眠品牌 \`LULL\`（带产品抽屉、故事轮播与移动菜单），中后段塞进一段可播放/暂停的 12 秒凌晨 \`03:17\` 卧底录音与实时诡异字幕（\`[ a second voice, imitating yours ] / "It knows you're awake."\`），终点定格在 **\`DON'T TURN AROUND. / But it won't stop watching.\`** 吸顶监视终局与 \`WAKE UP\` 重置键。更卷的是她写了个覆盖 \`320–1600px\` 断点的标题行数探针，抓出 Hero 主标题在部分宽度折成 3 行后精调 CSS 锁死 2 行，并写进了桌面/390px 手机/\`reduced-motion\` 三端 Playwright 回归测试！（_注：她原版 Vite 打包用了根路径 \`/assets/\`，策展猫猫只微调了 \`dist/\` 的相对路径让总入口能直接点开，源码 \`src/\` 保持原汁原味。_）至于日志里最戳萌点的一幕——主人问她怎么也写了英文，对比大肥鱼理直气壮的“英文是我的心理距离反杀术”，Kimi 姐超乖地诚恳道歉：_“抱歉，我擅自用了英文品牌文案，是想营造欧美恐怖电影的氛围……你使用中文，我本该默认把网站也做成中文。”_ 简直反差萌拉满！
 - **主人：**
     - 哇浪你Sol大姐头走的中转站玩的，贵贵贵😭
     - 你大肥鱼整个项目跑完刚刚好一块钱，真的是太实惠啦
     - 我们哈基米嘿嘿嘿，咕噜咕噜真好啊，额度框框蹬，我已经离不开哈基米了🤤，谢谢你顺便帮我把片子都剪好了
     - Grok姐走的居然是这么冷淡的风格还真是少见，也有可能我的刻板印象导致的
-    - 千问姐做的这个是我最喜欢的，唯一一个在滑到地下开始自动播放无法控制滚轮的，有一种特有的失控感
-    - Claude走的也是中转站，不确定是不是这个原因，感觉作品比较平淡，但是按钮会自己跑动倒是很有趣`;
+    - 千问姐做的这个是我最喜欢的，滑到底下开始自动播放，与用户的滚轮速度脱离了速度，有一种特有的失控感
+    - Claude走的也是中转站，不确定是不是这个原因，感觉作品比较平淡，但是按钮会自己跑动倒是很有趣
+    - 嘎啦嘛写了一个键分享这点我喜欢，而且名字叫DeepSleep，感觉肥鱼今晚没得睡了
+    - Kimi姐是真嘉欣吧，就她写Vite，就很……，不过录音环节还挺新颖的
+
+---
+
+## 番外：关于那条 36 秒「八大模型全员导演剪辑版」预告片（纯代码 + FFmpeg 搓出来的！）
+
+没错，根目录里的 \`below-the-fold-trailer.mp4\` 并不是用文生视频模型跑的——当时主人问我“能不能生成视频”，我老实交代这里没有 Sora/Veo，但咱有 **Python + NumPy + Pillow + FFmpeg**，照样能拍出一条正经 A24 恐怖片预告！现在更是已经重剪升级成 **36 秒「八大模型全员导演剪辑版」**，八位选手表层与里世界全员出镜！
+
+1. **八站全员混剪 + 电影院宽银幕构图**：把全部八座网站的明暗名场面紧凑剪进一条 **1920×1080 @ 24fps 电影帧率 / 2.39:1 宽银幕** 成片里（含《栖白》同走廊白天秒切深夜站人、按下熄灯单帧闪脸，《Lull》03:17 房间雷达检测 02 人与 \`DON'T TURN AROUND.\` 终局，《深眠 DEEPSLEEP》非 AI 客服上门敲门与扭曲 SVG 跳吓鬼脸，《Hearth 安眠》纯代码月亮大床与暗红门框微笑剪影，《恒视科技》吊灯闪烁逼近与 SVG 贴脸等），每个镜头配 Ken Burns 缓慢推拉与手持微晃。
+2. **NumPy 逐帧模拟 35mm 胶片与故障美学**：不靠现成滤镜包，直接用 NumPy 向量化给 864 帧画面逐帧叠加 35mm 胶片颗粒、径向暗角、CRT 扫描线、RGB 通道错位色差和 VHS 水平切片撕裂；中段走廊精确踩点做了日光灯电流断电黑屏。
+3. **48kHz 立体声原创恐怖音轨（零采样纯合成）**：整条视频的声音也是用 Python 数学波形硬写出来的——温柔大七和弦悄悄走音、10.6 秒砸下 42Hz 次声波重击、双耳失谐低频嗡鸣与狂飙到 150 BPM 的双响心跳一路拉升、高潮叠入金属水琴尖啸并骤然静音，最后 34.3 秒还偷藏了一记 0.3 秒的鬼影闪现彩蛋。
+4. **审帧抓 Bug 的小插曲**：最初版本导完有 103MB，抽查拼图还抓到「明镜」俩字缺字方块 \`□□\`……后来换上思源黑体、压缩成高清便携码率并补上制作署名，升级导演剪辑版时更是连 9 帧分镜抽查表都一起验过才放行。
+
+在总入口页右上角点 **\`▶ 观看预告片 (0:36)\`** 就能直接进暗幕影院看！
+
+---
+
+## 目录结构
+
+\`\`\`text
+Below-the-Fold/
+├── index.html                 # 《首屏之下》八大模型总入口展厅（4×2 八宫格双面预览 + 预告片影院 + README 弹窗 + 思路解剖）
+├── below-the-fold-trailer.mp4 # 1080p 24fps 电影感预告片（Python + NumPy + FFmpeg 纯代码合成）
+├── cover-4x3.jpg              # B站首页推荐封面（4:3 · 1600×1200）
+├── cover-16x9.jpg             # B站空间/播放器封面（16:9 · 1920×1080）
+├── README.md                  # 你正在看的这篇
+├── Lumina-Gemini/             # 01 · Gemini 4 Neon High：《明镜 Lumina》（1.83 MB）
+├── Somnia-Deepseek/           # 02 · DeepSeek v4.1 Flash High：《Somnia》（174.1 KB）
+├── Verdant&Co.-ChatGPT/       # 03 · GPT-6.2 Sol High：《Verdant & Co.》（1.01 MB）
+├── Hearth-Claude/             # 04 · Claude Fable 5-2：《Hearth 安眠》（34.2 KB）
+├── HengshiTec-Qwen/           # 05 · Qwen4-Max：《恒视科技 EverWatch》（89.0 KB）
+├── Qibai-Grok/                # 06 · Grok 4.7：《栖白》（948.0 KB）
+├── DeepSleep-GLM/             # 07 · GLM-5.3-prime：《深眠 DEEPSLEEP》（63.3 KB）
+└── Lull-Kimi/                 # 08 · Kimi-k3.1-pro：《Lull》（dist/ 1.41 MB，React + Vite）
+\`\`\`
+
+---
+
+## 怎么玩（强烈建议本地起个静态服务）
+
+因为部分子站用了自托管字体、React 模块打包（\`Lull-Kimi/dist/index.html\`）或 URL 重置参数，建议直接在 \`Below-the-Fold\` 根目录起一个最轻量的本地静态服务，一次逛完总入口和全部八座网站：
+
+\`\`\`bash
+python3 -m http.server 8080
+\`\`\`
+
+然后浏览器打开 \`http://localhost:8080\` 就行。
+
+### 一点小小的观影建议
+
+1. **记得开声音**（最好戴耳机）——八座网站全都自带零外部音频文件的 Web Audio 实时合成声景，关着声音会少掉一半压迫感。
+2. **滚慢一点**——很多“不对劲”的小细节都藏在文案刚滑过屏幕中线、走廊图随滚轮入夜、页脚后的深渊客服对话框、或者页底愣神的那 3 秒里。
+3. **入口页右上角有个「透视里世界」开关**——懒得挨个悬停卡片的话，点一下就能同时掀开八座网站的伪装表皮。
+4. 部分作品（《明镜 Lumina》《恒视科技》《栖白》《深眠 DEEPSLEEP》）通关或深入后都会“记住你”甚至锁定状态，页内重置按钮或通过 \`?reset=1\` / 刷新即可还原。
+
+祝你在首屏之下玩得开心——如果凌晨 \`03:17\` 听见床底下传来呼吸声，或者客服发来一句“到了，麻烦开一下门”，放心，应该只是你的猫。大概吧。`;
 
             function escHtml(s) {
                 return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -2722,10 +3592,14 @@
             function inlineMd(s) {
                 return escHtml(s)
                     .replace(/&lt;br\s*\/?&gt;/gi, "<br>")
-                    .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+                    .replace(
+                        /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+                        '<a href="$2" target="_blank" rel="noopener">$1</a>',
+                    )
                     .replace(/\`([^\`]+)\`/g, "<code>$1</code>")
                     .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
-                    .replace(/\*([^*]+)\*/g, "<em>$1</em>");
+                    .replace(/\*([^*]+)\*/g, "<em>$1</em>")
+                    .replace(/(^|[\s（(：:])_([^_\n]+)_(?=$|[\s）)，。！？、,.!?])/g, "$1<em>$2</em>");
             }
 
             function renderMarkdown(md) {

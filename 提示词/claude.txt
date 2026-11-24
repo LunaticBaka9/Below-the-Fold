@@ -1,0 +1,21 @@
+【参考设定图】请上传：设定图/claude.png
+【建议画幅】3:4 竖图（或 1:1 方图），纯白背景（#FFFFFF），腰部以上半身立绘，嘴巴保持干净无遮挡的微笑闭口（方便后期做 Galgame 口型动画）。
+
+==================== 英文主提示词（推荐直接复制给网页生图） ====================
+Create a clean 2D Japanese anime visual novel (Galgame) half-body character standing sprite (waist-up portrait, 3:4 vertical aspect ratio) strictly based on the attached reference sheet claude.png.
+
+STRICT CHARACTER FIDELITY:
+- Keep EVERY exact design detail from claude.png: long flowing warm sunset-orange wavy hair, clear warm amber eyes, orange daisy/sunburst hair ornament with black-and-cream ribbon tassels on her left side, cream-white Victorian ruffled capelet blouse with orange sunburst embroidery, orange daisy brooch and black neck ribbon bow, laced white cuffs, and black-and-gold high-waist corset belt with orange sash ribbons.
+
+POSE & EXPRESSION:
+- Waist-up half-body composed aristocratic pose facing the viewer with refined, meticulous posture.
+- Her left hand gently touches the orange daisy bow at her collar/chest, while her right hand is raised gracefully to shoulder-side height with one slender index finger lifted slightly as if politely emphasizing perfectionist standards and clean precision (hand positioned clearly off to the side of her shoulder, leaving her entire face, chin, and mouth 100% unobstructed).
+- Serious, poised, slightly tsundere-perfectionist noble lady expression: focused warm amber eyes and a neat, composed closed-mouth gentle expression (lips cleanly closed for lip-sync animation).
+
+STYLE & BACKGROUND (CRITICAL):
+- Clean, crisp modern anime cel-shading and sharp fine lineart matching the exact art style of claude.png.
+- Plain, completely solid pure white background (#FFFFFF), zero background cast shadows, zero extra objects, zero text or watermarks.
+- Keep hair ornament, flowing orange hair, and raised hand cleanly inside the frame with comfortable white margins.
+
+==================== 中文提示词（备用） ====================
+请严格参考附带的设定图 claude.png，绘制一张二次元 Galgame 风格半身立绘（腰部以上，3:4 竖构图，纯白无杂物背景 #FFFFFF）。严格还原角色全部设定：暖橘色顺滑长卷发、温润琥珀瞳、左侧橘色太阳花与黑米双色丝带发饰、米白色复古荷叶边斗篷衬衫配橘色太阳花绣纹、领口橘花与黑丝带结、黑色金边束腰与橘色飘带。动作与神态：仪态端正的大小姐半身姿势，左手轻抚领口太阳花蝴蝶结，右手优雅抬至肩侧微微竖起一根食指，仿佛一丝不苟地强调秩序与像素级洁癖（手置于肩侧绝不遮挡脸部与嘴巴）；眼神认真清澈、略带几分傲娇大小姐气质，保持端庄克制的闭口浅笑（方便后续做口型动画）。画风与设定图完全一致，纯白背景、无文字水印。

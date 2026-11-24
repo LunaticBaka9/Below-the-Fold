@@ -1,0 +1,21 @@
+【参考设定图】请上传：设定图/gemini.png
+【建议画幅】3:4 竖图（或 1:1 方图），纯白背景（#FFFFFF），腰部以上半身立绘，嘴巴保持干净无遮挡的微笑闭口（方便后期做 Galgame 口型动画）。
+
+==================== 英文主提示词（推荐直接复制给网页生图） ====================
+Create a clean 2D Japanese anime visual novel (Galgame) half-body character standing sprite (waist-up portrait, 3:4 vertical aspect ratio) strictly based on the attached reference sheet gemini.png.
+
+STRICT CHARACTER FIDELITY:
+- Keep EVERY exact design detail from gemini.png: long wavy periwinkle-blue to lavender-pink gradient hair with twin small hair buns and ahoge, fluffy blue-purple cat ears, heterochromia eyes (bright pink-magenta right eye, warm golden-amber left eye), four-pointed crystal star hair ornament on her left side, dark navy-and-purple starry outfit with white frills, crystal star chest brooches, and gold chain accents.
+
+POSE & EXPRESSION:
+- Waist-up half-body pose facing the viewer with a playful slight lean forward.
+- Both hands raised playfully near her cheeks/collarbone in cute cat-paw gestures (kept clearly below and away from her chin and mouth so her face and mouth remain 100% unobstructed).
+- Bright, cheerful, energetic expression with sparkling eyes and a cute gentle closed-mouth cat smile (lips closed cleanly so it can be animated for lip-sync).
+
+STYLE & BACKGROUND (CRITICAL):
+- Clean, crisp modern anime cel-shading and sharp dark lineart matching the exact art style of gemini.png.
+- Plain, completely solid pure white background (#FFFFFF), zero shadows cast on background, zero background objects, zero text, zero watermarks, zero frame borders.
+- Keep head, cat ears, ahoge, and wide sleeves cleanly inside the frame with small white margins on top, left, and right.
+
+==================== 中文提示词（备用） ====================
+请严格参考附带的设定图 gemini.png，绘制一张二次元 Galgame 风格半身立绘（腰部以上，3:4 竖构图，纯白无杂物背景 #FFFFFF）。严格还原角色全部设定：紫蓝渐变长卷发、双侧小发髻与呆毛、毛茸茸蓝紫猫耳、右粉左金异色瞳、左侧四芒星水晶发饰、深蓝紫色星空短袖礼服与白色荷叶边及金色链条。动作与神态：面向镜头微微前倾，双手在脸颊下方/锁骨旁俏皮地比出可爱猫爪姿势（双手远离下巴与嘴巴，确保整张脸和嘴部完全无遮挡）；眼神闪亮充满元气，面带可爱自信的闭口猫猫微笑（闭嘴状态，方便后续制作张嘴口型动画）。画风与设定图完全一致的清透赛璐璐平涂与锐利线稿，纯白背景、无投影、无文字、无水印，头顶呆毛与两侧衣袖完整留在画面内。

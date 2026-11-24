@@ -1,0 +1,21 @@
+【参考设定图】请上传：设定图/gpt.png
+【建议画幅】3:4 竖图（或 1:1 方图），纯白背景（#FFFFFF），腰部以上半身立绘，嘴巴保持干净无遮挡的微笑闭口（方便后期做 Galgame 口型动画）。
+
+==================== 英文主提示词（推荐直接复制给网页生图） ====================
+Create a clean 2D Japanese anime visual novel (Galgame) half-body character standing sprite (waist-up portrait, 3:4 vertical aspect ratio) strictly based on the attached reference sheet gpt.png.
+
+STRICT CHARACTER FIDELITY:
+- Keep EVERY exact design detail from gpt.png: long flowing pure-white wavy hair, curved pale-white dragon horns, delicate elf ears, ornate silver spiral-knot hair ornament on her left side, pale violet-silver eyes, pure-white high-neck sleeveless gown with ruffled detached sleeves, silver six-petal spiral knot motifs and tassels, delicate white dragon wings gracefully half-spread behind her shoulders, and a glimpse of her silver-white scaled dragon tail behind her waist.
+
+POSE & EXPRESSION:
+- Waist-up half-body aristocratic pose angled slightly with chin gently raised, looking straight at the viewer with regal big-sister poise and quiet technical pride.
+- One arm folded elegantly across her waist while her other hand is raised gracefully to chest height with slender fingers subtly open (palm lightly angled upward, evoking refined craftsmanship and absolute mastery — kept clearly below her chin so her face and mouth are 100% unobstructed).
+- Serene, confident, slightly haughty yet graceful expression with cool luminous violet-silver eyes and a poised, subtle closed-mouth smirk/smile (lips cleanly closed for lip-sync animation).
+
+STYLE & BACKGROUND (CRITICAL):
+- Clean, crisp modern anime cel-shading and sharp delicate lineart matching the exact art style of gpt.png.
+- Plain, completely solid pure white background (#FFFFFF), zero background cast shadows, zero extra props, zero text or watermarks.
+- Keep dragon horns, wingtips, and flowing white hair cleanly framed inside the canvas with white margins.
+
+==================== 中文提示词（备用） ====================
+请严格参考附带的设定图 gpt.png，绘制一张二次元 Galgame 风格半身立绘（腰部以上，3:4 竖构图，纯白无杂物背景 #FFFFFF）。严格还原角色全部设定：纯白波浪长发、白色弯曲龙角、精灵尖耳、左侧银色螺旋绳结发饰、淡紫银色双瞳、纯白高领礼服与荷叶边袖饰、银色六瓣螺旋花纹与流苏，背后半展开优雅的纯白龙翼与隐约可见的白色龙鳞尾。动作与神态：微微侧身并优雅轻扬下巴，自带行业前辈的从容气场与技术自豪感；一手优雅环抱于腰际，另一手轻抬至胸口侧方纤指舒展（手部位于下巴下方绝不遮脸与嘴巴）；眼神淡定自信、略带一丝高傲笑意，唇角微扬保持闭口状态（方便后续做口型动画）。画风与设定图完全一致，纯白背景、无文字水印。

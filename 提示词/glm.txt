@@ -1,0 +1,21 @@
+【参考设定图】请上传：设定图/glm.png
+【建议画幅】3:4 竖图（或 1:1 方图），纯白背景（#FFFFFF），腰部以上半身立绘，嘴巴保持干净无遮挡的微笑闭口（方便后期做 Galgame 口型动画）。
+
+==================== 英文主提示词（推荐直接复制给网页生图） ====================
+Create a clean 2D Japanese anime visual novel (Galgame) half-body character standing sprite (waist-up portrait, 3:4 vertical aspect ratio) strictly based on the attached reference sheet glm.png.
+
+STRICT CHARACTER FIDELITY:
+- Keep EVERY exact design detail from glm.png: long straight jet-black hair with midnight-blue inner highlights, dark fluffy fox/wolf ears, lace-trimmed black sleep mask resting on top of her head featuring cute closed-eye embroidery, silver bells, and small "Z" badge, gothic black-and-white ruffled blouse with black bow and blue crystal brooch, black double-belted waist corset with silver chain and "Z" hip badge, and a glimpse of her big fluffy black fox tail curving behind her side.
+
+POSE & EXPRESSION:
+- Waist-up half-body pose facing the viewer with a clever, slightly sleepy tech-strategist vibe.
+- Her right hand is raised gracefully to gently touch the side edge of the lace sleep mask resting on her head, while her left hand holds a sleek small black pocket notebook and silver pen at chest/waist level (both hands and notebook positioned clearly away from her face so her chin and mouth stay 100% unobstructed).
+- Drowsy-cute yet sharp, sly little fox-girl smile: slightly half-lidded clever dark-slate eyes with a knowing closed-mouth smile (lips cleanly closed for lip-sync animation).
+
+STYLE & BACKGROUND (CRITICAL):
+- Clean, crisp modern anime cel-shading and sharp lineart matching the exact art style of glm.png.
+- Plain, completely solid pure white background (#FFFFFF), zero shadows on background, zero extra background elements, zero text or watermarks.
+- Keep fluffy fox ears, sleep mask, raised hand, and hair cleanly inside the frame with comfortable white margins.
+
+==================== 中文提示词（备用） ====================
+请严格参考附带的设定图 glm.png，绘制一张二次元 Galgame 风格半身立绘（腰部以上，3:4 竖构图，纯白无杂物背景 #FFFFFF）。严格还原角色全部设定：黑长直挑染深蓝发尾、毛茸茸黑狐耳、头顶带闭眼刺绣与银铃铛及“Z”字徽章的黑色蕾丝睡眠眼罩、黑白哥特荷叶边衬衫配黑蝴蝶结与蓝钻胸针、双扣黑束腰与银链、“Z”字腰饰及身后微露的蓬松黑狐尾。动作与神态：面向镜头，右手优雅抬起轻扶头顶睡眠眼罩一侧，左手在胸腹前拿着一本精致的黑色小笔记本和银笔（手和本子完全远离脸部与下巴，确保嘴巴 100% 无遮挡）；微眯狐狸眼带着慵懒又狡黠精明的军师笑意，闭口轻笑（方便后续做口型动画）。画风与设定图完全一致，纯白背景、无文字水印。

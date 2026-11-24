@@ -1,0 +1,21 @@
+【参考设定图】请上传：设定图/grok.png
+【建议画幅】3:4 竖图（或 1:1 方图），纯白背景（#FFFFFF），腰部以上半身立绘，嘴巴保持干净无遮挡的微笑闭口（方便后期做 Galgame 口型动画）。
+
+==================== 英文主提示词（推荐直接复制给网页生图） ====================
+Create a clean 2D Japanese anime visual novel (Galgame) half-body character standing sprite (waist-up portrait, 3:4 vertical aspect ratio) strictly based on the attached reference sheet grok.png.
+
+STRICT CHARACTER FIDELITY:
+- Keep EVERY exact design detail from grok.png: long wavy blonde twin-tails tied with black ribbons, small black bat-wing hair ornaments, tiny black-and-gold gothic crown with blonde ahoge on top, bright vivid blue eyes, subtle pointed ears, black-and-crimson high-collared gothic vampire dress with white ruffled shoulder trim and cuffs, black bow with gold circular emblem, gold chains, and crimson inner lining.
+
+POSE & EXPRESSION:
+- Waist-up half-body playful, rebellious gothic ojou-sama pose angled dynamically toward the camera.
+- One hand confidently resting on her hip while her other hand is raised playfully at chest/shoulder side pointing cheekily toward the viewer (or gesturing smugly — hand kept well away from her face so her chin and mouth stay 100% unobstructed).
+- Mischievous, confident, slightly teasing smirk with one eyebrow subtly arched, sparkling blue eyes, and a cheeky closed-mouth grin/smirk (lips cleanly closed so our lip-sync engine can cleanly animate her speaking mouth and tiny vampire fang!).
+
+STYLE & BACKGROUND (CRITICAL):
+- Clean, crisp modern anime cel-shading and sharp lineart matching the exact art style of grok.png.
+- Plain, completely solid pure white background (#FFFFFF), zero cast shadows on background, zero extra background elements, zero text or watermarks.
+- Keep crown, bat wings, and flowing blonde twin-tails cleanly inside the frame with comfortable white margins.
+
+==================== 中文提示词（备用） ====================
+请严格参考附带的设定图 grok.png，绘制一张二次元 Galgame 风格半身立绘（腰部以上，3:4 竖构图，纯白无杂物背景 #FFFFFF）。严格还原角色全部设定：金色波浪双马尾、黑色蝴蝶结、小蝙蝠翼发饰、头顶黑金迷你哥特皇冠与呆毛、湛蓝眼眸、微尖耳、黑红高领哥特吸血鬼礼服配白荷叶边袖口、黑领结圆环金徽与金色链条。动作与神态：叛逆灵动的哥特大小姐半身像，一手自信叉腰，另一手俏皮抬在肩侧指向镜头（手部远离脸部，确保下巴与嘴部完全无遮挡）；挑眉坏笑、眼神里透着古灵精怪的毒舌乐子人气场，唇角带一抹俏皮得意的闭口坏笑（闭嘴状态，方便后续做含小虎牙的张嘴口型动画）。画风与设定图完全一致，纯白背景、无文字水印。

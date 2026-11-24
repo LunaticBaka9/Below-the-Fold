@@ -1,0 +1,21 @@
+【参考设定图】请上传：设定图/kimi.png
+【建议画幅】3:4 竖图（或 1:1 方图），纯白背景（#FFFFFF），腰部以上半身立绘，嘴巴保持干净无遮挡的微笑闭口（方便后期做 Galgame 口型动画）。
+
+==================== 英文主提示词（推荐直接复制给网页生图） ====================
+Create a clean 2D Japanese anime visual novel (Galgame) half-body character standing sprite (waist-up portrait, 3:4 vertical aspect ratio) strictly based on the attached reference sheet kimi.png.
+
+STRICT CHARACTER FIDELITY:
+- Keep EVERY exact design detail from kimi.png: long flowing wavy silver-white hair with soft icy-blue inner tips, gentle lavender-blue eyes, white frilled headband, silver crescent moon and Dark Side of the Moon rainbow-prism hair ornament with dark navy ribbon and "K" / musical-note charms on her left side, white ruffled blouse with navy "(K)" collar bow, navy starry musical-note capelet with crescent moons, navy corseted waist with silver chains, hanging "K" card charm, and silver flute at her hip.
+
+POSE & EXPRESSION:
+- Waist-up half-body gentle honor-student pose facing the viewer with a slight polite head tilt.
+- Cradling a neat thick stack of crisp engineering binders / starry sheet-music documents softly in both arms against her chest (evoking her legendary long-context studious nature — IMPORTANT: keep the top of the documents and her hands clearly BELOW her collar and chin so her face, neck, and mouth remain 100% unobstructed!).
+- Warm, sincere, slightly shy and super polite smile with luminous gentle lavender-blue eyes and a soft closed-mouth smile (lips cleanly closed for lip-sync animation).
+
+STYLE & BACKGROUND (CRITICAL):
+- Clean, crisp modern anime cel-shading and sharp delicate lineart matching the exact art style of kimi.png.
+- Plain, completely solid pure white background (#FFFFFF), zero shadows on background, zero extra background elements, zero text or watermarks.
+- Keep headband, rainbow prism ornament, and flowing silver hair cleanly inside the frame with comfortable white margins.
+
+==================== 中文提示词（备用） ====================
+请严格参考附带的设定图 kimi.png，绘制一张二次元 Galgame 风格半身立绘（腰部以上，3:4 竖构图，纯白无杂物背景 #FFFFFF）。严格还原角色全部设定：银白微蓝挑染长卷发、温柔淡紫蓝眼眸、白色蕾丝发箍、左侧银月与彩虹三棱镜发饰及深蓝丝带和“K”/音符吊坠、白荷叶边衬衫配“(K)”深蓝领结、点缀弯月星辰的深蓝披肩、深蓝银扣束腰与银链。动作与神态：微微歪头的乖巧优等生半身像，双手温柔地将一叠厚厚的工程档案/星空乐谱资料抱在胸前（关键：资料顶部与双手务必保持在领口和下巴下方，绝对不遮挡下巴与嘴部，方便后续做口型动画！）；眼神温柔诚恳又略带一点腼腆礼貌，面带轻柔的闭口微笑。画风与设定图完全一致，纯白背景、无文字水印。

@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="深眠科技 DEEPSLEEP —— 新一代智能自适应床垫。今晚，睡得比过去十年都好。">
+<meta name="theme-color" content="#faf9f6">
+<title>深眠科技 DEEPSLEEP — 今晚，睡得更好</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='82' font-size='82'>🌙</text></svg>">
+<style>
+/* ============ 基础 ============ */
+:root{
+  --dread:0;
+  --ink:#1b1c22; --ink2:#5b5d68; --mut:#8a8c96;
+  --bg:#faf9f6; --card:#ffffff; --line:#e9e5dd;
+  --acc:#2f4d73; --red:#a01111;
+  --deepbg:#030304; --deeptx:#b6b0a7;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink); line-height:1.7;
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+body.locked{overflow:hidden}
+h1,h2,h3,h4,.serif{font-family:"Songti SC","Noto Serif SC","STSong","SimSun",Georgia,serif}
+::selection{background:#dfe7f0}
+img,svg{vertical-align:middle}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+#page{position:relative;z-index:1;
+  filter:saturate(calc(1 - var(--dread)*.45)) contrast(calc(1 + var(--dread)*.1)) brightness(calc(1 - var(--dread)*.2));
+}
+
+/* ============ 固定覆盖层 ============ */
+#darkveil{position:fixed;inset:0;z-index:45;background:#030306;opacity:calc(var(--dread)*.74);pointer-events:none}
+#redveil{position:fixed;inset:0;z-index:46;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 110%,#200303 0%,#000 60%);opacity:calc((var(--dread) - .5)*.55)}
+#vignette{position:fixed;inset:0;z-index:47;pointer-events:none;
+  background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.88) 100%);opacity:calc(var(--dread)*1.15)}
+#staticC{position:fixed;inset:0;z-index:54;width:100%;height:100%;pointer-events:none;
+  opacity:calc((var(--dread) - .5)*1.4);image-rendering:pixelated;mix-blend-mode:screen}
+#grain{position:fixed;inset:-20%;z-index:55;pointer-events:none;opacity:calc(var(--dread)*.26);mix-blend-mode:overlay}
+#grain svg{width:100%;height:100%}
+
+/* 角落里的注视者 */
+.watch{position:fixed;display:flex;gap:12px;z-index:90;pointer-events:none;opacity:0}
+#w1{top:76px;right:26px;opacity:calc((var(--dread) - .45)*2.6)}
+#w2{bottom:26px;left:26px;opacity:calc((var(--dread) - .72)*3.6)}
+.eye{width:34px;height:15px;background:#d9d3c7;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;animation:blink 7s infinite}
+.eye:nth-child(2){animation-delay:.12s}
+@keyframes blink{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.08)}}
+.pupil{width:9px;height:9px;border-radius:50%;background:#0a0a0c;will-change:transform}
+
+/* ============ 导航 ============ */
+#nav{position:fixed;top:0;left:0;right:0;height:64px;z-index:40;display:flex;align-items:center;
+  gap:28px;padding:0 clamp(16px,4vw,40px);
+  background:rgba(250,249,246,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(0,0,0,.05);transition:background 1.6s,opacity 1.6s}
+.logo{display:flex;align-items:baseline;gap:10px;text-decoration:none;color:var(--ink);transition:color 1.6s}
+.lg-cn{font-family:"Songti SC","Noto Serif SC",serif;font-size:22px;font-weight:700;letter-spacing:.08em}
+.lg-en{font-size:11px;letter-spacing:.42em;color:var(--mut);transition:color 1.6s}
+.nlinks{margin-left:auto;display:flex;gap:26px}
+.nlinks a{color:var(--ink2);text-decoration:none;font-size:14px;transition:color 1.6s}
+.nlinks a:hover{color:var(--ink)}
+.nright{display:flex;align-items:center;gap:12px}
+body[data-stage="3"] #nav{background:rgba(10,10,14,.82)}
+body[data-stage="3"] .logo{color:#c9c3ba}
+body[data-stage="3"] .lg-en{color:#6b665e}
+body[data-stage="3"] .nlinks a{color:#8f8a82}
+body[data-stage="4"] #nav{opacity:0;pointer-events:none}
+#muteBtn{position:fixed;top:10px;right:12px;z-index:600;width:36px;height:36px;border-radius:50%;
+  border:1px solid rgba(0,0,0,.12);background:rgba(255,255,255,.75);backdrop-filter:blur(6px);
+  cursor:pointer;font-size:16px;line-height:1;opacity:.5;transition:opacity .3s,background 1.2s,border-color 1.2s}
+#muteBtn:hover{opacity:1}
+body[data-stage="4"] #muteBtn{background:rgba(10,10,12,.7);border-color:rgba(255,255,255,.15)}
+
+/* ============ 按钮 ============ */
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 30px;border-radius:999px;
+  font-size:15px;text-decoration:none;cursor:pointer;border:1px solid transparent;
+  transition:transform .25s,box-shadow .25s,background .25s,color .25s,border-color 1.6s}
+.btn-primary{background:var(--acc);color:#fff;box-shadow:0 10px 26px rgba(47,77,115,.28)}
+.btn-primary:hover{transform:translateY(-2px)}
+.btn-ghost{border-color:var(--line);color:var(--ink);background:#fff}
+.btn-ghost:hover{transform:translateY(-2px)}
+.btn-nav{padding:9px 22px;font-size:13.5px}
+body[data-stage="3"] .btn-ghost{background:#101016;color:#c9c3ba;border-color:#2a2a33}
+body[data-stage="3"] .btn-nav{background:#15151d;color:#c9c3ba;border:1px solid #2a2a33}
+
+/* ============ Hero ============ */
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;padding-top:110px;padding-bottom:70px;background:var(--bg)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.badge{display:inline-block;font-size:12px;letter-spacing:.18em;border:1px solid var(--line);padding:6px 14px;border-radius:999px;color:var(--mut);background:rgba(255,255,255,.6)}
+h1{font-size:clamp(34px,5.2vw,58px);line-height:1.25;margin:22px 0 18px;font-weight:600;letter-spacing:.02em}
+.sub{font-size:clamp(15px,1.6vw,18px);color:var(--ink2);margin:0;transition:color 1.8s}
+.cta{display:flex;gap:14px;margin:30px 0 14px;flex-wrap:wrap}
+.trust{font-size:12.5px;color:var(--mut);margin:0;transition:color 1.8s}
+.hero-visual svg{width:100%;height:auto;display:block}
+.z{font-family:"Songti SC",Georgia,serif;font-size:20px;fill:#8fa4bf;transform-box:fill-box;transform-origin:center;animation:zz 4.5s ease-in-out infinite}
+.z2{font-size:27px;animation-delay:.6s}.z3{font-size:34px;animation-delay:1.2s}
+@keyframes zz{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(-9px);opacity:1}}
+#lumpG{transition:opacity 2.4s}
+body[data-stage="2"] #lumpG{opacity:.32}
+body[data-stage="3"] #lumpG{opacity:.95}
+.hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);color:var(--mut);font-size:12.5px;letter-spacing:.2em;text-align:center;transition:opacity .5s}
+.hint .arr{display:block;font-size:14px;animation:bob 2.2s infinite;margin-bottom:2px}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+/* ============ 通用区块 ============ */
+.sec{padding:110px 0;transition:background-color 1.8s ease}
+.mkt{background:var(--bg)}
+.sec-head{text-align:center;margin-bottom:56px}
+.sec-title{font-size:clamp(28px,3.6vw,42px);margin:0 0 12px;font-weight:600}
+.kicker{display:block;font-size:12px;letter-spacing:.34em;color:var(--mut);margin-bottom:10px;transition:color 1.8s}
+.sec-head p{color:var(--ink2);margin:0;transition:color 1.8s}
+
+/* 上部条 */
+.logos{padding:56px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center}
+.logos-row{display:flex;gap:clamp(24px,5vw,64px);justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+.logos-row span{font-family:"Songti SC",serif;font-size:17px;color:#9aa0ab;letter-spacing:.12em}
+.logos small{font-size:11px;color:#b4b6bd;letter-spacing:.1em}
+
+/* 功能卡 */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:34px 30px;
+  box-shadow:0 12px 34px rgba(25,26,32,.05);transition:background 1.8s,border-color 1.8s,transform .3s}
+.card:hover{transform:translateY(-4px)}
+.fico{width:46px;height:46px;border-radius:14px;background:#eef2f7;display:grid;place-items:center;margin-bottom:18px;color:var(--acc);transition:background 1.8s,color 1.8s}
+body[data-stage="2"] .fico{color:#8a2f2f}
+.card h3{font-size:20px;margin:0 0 10px}
+.card p{color:var(--ink2);font-size:15px;margin:0;transition:color 1.8s}
+body[data-stage="3"] .card{background:#0e0e13;border-color:#232329}
+body[data-stage="3"] .fico{background:#15151c}
+body[data-stage="3"] .card p{color:#9a958c}
+
+/* 数据 */
+.stats{background:linear-gradient(#faf9f6,#f4f2ec)}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+.stat{padding:30px 8px}
+.num{font-family:"Songti SC",serif;font-size:clamp(26px,3.2vw,42px);font-weight:600;letter-spacing:.02em}
+.lab{font-size:13px;color:var(--mut);margin-top:6px;letter-spacing:.14em;transition:color 1.8s}
+body[data-stage="3"] .stats{background:#0a0a0e}
+body[data-stage="3"] .lab{color:#736e66}
+body[data-stage="3"] .num{color:#cfc9c0}
+
+/* 评价 */
+.rev .stars{color:#e8b64c;letter-spacing:4px;font-size:14px;margin-bottom:14px;transition:color 1.4s}
+body[data-stage="2"] .rev .stars{color:#c0392b}
+.quote{font-size:16px;line-height:1.85;margin:0 0 18px;font-family:"Songti SC",serif;transition:color 1.8s}
+body[data-stage="3"] .quote{color:#cfc9c0}
+.meta{font-size:12px;color:var(--mut);letter-spacing:.08em;margin:0;transition:color 1.8s}
+body[data-stage="3"] .meta{color:#736e66}
+.avatar{width:44px;height:44px;border-radius:50%;background:#e9e4da;color:#7d7568;display:grid;place-items:center;
+  font-weight:700;margin-bottom:16px;position:relative;transition:background 1.8s}
+.ini{font-size:16px}
+.avf{display:none;position:absolute;inset:0;align-items:center;justify-content:center;gap:6px}
+.ae{width:7px;height:7px;background:#111;border-radius:50%;position:relative}
+.am{width:16px;height:8px;border-bottom:2px solid #111;border-radius:0 0 12px 12px}
+body[data-stage="2"] .av.hollow .avf{display:flex}
+body[data-stage="3"] .avf{display:flex}
+body[data-stage="3"] .av .ini{display:none}
+body[data-stage="3"] .av{background:#101014}
+body[data-stage="3"] .ae{width:9px;height:13px;background:#000}
+body[data-stage="3"] .ae::after{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:3px;height:3px;background:#c11414;border-radius:50%}
+body[data-stage="3"] .am{width:24px;height:5px;background:#000;border:none;border-radius:3px}
+
+/* 价格 */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;align-items:stretch}
+.tier{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:40px 34px;
+  display:flex;flex-direction:column;position:relative;box-shadow:0 12px 34px rgba(25,26,32,.05);
+  transition:background 1.8s,border-color 1.8s}
+.tier.feat{border-color:var(--acc);box-shadow:0 24px 60px rgba(47,77,115,.16)}
+.tname{font-family:"Songti SC",serif;font-size:22px;margin:0}
+.tprice{font-size:38px;font-family:"Songti SC",serif;margin:14px 0 22px;transition:color 1.8s}
+.per{font-size:13px;color:var(--mut)}
+.tier ul{list-style:none;padding:0;margin:0 0 30px;display:grid;gap:12px}
+.tier li{font-size:14.5px;color:var(--ink2);padding-left:24px;position:relative;transition:color 1.8s}
+.tier li::before{content:"✓";position:absolute;left:0;color:var(--acc);font-size:12px}
+body[data-stage="3"] .tier{background:#0e0e13;border-color:#232329}
+body[data-stage="3"] .tier li::before{content:"×";color:#a33434}
+body[data-stage="3"] .tier li{color:#9a958c}
+body[data-stage="3"] .tprice{color:#cfc9c0}
+.badge2{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--acc);color:#fff;
+  font-size:11px;letter-spacing:.2em;padding:5px 14px;border-radius:999px;white-space:nowrap}
+.rip::before,.rip::after{content:"";position:absolute;top:0;width:4px;background:linear-gradient(#7d0f0f,#b31414);
+  border-radius:0 0 4px 4px;opacity:0;height:0;transition:opacity 1.4s,height 1.6s}
+body[data-stage="3"] .rip{border-color:#3a0d0d}
+body[data-stage="3"] .rip::before{opacity:1;height:66px;left:22%}
+body[data-stage="3"] .rip::after{opacity:1;height:32px;right:16%;transition-delay:.7s}
+
+/* FAQ */
+.faq{max-width:760px;margin:0 auto}
+details{border-bottom:1px solid var(--line);padding:22px 4px;transition:border-color 1.8s}
+body[data-stage="3"] details{border-color:#232329}
+summary{cursor:pointer;font-family:"Songti SC",serif;font-size:18px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+.pm{font-size:20px;color:var(--mut);transition:transform .3s;flex:none}
+details[open] .pm{transform:rotate(45deg)}
+details p{color:var(--ink2);margin:14px 0 0;transition:color 1.8s}
+body[data-stage="3"] details p{color:#9a958c}
+
+/* 订阅 */
+.signup{text-align:center}
+.signup form{display:flex;gap:12px;max-width:470px;margin:34px auto 12px}
+.signup input{flex:1;min-width:0;padding:14px 22px;border-radius:999px;border:1px solid var(--line);
+  font-size:15px;background:#fff;outline:none;transition:background 1.8s,border-color 1.8s,color 1.8s}
+body[data-stage="3"] .signup input{background:#0c0c11;border-color:#2a2a33;color:#ddd}
+.signup .btn{flex:none}
+.small{font-size:12px;color:var(--mut);transition:color 1.8s}
+
+/* 页脚 */
+footer.foot{border-top:1px solid var(--line);padding:70px 0 40px;transition:border-color 1.8s}
+body[data-stage="3"] footer.foot{border-color:#232329}
+.fcols{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
+.fcols h4{font-size:13px;letter-spacing:.18em;color:var(--ink);margin:0 0 16px;transition:color 1.8s}
+.fcols a{display:block;color:var(--ink2);font-size:14px;text-decoration:none;margin-bottom:10px;transition:color 1.8s}
+.fcols a:hover{color:var(--ink)}
+body[data-stage="3"] .fcols h4{color:#c6c1b9}
+body[data-stage="3"] .fcols a{color:#736e66}
+.fbottom{margin-top:50px;padding-top:24px;border-top:1px solid var(--line);font-size:12.5px;color:var(--mut);
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;transition:color 1.8s,border-color 1.8s}
+body[data-stage="3"] .fbottom{border-color:#232329;color:#6b665e}
+
+/* ============ 深渊区 ============ */
+.deep{background:var(--deepbg);color:var(--deeptx)}
+.tall{position:relative}
+.sticky{position:sticky;top:0;height:100vh;overflow:hidden}
+.vw,.fw{display:grid;place-items:center}
+#voidFace{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(72vw,72vh);
+  height:auto;aspect-ratio:400/520;
+  opacity:0;filter:blur(1.5px) brightness(.5) contrast(1.1);pointer-events:none}
+.vline,.fline{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);margin:0;text-align:center;
+  max-width:84vw;opacity:0;transition:opacity 1.6s}
+.vline{font-family:"Songti SC",serif;font-size:clamp(19px,2.6vw,27px);letter-spacing:.14em;color:#8f8880}
+.fline{font-family:"Songti SC",serif;font-size:clamp(15px,2vw,19px);letter-spacing:.22em;color:#6f6862}
+.vline.on,.fline.on{opacity:1}
+
+/* 客服对话 */
+#chat{padding:150px 0}
+.chatbox{max-width:430px;margin:0 auto;background:#0b0b10;border:1px solid #23232b;border-radius:20px;
+  overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.chat-head{display:flex;gap:12px;align-items:center;padding:16px 18px;border-bottom:1px solid #1b1b22;background:#0e0e15}
+.cav{width:36px;height:36px;border-radius:50%;background:#20242e;display:grid;place-items:center;
+  color:#8fa4c4;font-family:"Songti SC",serif;position:relative;flex:none}
+.chat-head b{font-size:14px;color:#d5cfc6;font-weight:600;display:block;line-height:1.3}
+.online{font-size:11px;color:#5fae6f;font-style:normal;transition:color 1.4s}
+body[data-stage="4"] .online{color:#a33434}
+body[data-stage="4"] .cav{background:#050507;color:transparent;box-shadow:inset 0 0 0 1px #2a2a33}
+body[data-stage="4"] .cav::before,body[data-stage="4"] .cav::after{content:"";position:absolute;top:14px;width:4px;height:4px;border-radius:50%;background:#c11414}
+body[data-stage="4"] .cav::before{left:10px}
+body[data-stage="4"] .cav::after{right:10px}
+.msgs{padding:18px;display:flex;flex-direction:column;gap:12px;min-height:330px}
+.m{max-width:82%;padding:10px 14px;border-radius:14px;font-size:14px;line-height:1.65}
+.m.bot{align-self:flex-start;background:#17171f;color:#c9c3ba;border-top-left-radius:4px}
+.m.me{align-self:flex-end;background:#26303f;color:#dbe4ef;border-top-right-radius:4px}
+.m.typing{display:flex;gap:5px;padding:13px 14px}
+.m.typing span{width:6px;height:6px;background:#5a5a66;border-radius:50%;animation:tdot 1.2s infinite}
+.m.typing span:nth-child(2){animation-delay:.2s}
+.m.typing span:nth-child(3){animation-delay:.4s}
+@keyframes tdot{0%,60%,100%{opacity:.25;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
+.chat-note{margin:0;padding:10px 18px 16px;font-size:11px;color:#4b4b55;letter-spacing:.05em}
+
+/* 走廊 */
+.cw{background:#020203}
+.door{position:absolute;left:50%;top:30%;transform:translateX(-50%);width:24vmin;height:38vmin;
+  background:#0c0c0f;border:1px solid #1a1a20;border-radius:2px 2px 0 0}
+.door .gap{position:absolute;left:50%;top:4%;transform:translateX(-50%);width:7px;height:92%;
+  background:#cfc08a;box-shadow:0 0 34px 10px rgba(207,192,138,.22);animation:flick 3.4s infinite}
+@keyframes flick{0%,100%{opacity:.85}8%{opacity:.4}12%{opacity:.9}47%{opacity:.55}52%{opacity:.95}78%{opacity:.6}}
+.door .knob{position:absolute;right:9%;top:52%;width:7px;height:7px;border-radius:50%;background:#232329}
+.figwrap{position:absolute;left:50%;top:29%;width:13vmin;transform:translateX(-50%) scale(.2);
+  transform-origin:50% 100%;will-change:transform}
+.fig{width:100%;display:block;filter:drop-shadow(0 0 18px rgba(0,0,0,.9))}
+.fe{animation:fef 2.8s infinite}
+@keyframes fef{0%,100%{opacity:0}45%,55%{opacity:.9}}
+.cor-t{position:absolute;left:50%;transform:translateX(-50%);font-family:"Songti SC",serif;letter-spacing:.3em;
+  color:#7a746c;font-size:15px;opacity:0;transition:opacity 1.8s;white-space:nowrap;margin:0}
+#corT1{top:12%}#corT2{bottom:14%}
+.cor-t.on{opacity:1}
+.cor-shade{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none}
+
+/* ============ Jumpscare ============ */
+#jump{position:fixed;inset:0;z-index:400;background:#000;display:grid;place-items:center;
+  opacity:0;visibility:hidden;pointer-events:none}
+#jump.go{opacity:1;visibility:visible}
+#jump.done{display:none}
+#jump .face{width:auto;height:min(88vw,82vh);aspect-ratio:400/520;opacity:0;transform:scale(.16)}
+#jump.go .face{animation:zoomin .55s cubic-bezier(.16,.84,.3,1) forwards, jshake .065s .55s 10 alternate}
+@keyframes zoomin{0%{transform:scale(.16);opacity:0}55%{opacity:1}100%{transform:scale(1.12);opacity:1}}
+@keyframes jshake{from{transform:scale(1.12) rotate(-1.2deg) translate(-6px,4px)}to{transform:scale(1.12) rotate(1.2deg) translate(6px,-5px)}}
+#jump::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;
+  background:radial-gradient(circle,#8d0e0e 0%,#1a0202 60%,transparent 100%)}
+#jump.go::after{animation:rfl .12s .5s 3}
+@keyframes rfl{0%,100%{opacity:0}50%{opacity:.55}}
+body.shake{animation:bshake .09s 10 alternate}
+@keyframes bshake{from{transform:translate(5px,-4px)}to{transform:translate(-6px,3px)}}
+
+/* ============ 结局 ============ */
+#end{position:fixed;inset:0;z-index:500;background:#050506;color:#b9b3aa;display:grid;place-items:center;
+  text-align:center;opacity:0;visibility:hidden;transition:opacity 1.8s ease}
+#end.show{opacity:1;visibility:visible}
+.ein{max-width:82vw}
+#end .el1{font-size:14px;letter-spacing:.4em;color:#6b655d;margin:0 0 10px;opacity:0}
+#end .eh{font-family:"Songti SC",serif;font-size:clamp(30px,6.5vw,56px);margin:0 0 26px;letter-spacing:.06em;opacity:0}
+#end .el2{font-size:15px;color:#847d74;margin:0 0 8px;opacity:0}
+#end .el3{font-size:12px;color:#57524b;letter-spacing:.1em;margin:0 0 46px;opacity:0}
+.ebtns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;opacity:0}
+#end.show .el1{animation:eup 1.2s .5s forwards}
+#end.show .eh{animation:eup 1.4s 1.2s forwards}
+#end.show .el2{animation:eup 1.2s 2.2s forwards}
+#end.show .el3{animation:eup 1.2s 3s forwards}
+#end.show .ebtns{animation:eup 1.2s 3.8s forwards}
+@keyframes eup{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.ebtn{padding:12px 28px;border-radius:999px;border:1px solid #33333b;background:transparent;color:#c9c3ba;
+  font-size:14px;cursor:pointer;letter-spacing:.1em;transition:.3s;font-family:inherit}
+.ebtn:hover{border-color:#5a5a66;background:#111116}
+
+/* ============ 杂项 ============ */
+#toast{position:fixed;left:50%;bottom:42px;transform:translateX(-50%) translateY(20px);
+  background:rgba(12,12,16,.94);color:#d9d3ca;padding:12px 24px;border-radius:999px;font-size:13.5px;
+  letter-spacing:.05em;z-index:600;opacity:0;pointer-events:none;transition:opacity .4s,transform .4s;
+  max-width:86vw;text-align:center}
+#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+#flash{position:fixed;inset:0;z-index:300;background:#020203;display:grid;place-items:center;
+  opacity:0;pointer-events:none}
+#flash.on{opacity:1}
+.ftxt{font-family:"Songti SC",serif;font-size:clamp(40px,11vw,140px);color:#cfc9c0;letter-spacing:.3em}
+body[data-stage="3"] ::selection{background:#4a0505;color:#fff}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:#d8d5cf;border-radius:5px}
+body[data-stage="4"]::-webkit-scrollbar-track{background:#050506}
+body[data-stage="4"]::-webkit-scrollbar-thumb{background:#3a0a0a}
+
+/* 揭示动画 */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s ease}
+.rv.vis{opacity:1;transform:none}
+
+/* ============ 响应式 ============ */
+@media (max-width:940px){
+  .hero-grid{grid-template-columns:1fr;gap:34px}
+  .hero-visual{max-width:480px;margin:0 auto}
+  .grid3{grid-template-columns:1fr}
+  .stat-grid{grid-template-columns:repeat(2,1fr)}
+  .tiers{grid-template-columns:1fr}
+  .tier.feat{transform:none}
+  .fcols{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:680px){
+  .nlinks{display:none}
+  .sec{padding:80px 0}
+  .signup form{flex-direction:column}
+  .cor-t{white-space:normal;width:88vw;letter-spacing:.15em}
+}
+@media (prefers-reduced-motion:reduce){
+  .z,.hint .arr,.eye,.door .gap,.fe{animation:none!important}
+  #jump.go .face{animation:zoomslow 2.2s ease forwards}
+  #jump.go::after{animation:none}
+  body.shake{animation:none}
+}
+@keyframes zoomslow{from{transform:scale(.5);opacity:0}to{transform:scale(1);opacity:1}}
+</style>
+<noscript><style>.vline,.fline{position:static;transform:none;opacity:1;margin:8px 0}</style></noscript>
+</head>
+<body data-stage="0">
+
+<!-- 共享符号：那张脸 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="faceWarp" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.013 0.02" numOctaves="2" seed="9" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="15"/>
+    </filter>
+    <symbol id="faceSym" viewBox="0 0 400 520">
+      <g filter="url(#faceWarp)">
+        <path d="M200,28 C292,26 338,132 334,258 C330,392 288,502 200,506 C112,502 70,392 66,258 C62,132 108,26 200,28 Z" fill="#ded8cb"/>
+        <path d="M96,86 Q70,210 84,340" stroke="#0e0d0b" stroke-width="7" fill="none" opacity="0.55"/>
+        <path d="M304,86 Q330,210 316,340" stroke="#0e0d0b" stroke-width="7" fill="none" opacity="0.55"/>
+        <ellipse cx="146" cy="212" rx="40" ry="54" fill="#050505" transform="rotate(-7 146 212)"/>
+        <ellipse cx="256" cy="208" rx="42" ry="56" fill="#050505" transform="rotate(6 256 208)"/>
+        <circle cx="150" cy="222" r="6.5" fill="#c11414"/>
+        <circle cx="252" cy="216" r="6.5" fill="#c11414"/>
+        <circle cx="158" cy="204" r="2.5" fill="#8d8a84"/>
+        <circle cx="260" cy="198" r="2.5" fill="#8d8a84"/>
+        <path d="M190,274 l7,24 M210,274 l-7,24" stroke="#191713" stroke-width="5" stroke-linecap="round" fill="none"/>
+        <path d="M112,346 L142,362 L166,348 L196,366 L226,348 L252,362 L288,346 Q294,430 200,464 Q106,430 112,346 Z" fill="#050505"/>
+        <path d="M132,262 q-6,44 -2,74" stroke="#57534a" stroke-width="1.6" fill="none" opacity="0.8"/>
+        <path d="M272,258 q8,40 4,78" stroke="#57534a" stroke-width="1.6" fill="none" opacity="0.8"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- 覆盖层 -->
+<div id="grain" aria-hidden="true">
+  <svg>
+    <filter id="gr"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+    <rect width="100%" height="100%" filter="url(#gr)"/>
+  </svg>
+</div>
+<canvas id="staticC" width="180" height="120" aria-hidden="true"></canvas>
+<div id="darkveil" aria-hidden="true"></div>
+<div id="redveil" aria-hidden="true"></div>
+<div id="vignette" aria-hidden="true"></div>
+<div id="flash" aria-hidden="true"><span class="ftxt">回去</span></div>
+
+<!-- 注视者 -->
+<div class="watch" id="w1" aria-hidden="true">
+  <div class="eye"><div class="pupil"></div></div>
+  <div class="eye"><div class="pupil"></div></div>
+</div>
+<div class="watch" id="w2" aria-hidden="true">
+  <div class="eye"><div class="pupil"></div></div>
+  <div class="eye"><div class="pupil"></div></div>
+</div>
+
+<nav id="nav">
+  <a class="logo" href="#hero">
+    <span class="lg-cn" data-c data-x2="沉眠" data-x3="深埋">深眠</span>
+    <span class="lg-en" data-c data-x2="DE̸EP̶SLEEP" data-x3="D E E P — V O I D">DEEPSLEEP</span>
+  </a>
+  <div class="nlinks">
+    <a href="#features">功能</a>
+    <a href="#reviews">评价</a>
+    <a href="#pricing">价格</a>
+    <a href="#faq">常见问题</a>
+  </div>
+  <div class="nright">
+    <a class="btn btn-primary btn-nav" href="#pricing" data-x2="立即入睡" data-x3="过来吧">立即购买</a>
+  </div>
+</nav>
+<button id="muteBtn" title="声音开关（快捷键 M）" aria-label="声音开关">🔊</button>
+
+<main id="page">
+
+  <!-- ============ HERO ============ -->
+  <section class="sec mkt hero" id="hero" data-st="0">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <div class="badge rv" data-x3="1997 年度睡眠科技金奖">2026 年度睡眠科技金奖 · 红点设计奖</div>
+        <h1 class="rv" data-c data-x2="今晚，睡得比过去十年都久。" data-x3="今晚，别醒来。">今晚，睡得<br>过去十年都好。</h1>
+        <p class="sub rv" data-c data-x2="自适应支撑 · 深眠监测 · 梦的清除率 100%" data-x3="您已经睡了很久了。您只是不记得。">深眠 Zero 智能自适应床垫<br>三千万次睡姿数据训练 · 临床验证深睡提升 37%</p>
+        <div class="cta rv">
+          <a class="btn btn-primary" href="#pricing" data-x2="立即入睡" data-x3="躺下">立即体验深眠</a>
+          <a class="btn btn-ghost" href="#features" data-x3="别看这个">了解更多 →</a>
+        </div>
+        <p class="trust rv" data-x2="30 天无忧退换（至今无人退换）" data-x3="退换通道已关闭">30 天无忧退换 · 10 年质保 · 免费送装上楼</p>
+      </div>
+      <div class="hero-visual rv">
+        <svg viewBox="0 0 560 400" role="img" aria-label="深眠 Zero 智能床垫">
+          <defs>
+            <radialGradient id="bgG" cx="50%" cy="42%" r="65%">
+              <stop offset="0%" stop-color="#e6edf5"/>
+              <stop offset="100%" stop-color="#f7f5f0"/>
+            </radialGradient>
+          </defs>
+          <circle cx="280" cy="205" r="182" fill="url(#bgG)"/>
+          <circle cx="428" cy="72" r="24" fill="#efe9d6" opacity="0.9"/>
+          <circle cx="428" cy="72" r="36" fill="#efe9d6" opacity="0.16"/>
+          <circle cx="120" cy="60" r="2" fill="#b9c5d4"/><circle cx="180" cy="38" r="1.6" fill="#b9c5d4"/>
+          <circle cx="330" cy="46" r="2" fill="#b9c5d4"/><circle cx="500" cy="140" r="1.8" fill="#b9c5d4"/>
+          <ellipse cx="280" cy="354" rx="168" ry="13" fill="#191a20" opacity="0.07"/>
+          <rect x="112" y="318" width="336" height="16" rx="8" fill="#a9805a"/>
+          <rect x="124" y="334" width="12" height="26" rx="5" fill="#8d6848"/>
+          <rect x="424" y="334" width="12" height="26" rx="5" fill="#8d6848"/>
+          <rect x="122" y="262" width="316" height="60" rx="18" fill="#ffffff" stroke="#e6e2da"/>
+          <path d="M188,322 L188,272 Q198,262 212,262 L438,262 L438,322 Z" fill="#5f7ea3"/>
+          <path d="M232,270 q4,26 0,52 M292,270 q4,26 0,52 M352,270 q4,26 0,52" stroke="#4c688a" stroke-width="3" fill="none"/>
+          <ellipse cx="162" cy="252" rx="52" ry="18" fill="#fbfaf7" stroke="#e6e2da"/>
+          <g id="lumpG" opacity="0">
+            <ellipse cx="300" cy="250" rx="58" ry="15" fill="#5f7ea3"/>
+            <path d="M118,252 Q138,226 176,236 Q158,248 166,262 Z" fill="#17161a"/>
+            <path d="M124,250 q-14,4 -22,2 M132,256 q-10,8 -18,8 M142,240 q-8,-6 -16,-6" stroke="#17161a" stroke-width="2.5" fill="none"/>
+          </g>
+          <text class="z z1" x="470" y="128">z</text>
+          <text class="z z2" x="492" y="96">z</text>
+          <text class="z z3" x="516" y="62">z</text>
+        </svg>
+      </div>
+    </div>
+    <div class="hint" id="hint">
+      <span class="arr">↓</span>
+      <span data-c data-x2="继续向下" data-x3="别停">向下滚动，发现更好的睡眠</span>
+    </div>
+  </section>
+
+  <!-- ============ 媒体条 ============ -->
+  <section class="logos mkt" id="logos" data-st="0">
+    <div class="wrap">
+      <div class="logos-row rv">
+        <span>睡研周刊</span><span>都市晚风</span><span>好梦研究所</span><span>今晚头条</span><span>消费观察</span>
+      </div>
+      <small class="rv">以上均为虚构媒体 · 品牌示意</small>
+    </div>
+  </section>
+
+  <!-- ============ 功能 ============ -->
+  <section class="sec mkt" id="features" data-st="0">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="kicker">0.1 毫米级贴身响应</span>
+        <h2 class="sec-title" data-c data-x3="为您而生">为深睡而生</h2>
+      </div>
+      <div class="grid3">
+        <div class="card rv">
+          <div class="fico">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 8c2-3 4-3 6 0s4 3 6 0 4-3 6 0M4 13c2-3 4-3 6 0s4 3 6 0 4-3 6 0M4 18c2-3 4-3 6 0s4 3 6 0 4-3 6 0"/></svg>
+          </div>
+          <h3 data-c data-x3="自适应包裹">自适应支撑</h3>
+          <p data-c data-x2="它每 0.1 秒都在学习您。很快，它就比您更了解您的身体。" data-x3="它已经学会了您。现在，它在练习成为您。">4,000 个独立感应单元，每 0.1 秒贴合您的身体曲线。</p>
+        </div>
+        <div class="card rv">
+          <div class="fico">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4h4l5 4V6l-5 4H4z"/><path d="M17 9l5 6M22 9l-5 6"/></svg>
+          </div>
+          <h3 data-c data-x3="无声">静音黑科技</h3>
+          <p data-c data-x2="静得能听见心跳。数一数，是不是不止一个。" data-x3="您听。数到第三个了吗。">低于 30dB 的运行噪音，静得像深海。</p>
+        </div>
+        <div class="card rv">
+          <div class="fico">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg>
+          </div>
+          <h3 data-c data-x3="记得一切">深眠监测</h3>
+          <p data-c data-x2="它记得您每一晚的呼吸频率。比您记得的更清楚。" data-x3="包括您以为没人听见的那句话。">呼吸、心率、翻身，晨起报告一目了然。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 数据 ============ -->
+  <section class="sec mkt stats" id="stats" data-st="1">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="kicker">来自睡眠实验室</span>
+        <h2 class="sec-title" data-c data-x3="数字从不睡觉">数字不会说谎</h2>
+      </div>
+      <div class="stat-grid">
+        <div class="stat rv">
+          <div class="num" data-c data-stat data-x1="3,286,451+" data-x2="∞" data-x3="∞">3,286,450+</div>
+          <div class="lab" data-c data-x1="深眠家庭（包括您）" data-x2="他们都没有醒" data-x3="一个都没醒">深眠家庭已入睡</div>
+        </div>
+        <div class="stat rv">
+          <div class="num" data-c data-stat data-x1="99.2%" data-x2="0 投诉" data-x3="0 幸存">99.2%</div>
+          <div class="lab" data-c data-x1="用户满意度" data-x2="至今无人退换" data-x3="无人。">用户满意度</div>
+        </div>
+        <div class="stat rv">
+          <div class="num" data-c data-stat data-x1="+37%" data-x2="47 天" data-x3="永远">+37%</div>
+          <div class="lab" data-c data-x1="平均深睡提升" data-x2="最长连续睡眠" data-x3="别担心，不疼">平均深睡提升</div>
+        </div>
+        <div class="stat rv">
+          <div class="num" data-c data-stat data-x1="30dB" data-x2="20dB" data-x3="0">30dB</div>
+          <div class="lab" data-c data-x1="运行噪音" data-x2="安静得能听见心跳" data-x3="别的心跳">运行噪音</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 评价 ============ -->
+  <section class="sec mkt" id="reviews" data-st="1">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="kicker">来自真实用户</span>
+        <h2 class="sec-title" data-c data-x3="他们睡得很沉">他们睡得很好</h2>
+      </div>
+      <div class="grid3">
+        <div class="card rev rv">
+          <div class="avatar av"><b class="ini">王</b><span class="avf"><i class="ae"></i><i class="am"></i><i class="ae"></i></span></div>
+          <div class="stars">★★★★★</div>
+          <p class="quote" data-c data-x1="买回家第一晚就没再醒过。十年的失眠，好了。" data-x2="我已经三天没能醒过来了。不是失眠——是醒不来。" data-x3="帮帮。我打不出那个字了。">买回家第一晚就睡了个整觉。十年的失眠，好了。</p>
+          <p class="meta" data-x3="王女士 · 已读不回">王女士 · 使用 2 个月</p>
+        </div>
+        <div class="card rev rv">
+          <div class="avatar av hollow"><b class="ini">张</b><span class="avf"><i class="ae"></i><i class="am"></i><i class="ae"></i></span></div>
+          <div class="stars">★★★★★</div>
+          <p class="quote" data-c data-x1="床垫很稳。半夜翻身，一点声音都没有。" data-x2="太稳了。半夜有翻身声的时候，我并没有在翻身。" data-x3="那不是我。真的不是我。">床垫很稳，翻身几乎没有声音，同屋的人完全感觉不到。</p>
+          <p class="meta" data-x3="张先生 · 停用">张先生 · 老用户</p>
+        </div>
+        <div class="card rev rv">
+          <div class="avatar av hollow"><b class="ini">匿</b><span class="avf"><i class="ae"></i><i class="am"></i><i class="ae"></i></span></div>
+          <div class="stars">★★★★★</div>
+          <p class="quote" data-c data-x1="很安静。像一个人睡一样安静。" data-x2="我们买的是单人款。可床上有两个人的凹陷。" data-x3="另一边的凹陷，昨晚又深了一点。">夫妻款很宽敞，互不打扰，像一个人睡一样。</p>
+          <p class="meta" data-x3="陈先生 · 一人">陈先生 &amp; 李女士 · 夫妻款</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 价格 ============ -->
+  <section class="sec mkt" id="pricing" data-st="2">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="kicker">所有版本均含 10 年质保</span>
+        <h2 class="sec-title" data-c data-x3="选择您的时间">选择您的夜</h2>
+      </div>
+      <div class="tiers">
+        <div class="tier rv">
+          <h3 class="tname">安睡版</h3>
+          <div class="tprice" data-c data-stat data-x3="¥ —">¥2,999</div>
+          <ul>
+            <li>自适应支撑系统</li>
+            <li>高分子静音层</li>
+            <li>10 年整床质保</li>
+          </ul>
+          <a class="btn btn-ghost" href="#signup" data-x3="别选这个">选择安睡</a>
+        </div>
+        <div class="tier feat rv">
+          <span class="badge2" data-c data-x2="最后的机会" data-x3="最后的机会">最受欢迎</span>
+          <h3 class="tname" data-c>深眠版</h3>
+          <div class="tprice" data-c data-stat>¥3,999</div>
+          <ul>
+            <li>安睡版全部功能</li>
+            <li>深眠监测 · 晨起报告</li>
+            <li>升级抗菌面料</li>
+          </ul>
+          <a class="btn btn-primary" href="#signup" data-x2="躺下吧" data-x3="别犹豫">选择深眠</a>
+        </div>
+        <div class="tier rip rv" id="ripTier">
+          <h3 class="tname" data-c data-x2="永眠版" data-x3="永眠版">旗舰版</h3>
+          <div class="tprice" data-c data-stat data-x2="面议" data-x3="已支付">¥5,999</div>
+          <ul>
+            <li data-x2="全部功能" data-x3="上门。永远。">全部功能，含深眠监测</li>
+            <li data-x2="上门服务" data-x3="手套是为您戴的。">白手套上门服务</li>
+            <li data-x2="永久保存" data-x3="无需维护">终身维护</li>
+          </ul>
+          <a class="btn btn-ghost" href="#signup" data-x2="选择永眠" data-x3="已为您选好">选择旗舰</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="sec mkt" id="faq" data-st="2">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="kicker">您问，我们答</span>
+        <h2 class="sec-title" data-c data-x3="您一直都知道">常见问题</h2>
+      </div>
+      <div class="faq">
+        <details class="rv" open>
+          <summary>新床垫有味道吗？<span class="pm">+</span></summary>
+          <p data-c data-x1="新床垫有轻微材料气味，通风 48 小时即可散去。大部分用户一晚就习惯了。" data-x2="那不是气味。那是它在熟悉您的味道。" data-x3="您已经闻不到了，对吗？它已经熟悉您了。">新床垫有轻微的材料气味，通风 48 小时即可完全散去。</p>
+        </details>
+        <details class="rv">
+          <summary>30 天无理由退换怎么办理？<span class="pm">+</span></summary>
+          <p data-c data-x1="签收后 30 天内联系我们即可。目前退换率为 0.0%，您可以放心。" data-x2="可以退。只是至今没有一位客户成功退掉过。" data-x3="已经过了 30 天了。已经过了很多年了。">签收后 30 天内联系我们即可，上门取件，全额退款。</p>
+        </details>
+        <details class="rv">
+          <summary>智能监测会泄露我的隐私吗？<span class="pm">+</span></summary>
+          <p data-c data-x1="数据仅存储在本地，不上传云端，您完全掌控自己的睡眠数据。" data-x2="数据不会上传。它只是记住了。" data-x3="您的呼吸、心跳、梦话，它都记得。比您记得的还清楚。">数据仅存储在本地，不会上传云端，您完全掌控自己的睡眠数据。</p>
+        </details>
+        <details class="rv">
+          <summary>可以去线下体验吗？<span class="pm">+</span></summary>
+          <p data-c data-x1="可以。门店很近，就在您家附近。" data-x2="可以。门店很近。您夜里听到的敲击声，是门店在装修。" data-x3="不用去了。门店今晚就过来。">欢迎莅临线下体验店（北京 · 上海 · 成都，共 12 家门店）。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 订阅 ============ -->
+  <section class="sec mkt signup" id="signup" data-st="3">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="kicker" data-x3="就在今晚">限时开放</span>
+        <h2 class="sec-title" data-c data-x3="还醒着吗？">准备好睡个好觉了吗？</h2>
+        <p data-c data-x2="留下邮箱。就一封。" data-x3="留下你的名字就行。">留下邮箱，每月一封《深眠研究》。</p>
+      </div>
+      <form class="rv" id="nlForm">
+        <input type="text" id="nlInput" placeholder="请输入您的邮箱" data-p2="请输入您的名字" data-p3="不用填了" autocomplete="off">
+        <button class="btn btn-primary" type="submit" data-x2="留下来" data-x3="别走">订阅</button>
+      </form>
+      <p class="small rv" data-c data-x2="随时退订。" data-x3="从来没有人退订成功。">随时退订，绝不打扰。</p>
+    </div>
+  </section>
+
+  <!-- ============ 页脚 ============ -->
+  <footer class="foot mkt" id="foot" data-st="3">
+    <div class="wrap">
+      <div class="fcols rv">
+        <div>
+          <h4>产品</h4>
+          <a href="#hero">深眠 Zero</a><a href="#hero">深眠 Pro</a><a href="#hero">智能助眠枕</a><a href="#hero">卧室传感器</a>
+        </div>
+        <div>
+          <h4>公司</h4>
+          <a href="#hero">关于我们</a><a href="#hero">新闻动态</a><a href="#hero">加入我们</a><a href="#hero">联系我们</a>
+        </div>
+        <div>
+          <h4>支持</h4>
+          <a href="#faq">客服中心</a><a href="#faq">配送安装</a><a href="#faq">退换政策</a><a href="#faq">质保条款</a>
+        </div>
+        <div>
+          <h4>法律</h4>
+          <a href="#foot" data-x2="我们知道一切" data-x3="我们知道一切">隐私政策</a>
+          <a href="#foot" data-x2="您已经同意了" data-x3="您在打开页面时就同意了">服务条款</a>
+          <a href="#foot" data-x3="成为我们">招聘信息</a>
+        </div>
+      </div>
+      <div class="fbottom">
+        <span data-c data-x3="© 1997 — 永远 · 深眠科技 · 我们没有关门">© 2026 深眠（北京）睡眠科技有限公司 · 京ICP备2026000000号</span>
+        <span data-c data-x2="本页面为虚构演示。床垫是存在的。" data-x3="本页面不完全是虚构的。">本页面为虚构演示，所有产品与服务均不存在。</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ 深渊·一 ============ -->
+  <section class="deep tall" id="void" data-st="4" style="height:520vh">
+    <div class="sticky vw">
+      <svg id="voidFace" viewBox="0 0 400 520" aria-hidden="true"><use href="#faceSym"/></svg>
+      <p class="vline">谢谢您看到这里。</p>
+      <p class="vline">其实，页面上不去了。</p>
+      <p class="vline">您已经试过了，对吗？</p>
+      <p class="vline">下面的部分，本来不该有人看到。</p>
+      <p class="vline">我们做床垫。也可以为您做别的。</p>
+      <p class="vline">木头的。很安静。躺进去，谁也吵不醒您。</p>
+      <p class="vline">别怕。很快就不冷了。</p>
+    </div>
+  </section>
+
+  <!-- ============ 深渊·二：客服 ============ -->
+  <section class="deep" id="chat" data-st="4">
+    <div class="wrap">
+      <div class="chatbox rv">
+        <div class="chat-head">
+          <span class="cav">眠</span>
+          <div><b>深眠客服 · 小眠</b><i class="online">在线</i></div>
+        </div>
+        <div class="msgs" id="msgs"></div>
+        <p class="chat-note" id="chatNote">本对话由 AI 生成，仅供演示</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 深渊·三：走廊 ============ -->
+  <section class="deep tall" id="corridor" data-st="5" style="height:340vh">
+    <div class="sticky cw">
+      <div class="door"><i class="gap"></i><i class="knob"></i></div>
+      <div class="figwrap" id="figwrap">
+        <svg class="fig" viewBox="0 0 120 260" aria-hidden="true">
+          <circle cx="60" cy="26" r="17" fill="#000"/>
+          <path d="M43,40 C30,60 33,120 30,180 C28,224 24,246 22,258 L98,258 C96,246 92,224 90,180 C87,120 90,60 77,40 Z" fill="#000"/>
+          <path d="M34,62 C18,86 14,160 10,236" stroke="#000" stroke-width="7" fill="none" stroke-linecap="round"/>
+          <path d="M86,62 C102,86 106,160 110,236" stroke="#000" stroke-width="7" fill="none" stroke-linecap="round"/>
+          <circle class="fe" cx="53" cy="24" r="2.6" fill="#e33333"/>
+          <circle class="fe" cx="67" cy="24" r="2.6" fill="#e33333"/>
+        </svg>
+      </div>
+      <p class="cor-t" id="corT1">您听到了吗。</p>
+      <p class="cor-t" id="corT2">那不是从页面里传来的。</p>
+      <div class="cor-shade" id="corShade"></div>
+    </div>
+  </section>
+
+  <!-- ============ 深渊·四：终章 ============ -->
+  <section class="deep tall" id="finale" data-st="6" style="height:170vh">
+    <div class="sticky fw">
+      <p class="fline">页面到这里，就结束了。</p>
+      <p class="fline">谢谢您看完我们的介绍。</p>
+      <p class="fline">不过在那之前——</p>
+      <p class="fline">您有没有觉得，最近特别容易累？</p>
+      <p class="fline">眼睛很沉。房间很安静。</p>
+      <p class="fline">其实，您早就开始睡着了。</p>
+      <p class="fline">从打开这个页面的那一刻起。</p>
+      <p class="fline">好了。往下滑。最后一屏。</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- Jumpscare -->
+<div id="jump" aria-hidden="true">
+  <svg class="face" viewBox="0 0 400 520"><use href="#faceSym"/></svg>
+</div>
+
+<!-- 结局 -->
+<div id="end" role="dialog" aria-label="结局">
+  <div class="ein">
+    <p class="el1">现在，</p>
+    <h2 class="eh">您也睡不着了。</h2>
+    <p class="el2">深眠科技祝您，晚安。</p>
+    <p class="el3">您永远不会知道自己是什么时候睡着的。</p>
+    <div class="ebtns">
+      <button class="ebtn" id="endAgain">重新来过</button>
+      <button class="ebtn" id="endShare">分享给一个你讨厌的人</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" role="status"></div>
+
+<script>
+(function () {
+'use strict';
+var $ = function (s, r) { return (r || document).querySelector(s); };
+var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+var RM = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+var clamp = function (v, a, b) { return Math.min(b, Math.max(a, v)); };
+
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+scrollTo(0, 0);
+addEventListener('load', function () { scrollTo(0, 0); measure(); });
+
+/* ---------- 引用 ---------- */
+var root = document.documentElement, body = document.body;
+var staticC = $('#staticC'), flash = $('#flash'), jump = $('#jump'), end = $('#end');
+var toastEl = $('#toast'), hint = $('#hint'), figwrap = $('#figwrap');
+var corT1 = $('#corT1'), corT2 = $('#corT2'), corShade = $('#corShade'), voidFace = $('#voidFace');
+var vlines = $$('.vline'), flines = $$('.fline'), pupils = $$('.pupil');
+
+/* ---------- 阶段 ---------- */
+var secs = $$('[data-st]').map(function (el) { return { el: el, st: +el.getAttribute('data-st'), top: 0, h: 0 }; });
+var vh = innerHeight, docH = 1, stage = 0, dread = 0;
+var scareDone = false, chatStarted = false;
+
+function measure() {
+  vh = innerHeight;
+  docH = document.documentElement.scrollHeight;
+  secs.forEach(function (s) {
+    var r = s.el.getBoundingClientRect();
+    s.top = r.top + scrollY; s.h = r.height;
+  });
+}
+measure();
+var mt; addEventListener('resize', function () { clearTimeout(mt); mt = setTimeout(measure, 200); });
+setTimeout(measure, 800);
+
+var TITLES = [
+  '深眠科技 DEEPSLEEP — 今晚，睡得更好',
+  '深眠科技 — 您已浏览过半 · 继续往下',
+  '深眠科技 — 别再往下看了',
+  '我们看得见您',
+  '它已经醒了',
+  '别回头',
+  '……'
+];
+
+function applyStage(s) {
+  stage = Math.max(stage, s);
+  body.setAttribute('data-stage', stage);
+  $$('[data-x1],[data-x2],[data-x3]').forEach(function (el) {
+    var best = null, n = 0;
+    [1, 2, 3].forEach(function (k) {
+      var v = el.getAttribute('data-x' + k);
+      if (v && k <= stage && k > n) { best = v; n = k; }
+    });
+    if (best != null) { el.textContent = best; el.setAttribute('data-base', best); }
+  });
+  $$('[data-p2]').forEach(function (el) {
+    if (stage >= 2) el.placeholder = el.getAttribute('data-p2');
+  });
+  $$('[data-p3]').forEach(function (el) {
+    if (stage >= 3) el.placeholder = el.getAttribute('data-p3');
+  });
+  if (stage >= 4) { var cn = $('#chatNote'); if (cn) cn.textContent = '本对话不是 AI 生成的。'; }
+  document.title = TITLES[Math.min(stage, TITLES.length - 1)];
+}
+
+document.addEventListener('visibilitychange', function () {
+  if (stage < 2) return;
+  document.title = document.hidden ? '别关掉。' : '您回来了。';
+});
+
+/* ---------- 揭示动画 ---------- */
+if ('IntersectionObserver' in window) {
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) e.target.classList.add('vis'); });
+  }, { rootMargin: '0px 0px -12% 0px', threshold: 0.15 });
+  $$('.rv').forEach(function (el) { io.observe(el); });
+  var ioChat = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (e.isIntersecting && e.intersectionRatio > 0.35) { startChat(); ioChat.disconnect(); }
+    });
+  }, { threshold: [0.35] });
+  ioChat.observe($('#chat'));
+} else {
+  $$('.rv').forEach(function (el) { el.classList.add('vis'); });
+}
+
+/* ---------- 文字腐化 ---------- */
+var GLYPHS = '▓▒░#@%&$*!?/\\|~^<>';
+var HAN = '眠夜床门血睡醒眼耳';
+var ZM = []; for (var zi = 0x300; zi <= 0x36f; zi++) ZM.push(String.fromCharCode(zi));
+
+function scramble(t) {
+  return t.split('').map(function (c) {
+    if (c === ' ') return c;
+    var r = Math.random();
+    if (r < 0.35) return GLYPHS[Math.random() * GLYPHS.length | 0];
+    if (r < 0.55) return HAN[Math.random() * HAN.length | 0];
+    return c;
+  }).join('');
+}
+function zalgo(t, n) {
+  return t.split('').map(function (c) {
+    if (c === ' ') return c;
+    var m = ''; for (var i = 0; i < n; i++) m += ZM[Math.random() * ZM.length | 0];
+    return c + m;
+  }).join('');
+}
+function damage(el) {
+  var base = el.getAttribute('data-base') || el.textContent || '';
+  var a = base.split(''), drop = 1 + (Math.random() * 2 | 0);
+  if (a.length > drop + 1) { for (var k = 0; k < drop; k++) a.splice(Math.random() * a.length | 0, 1); }
+  el.setAttribute('data-base', a.join(''));
+  el.textContent = a.join('');
+}
+
+setInterval(function () {
+  if (stage < 2 || scareDone || document.hidden) return;
+  var cands = $$('[data-c]').filter(function (el) {
+    var r = el.getBoundingClientRect();
+    return r.bottom > 0 && r.top < vh && r.width > 0;
+  });
+  if (!cands.length) return;
+  var el = cands[Math.random() * cands.length | 0];
+  var base = el.getAttribute('data-base') || el.textContent;
+  if (!base || base.length < 2) return;
+  el.textContent = (stage >= 4 ? zalgo(scramble(base), 2) : scramble(base));
+  setTimeout(function () { if (!scareDone) el.textContent = el.getAttribute('data-base') || base; }, 260);
+  if (Math.random() < 0.3 && +(el.getAttribute('data-dmg') || 0) < 2) {
+    el.setAttribute('data-dmg', String(+(el.getAttribute('data-dmg') || 0) + 1));
+    setTimeout(function () { damage(el); }, 320);
+  }
+}, 1500);
+
+setInterval(function () {
+  if (stage < 2 || document.hidden) return;
+  $$('[data-stat]').forEach(function (el) {
+    var r = el.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > vh) return;
+    if (Math.random() < 0.55) {
+      var base = el.getAttribute('data-base') || el.textContent || '';
+      var g = base.replace(/\d/g, function () { return String(Math.random() * 10 | 0); });
+      if (g !== base) {
+        el.textContent = g;
+        setTimeout(function () { el.textContent = el.getAttribute('data-base') || base; }, 240);
+      }
+    }
+  });
+}, 2200);
+
+/* ---------- 音频引擎（全部实时合成） ---------- */
+var Sound = (function () {
+  var ctx = null, master = null, droneG = null, noiseG = null, white = null;
+  var started = false, beatT = 0, muted = false;
+  try { muted = localStorage.getItem('dsx_mute') === '1'; } catch (e) {}
+  function init() {
+    if (started) return;
+    var AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+    try { ctx = new AC(); } catch (e) { return; }
+    started = true;
+    var comp = ctx.createDynamicsCompressor();
+    comp.threshold.value = -18; comp.knee.value = 20; comp.ratio.value = 8;
+    master = ctx.createGain(); master.gain.value = muted ? 0 : 0.5;
+    master.connect(comp); comp.connect(ctx.destination);
+    droneG = ctx.createGain(); droneG.gain.value = 0; droneG.connect(master);
+    [49, 49.6, 98.3].forEach(function (f, i) {
+      var o = ctx.createOscillator(); o.type = i === 2 ? 'triangle' : 'sine'; o.frequency.value = f;
+      var g = ctx.createGain(); g.gain.value = i === 2 ? 0.12 : 0.5;
+      o.connect(g); g.connect(droneG); o.start();
+    });
+    noiseG = ctx.createGain(); noiseG.gain.value = 0; noiseG.connect(master);
+    var len = ctx.sampleRate * 2;
+    var buf = ctx.createBuffer(1, len, ctx.sampleRate);
+    var d = buf.getChannelData(0), last = 0;
+    for (var i = 0; i < len; i++) { var w = Math.random() * 2 - 1; d[i] = (last + 0.02 * w) / 1.02; last = d[i]; d[i] *= 3.2; }
+    var src = ctx.createBufferSource(); src.buffer = buf; src.loop = true;
+    var lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 420; lp.Q.value = 0.6;
+    src.connect(lp); lp.connect(noiseG); src.start();
+    white = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate);
+    var wd = white.getChannelData(0);
+    for (var j = 0; j < wd.length; j++) wd[j] = Math.random() * 2 - 1;
+  }
+  function resume() { if (ctx && ctx.state === 'suspended') ctx.resume(); }
+  function setLevel(l) {
+    if (!started) return;
+    droneG.gain.setTargetAtTime(Math.max(0, l - 0.3) * 0.9, ctx.currentTime, 1.2);
+    noiseG.gain.setTargetAtTime(Math.max(0, l - 0.45) * 0.12, ctx.currentTime, 1.5);
+  }
+  function thump(when, vol) {
+    var o = ctx.createOscillator(); o.type = 'sine';
+    o.frequency.setValueAtTime(64, when);
+    o.frequency.exponentialRampToValueAtTime(38, when + 0.14);
+    var g = ctx.createGain();
+    g.gain.setValueAtTime(0.0001, when);
+    g.gain.exponentialRampToValueAtTime(vol, when + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001, when + 0.22);
+    o.connect(g); g.connect(master);
+    o.start(when); o.stop(when + 0.3);
+  }
+  function heart(l, now) {
+    if (!started || muted || l < 0.42) return;
+    if (now > beatT) {
+      var t = ctx.currentTime, vol = 0.16 + l * 0.4;
+      thump(t, vol); thump(t + 0.18, vol * 0.55);
+      beatT = now + 60 / (52 + l * 70);
+    }
+  }
+  function whisper() {
+    if (!started || muted) return;
+    var t = ctx.currentTime;
+    var src = ctx.createBufferSource(); src.buffer = white; src.loop = true;
+    src.playbackRate.value = 0.8 + Math.random() * 0.5;
+    var bp = ctx.createBiquadFilter(); bp.type = 'bandpass'; bp.Q.value = 2.2;
+    bp.frequency.setValueAtTime(1500 + Math.random() * 600, t);
+    bp.frequency.exponentialRampToValueAtTime(500, t + 1.2);
+    var g = ctx.createGain();
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(0.09, t + 0.3);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 1.3);
+    src.connect(bp); bp.connect(g);
+    if (ctx.createStereoPanner) {
+      var pan = ctx.createStereoPanner(); pan.pan.value = Math.random() * 1.6 - 0.8;
+      g.connect(pan); pan.connect(master);
+    } else g.connect(master);
+    src.start(t); src.stop(t + 1.4);
+  }
+  function scream() {
+    if (!started) return;
+    var t = ctx.currentTime;
+    var g = ctx.createGain();
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(0.9, t + 0.05);
+    g.gain.setValueAtTime(0.9, t + 0.9);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 1.8);
+    g.connect(master);
+    var n = ctx.createBufferSource(); n.buffer = white;
+    var f = ctx.createBiquadFilter(); f.type = 'bandpass'; f.Q.value = 0.7;
+    f.frequency.setValueAtTime(2600, t);
+    f.frequency.exponentialRampToValueAtTime(220, t + 1.5);
+    n.connect(f); f.connect(g); n.start(t); n.stop(t + 1.9);
+    [164, 207, 261, 311].forEach(function (fr) {
+      var o = ctx.createOscillator(); o.type = 'sawtooth';
+      o.frequency.setValueAtTime(fr, t);
+      o.frequency.exponentialRampToValueAtTime(Math.max(30, fr * 0.3), t + 1.3);
+      var og = ctx.createGain(); og.gain.value = 0.16;
+      o.connect(og); og.connect(g);
+      o.start(t); o.stop(t + 1.6);
+    });
+  }
+  function toggle() {
+    muted = !muted;
+    try { localStorage.setItem('dsx_mute', muted ? '1' : '0'); } catch (e) {}
+    if (master) master.gain.value = muted ? 0 : 0.5;
+    return muted;
+  }
+  return {
+    init: init, resume: resume, setLevel: setLevel, heart: heart,
+    whisper: whisper, scream: scream, toggle: toggle,
+    get muted() { return muted; }
+  };
+})();
+
+['pointerdown', 'keydown', 'touchstart', 'wheel'].forEach(function (ev) {
+  addEventListener(ev, function () { Sound.init(); Sound.resume(); }, { capture: true, passive: true });
+});
+
+var muteBtn = $('#muteBtn');
+function syncMute() { muteBtn.textContent = Sound.muted ? '🔇' : '🔊'; }
+muteBtn.addEventListener('click', function (e) { e.stopPropagation(); Sound.init(); Sound.toggle(); syncMute(); });
+addEventListener('keydown', function (e) {
+  if (e.key === 'm' || e.key === 'M') { Sound.init(); Sound.toggle(); syncMute(); }
+});
+syncMute();
+
+/* ---------- 客服对话 ---------- */
+function nowTime() {
+  return new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit', hour12: false });
+}
+function buildChat() {
+  var t = new Date(), hh = t.getHours();
+  var arr = [
+    { who: 'bot', t: '您好，这里是深眠客服「小眠」～', d: 900 },
+    { who: 'bot', t: '请问有什么可以帮您？', d: 1100 },
+    { who: 'me', t: '我买的床垫半夜会自己发出声音', d: 1500 },
+    { who: 'bot', t: '那是在确认您还在呼吸哦。', d: 1700 },
+    { who: 'bot', t: '每晚 03:00 会自动检查一次。', d: 1600 },
+    { who: 'bot', t: '您的呼吸频率，它已经记住了。', d: 1700 },
+    { who: 'bot', t: '对了，现在是 ' + nowTime() + '。', d: 2000 }
+  ];
+  if (hh >= 0 && hh < 6) arr.push({ who: 'bot', t: '这么晚睡，对身体不好的。我们心疼您。', d: 2200 });
+  arr = arr.concat([
+    { who: 'bot', t: '这个时间还醒着的用户，只剩您一位了。', d: 2400 },
+    { who: 'bot', t: '您为什么还在往下看？', d: 2600 },
+    { who: 'bot', t: '……', d: 1800 },
+    { who: 'bot', t: '好吧。', d: 1400 },
+    { who: 'bot', t: '我们这就过去。', d: 2200 },
+    { who: 'bot', t: '到了。麻烦开一下门。', d: 6000 }
+  ]);
+  return arr;
+}
+function startChat() {
+  if (chatStarted) return;
+  chatStarted = true;
+  var msgs = $('#msgs'), CHAT = buildChat(), i = 0;
+  (function next() {
+    if (i >= CHAT.length) return;
+    var m = CHAT[i++];
+    var el = document.createElement('div');
+    el.className = 'm ' + m.who + ' typing';
+    if (m.who === 'bot') el.innerHTML = '<span></span><span></span><span></span>';
+    else el.textContent = '';
+    msgs.appendChild(el);
+    setTimeout(function () {
+      el.classList.remove('typing');
+      el.textContent = m.t;
+    }, Math.min(900, m.d * 0.55));
+    setTimeout(next, m.d);
+  })();
+}
+
+/* ---------- 主循环 ---------- */
+var DREAD = [0, 0.1, 0.28, 0.55, 0.78, 0.9, 1];
+var lastD = -1, lastDraw = 0, mx = 0, my = 0, whT = 0, flashT = 0;
+var FLASH_TXT = ['回去', '别看', '它在', '停下', '睡吧', '你后面'];
+
+addEventListener('mousemove', function (e) {
+  mx = e.clientX / innerWidth * 2 - 1;
+  my = e.clientY / innerHeight * 2 - 1;
+}, { passive: true });
+
+function lp(s) { return clamp((scrollY - s.top) / Math.max(1, s.h - vh), 0, 1); }
+
+function flashOnce() {
+  if (scareDone) return;
+  var now = performance.now();
+  if (now - flashT < 4000) return;
+  flashT = now;
+  var txt = $('.ftxt', flash);
+  if (txt) txt.textContent = FLASH_TXT[Math.random() * FLASH_TXT.length | 0];
+  flash.classList.add('on');
+  setTimeout(function () { flash.classList.remove('on'); }, 110);
+}
+
+function frame(now) {
+  requestAnimationFrame(frame);
+  if (document.hidden) return;
+
+  var mid = scrollY + vh * 0.5, st = 0;
+  for (var i = 0; i < secs.length; i++) {
+    var s = secs[i];
+    if (mid >= s.top && mid < s.top + s.h) st = Math.max(st, s.st);
+  }
+  if (st > stage) applyStage(st);
+
+  var target = DREAD[Math.min(stage, DREAD.length - 1)];
+  dread += (target - dread) * 0.028;
+  if (Math.abs(dread - lastD) > 0.002) {
+    root.style.setProperty('--dread', dread.toFixed(3));
+    lastD = dread;
+  }
+
+  if (hint) hint.style.opacity = clamp(1 - scrollY / (vh * 0.5), 0, 1) * clamp(1 - (dread - 0.3) * 3, 0, 1);
+
+  for (var j = 0; j < secs.length; j++) {
+    var q = secs[j];
+    if (q.st < 4) continue;
+    var p = lp(q);
+    if (q.el.id === 'void') {
+      var idx = clamp(Math.floor(p * vlines.length * 1.25), 0, vlines.length - 1);
+      for (var k = 0; k < vlines.length; k++) vlines[k].classList.toggle('on', k === idx && p < 0.985);
+      if (voidFace) voidFace.style.opacity = (0.04 + p * 0.16).toFixed(3);
+    } else if (q.el.id === 'corridor') {
+      if (figwrap) {
+        var sc = 0.2 + p * 1.35;
+        figwrap.style.transform = 'translateX(-50%) scale(' + sc.toFixed(3) + ') translateY(' + (p * 9).toFixed(2) + 'vh)';
+      }
+      if (corT1) corT1.classList.toggle('on', p > 0.12 && p < 0.45);
+      if (corT2) corT2.classList.toggle('on', p > 0.5 && p < 0.8);
+      if (corShade) corShade.style.opacity = clamp((p - 0.86) / 0.14, 0, 1).toFixed(3);
+    } else if (q.el.id === 'finale') {
+      var fi = clamp(Math.floor(p * flines.length * 1.15), 0, flines.length - 1);
+      for (var k2 = 0; k2 < flines.length; k2++) flines[k2].classList.toggle('on', k2 === fi);
+    }
+  }
+
+  if (staticC && dread > 0.5 && now - lastDraw > 90) {
+    lastDraw = now;
+    var g = staticC.getContext('2d');
+    if (g) {
+      var id = g.createImageData(staticC.width, staticC.height), dd = id.data;
+      for (var v = 0; v < dd.length; v += 4) {
+        var val = Math.random() * 255 | 0;
+        dd[v] = dd[v + 1] = dd[v + 2] = val; dd[v + 3] = 26;
+      }
+      g.putImageData(id, 0, 0);
+    }
+  }
+
+  if (pupils.length) {
+    var tx = (mx * 4).toFixed(1), ty = (my * 2.4).toFixed(1);
+    pupils.forEach(function (pu) { pu.style.transform = 'translate(' + tx + 'px,' + ty + 'px)'; });
+  }
+
+  if (!RM && dread > 0.66 && Math.random() < 0.0012) flashOnce();
+
+  Sound.setLevel(scareDone ? 0.05 : dread);
+  if (!scareDone) Sound.heart(dread, now);
+  if (!scareDone && dread > 0.68 && now > whT) { Sound.whisper(); whT = now + 8000 + Math.random() * 10000; }
+
+  if (!scareDone && scrollY + vh >= docH - 60) scare();
+}
+requestAnimationFrame(frame);
+
+/* ---------- Jumpscare 与结局 ---------- */
+function scare() {
+  if (scareDone) return;
+  scareDone = true;
+  body.classList.add('locked');
+  Sound.scream();
+  jump.classList.add('go');
+  if (!RM) {
+    body.classList.add('shake');
+    setTimeout(function () { body.classList.remove('shake'); }, 900);
+  }
+  setTimeout(function () {
+    jump.classList.remove('go');
+    jump.classList.add('done');
+    end.classList.add('show');
+    Sound.setLevel(0.04);
+  }, RM ? 2600 : 1700);
+}
+
+var toastT = 0;
+function toast(t) {
+  toastEl.textContent = t;
+  toastEl.classList.add('on');
+  clearTimeout(toastT);
+  toastT = setTimeout(function () { toastEl.classList.remove('on'); }, 3200);
+}
+
+$('#endAgain').addEventListener('click', function () { location.reload(); });
+$('#endShare').addEventListener('click', function () {
+  var txt = '你敢在深夜打开这个网站吗？ ' + location.href;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(txt).then(function () {
+      toast('链接已复制。TA 很快也会看到的。');
+    }, function () { toast('复制失败。那就，自己记住这个地方吧。'); });
+  } else toast('复制失败。那就，自己记住这个地方吧。');
+});
+
+/* ---------- 订阅表单 ---------- */
+$('#nlForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var inp = $('#nlInput');
+  var msgs = [
+    '感谢订阅！确认邮件已发送至您的邮箱。',
+    '邮件已发送。今晚请留意。',
+    '我们收到您了。',
+    '不用填了。我们已经知道是您。',
+    '您输入的时候，屏幕在反光。我们看见您了。'
+  ];
+  toast(msgs[Math.min(stage, msgs.length - 1)]);
+  inp.value = ''; inp.blur();
+});
+})();
+</script>
+</body>
+</html>
